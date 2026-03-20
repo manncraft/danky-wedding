@@ -20,9 +20,9 @@
 
 **⚠️ CRITICAL**: US1 code work and US2 manual setup both depend on this phase.
 
-- [ ] T001 Create `gas/` directory at repo root (if absent)
-- [ ] T002 Write `gas/guest-lookup.gs` — implement `doGet(e)` with: `GUEST_SECRET` property check returning `{"error":"unauthorised"}` on mismatch; `readGuests()` reading `Invites` tab (row 2 onward, col A + B), skipping blank rows, defaulting `max_guests` to 1 for blank/NaN; top-of-file block comment covering sheet structure, script property setup, deploy settings, and `GAS_TIMEOUT_MS` note
-- [ ] T003 [P] Add `GasGuest` interface `{ full_name: string; max_guests: number }` and `GasResponse` interface `{ guests?: GasGuest[] | null; error?: string }` to `src/types/rsvp.ts`
+- [x] T001 Create `gas/` directory at repo root (if absent)
+- [x] T002 Write `gas/guest-lookup.gs` — implement `doGet(e)` with: `GUEST_SECRET` property check returning `{"error":"unauthorised"}` on mismatch; `readGuests()` reading `Invites` tab (row 2 onward, col A + B), skipping blank rows, defaulting `max_guests` to 1 for blank/NaN; top-of-file block comment covering sheet structure, script property setup, deploy settings, and `GAS_TIMEOUT_MS` note
+- [x] T003 [P] Add `GasGuest` interface `{ full_name: string; max_guests: number }` and `GasResponse` interface `{ guests?: GasGuest[] | null; error?: string }` to `src/types/rsvp.ts`
 
 **Checkpoint**: `gas/guest-lookup.gs` exists and typechecks pass — US1 and US2 can now proceed
 
@@ -36,11 +36,11 @@
 
 ### Implementation for User Story 1
 
-- [ ] T004 [US1] Remove canned-data section from `api/rsvp.ts`: delete `buildRecord()` helper and `GUESTS` constant (lines 19–44 in current file)
-- [ ] T005 [US1] Add `fetchGuests()` to `api/rsvp.ts`: reads `GAS_ENDPOINT_URL` and `GAS_SECRET` from env (throw if either absent), reads `GAS_TIMEOUT_MS` from env defaulting to `6000`, calls `GET ${url}?secret=${encodeURIComponent(secret)}` with `AbortSignal.timeout(timeoutMs)`, throws on network error or timeout, throws if response body has `error` key or `guests` is absent/null, maps `GasGuest[]` → `GuestRecord[]` using existing `normaliseName()`
-- [ ] T006 [US1] Update `findMatches()` signature in `api/rsvp.ts`: add `guests: GuestRecord[]` as first parameter, remove closure over (now-deleted) `GUESTS` constant
-- [ ] T007 [US1] Update `handler()` in `api/rsvp.ts`: call `fetchGuests()` inside `try/catch` block before `findMatches()`; on catch: `console.error` the failure and return `res.status(502).json({ error: 'could not load guest list' })`; pass `guests` as first arg to `findMatches()`
-- [ ] T008 [P] [US1] Create `.env.local.example` at repo root documenting required env vars: `INTERNAL_SECRET`, `GAS_ENDPOINT_URL`, `GAS_SECRET`, `GAS_TIMEOUT_MS=6000`
+- [x] T004 [US1] Remove canned-data section from `api/rsvp.ts`: delete `buildRecord()` helper and `GUESTS` constant (lines 19–44 in current file)
+- [x] T005 [US1] Add `fetchGuests()` to `api/rsvp.ts`: reads `GAS_ENDPOINT_URL` and `GAS_SECRET` from env (throw if either absent), reads `GAS_TIMEOUT_MS` from env defaulting to `6000`, calls `GET ${url}?secret=${encodeURIComponent(secret)}` with `AbortSignal.timeout(timeoutMs)`, throws on network error or timeout, throws if response body has `error` key or `guests` is absent/null, maps `GasGuest[]` → `GuestRecord[]` using existing `normaliseName()`
+- [x] T006 [US1] Update `findMatches()` signature in `api/rsvp.ts`: add `guests: GuestRecord[]` as first parameter, remove closure over (now-deleted) `GUESTS` constant
+- [x] T007 [US1] Update `handler()` in `api/rsvp.ts`: call `fetchGuests()` inside `try/catch` block before `findMatches()`; on catch: `console.error` the failure and return `res.status(502).json({ error: 'could not load guest list' })`; pass `guests` as first arg to `findMatches()`
+- [x] T008 [P] [US1] Create `.env.local.example` at repo root documenting required env vars: `INTERNAL_SECRET`, `GAS_ENDPOINT_URL`, `GAS_SECRET`, `GAS_TIMEOUT_MS=6000`
 
 **Checkpoint**: `api/rsvp.ts` compiles with no type errors (`npm run lint`). All canned data removed. Function returns 502 when env vars are missing.
 

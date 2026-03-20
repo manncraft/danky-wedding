@@ -1,3 +1,17 @@
+// Wire format: one element in the array returned by the GAS web app
+export interface GasGuest {
+  full_name: string
+  max_guests: number
+}
+
+// Top-level shape returned by the GAS web app (HTTP always 200)
+// Success: { guests: GasGuest[] }   — array may be empty
+// Failure: { error: string }        — auth rejection or script error
+export interface GasResponse {
+  guests?: GasGuest[] | null
+  error?: string
+}
+
 export interface GuestRecord {
   full_name: string
   normalised_name: string
