@@ -37,6 +37,7 @@ export interface LookupResponse {
 export interface RsvpSubmitRequest {
   guest_name: string
   attending: boolean
+  dietary?: string
 }
 
 export interface RsvpSubmitResponse {
