@@ -16,5 +16,5 @@ jobs:
       - name: Push branch to mirror
         run: |
           git push --force \
-            "https://x-access-token:${{ secrets.SYNC_TOKEN }}@github.com/dandamann/danky-wedding-sync.git" \
+            "https://oauth2:${{ secrets.SYNC_TOKEN }}@github.com/dandamann/danky-wedding-sync.git" \
             "refs/heads/${{ github.ref_name }}:refs/heads/${{ github.ref_name }}"
