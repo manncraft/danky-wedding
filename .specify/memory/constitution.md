@@ -71,7 +71,10 @@ Guest data MUST be protected through layered controls:
 - **Two-tier access**: Tier 1 — shared secret via URL param (from QR code).
   Tier 2 — first-initial + last-name lookup returning only that guest's own
   record (`max_guests`, `full_name`, group display name).
-- Guests MUST NOT be able to enumerate or view other guests' names or records.
+- Guests MUST NOT be able to enumerate the guest list; however, a guest who
+  knows another guest's full name can look them up — this is an accepted and
+  intentional trust trade-off. The shared secret is the only robust security
+  gate; name lookup is convenience, not access control.
 - All secrets (`GOOGLE_SCRIPT_URL`, `INTERNAL_SECRET`) MUST be stored as Vercel
   Environment Variables and MUST NOT appear in client-side code or version
   control.
