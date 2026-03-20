@@ -3,6 +3,8 @@
 Auto-generated from all feature plans. Last updated: 2026-03-20
 
 ## Active Technologies
+- TypeScript 5.9 / React 19 + React 19, Vite 8, Tailwind CSS v4, react-hook-form (to be installed) (002-rsvp-dummy)
+- N/A — no data persistence (002-rsvp-dummy)
 
 - TypeScript 5.9 / React 19 + React 19, Vite 8, Tailwind CSS v4 (to be installed) (001-landing-page)
 
@@ -23,6 +25,7 @@ npm test && npm run lint
 TypeScript 5.9 / React 19: Follow standard conventions
 
 ## Recent Changes
+- 002-rsvp-dummy: Added TypeScript 5.9 / React 19 + React 19, Vite 8, Tailwind CSS v4, react-hook-form (to be installed)
 
 - 001-landing-page: Added TypeScript 5.9 / React 19 + React 19, Vite 8, Tailwind CSS v4 (to be installed)
 
