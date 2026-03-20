@@ -27,7 +27,7 @@ This project uses Vercel conventions: `api/` for serverless functions at repo ro
 
 **Purpose**: Install new dependency and confirm dev workflow.
 
-- [ ] T001 Add `@vercel/node` as a devDependency in `package.json` (`npm install --save-dev @vercel/node`)
+- [x] T001 Add `@vercel/node` as a devDependency in `package.json` (`npm install --save-dev @vercel/node`)
 
 ---
 
@@ -37,8 +37,8 @@ This project uses Vercel conventions: `api/` for serverless functions at repo ro
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete.
 
-- [ ] T002 Create `src/types/rsvp.ts` with TypeScript types: `GuestRecord` (full_name, normalised_name, first_initial, last_name_normalised, max_guests), `MatchedGuest` (full_name, max_guests), `LookupRequest` (name), `LookupResponse` (status: "found"|"not_found", matches: MatchedGuest[])
-- [ ] T003 Create `api/rsvp.ts` with: (a) name normalisation function (trim → lowercase → NFD decompose → strip diacritics → strip non-alphanumeric except spaces → collapse spaces), (b) canned `GuestRecord[]` array containing at minimum: "Alice Johnson" (max 2), "Jane Smith" (max 3), "John Smith" (max 1), plus 2–3 additional records for realism — no handler yet
+- [x] T002 Create `src/types/rsvp.ts` with TypeScript types: `GuestRecord` (full_name, normalised_name, first_initial, last_name_normalised, max_guests), `MatchedGuest` (full_name, max_guests), `LookupRequest` (name), `LookupResponse` (status: "found"|"not_found", matches: MatchedGuest[])
+- [x] T003 Create `api/rsvp.ts` with: (a) name normalisation function (trim → lowercase → NFD decompose → strip diacritics → strip non-alphanumeric except spaces → collapse spaces), (b) canned `GuestRecord[]` array containing at minimum: "Alice Johnson" (max 2), "Jane Smith" (max 3), "John Smith" (max 1), plus 2–3 additional records for realism — no handler yet
 
 **Checkpoint**: Types and data are in place. Both user story phases can now proceed.
 
@@ -52,12 +52,12 @@ This project uses Vercel conventions: `api/` for serverless functions at repo ro
 
 ### Implementation for User Story 1
 
-- [ ] T004 [US1] Implement matching function in `api/rsvp.ts`: accepts normalised input string, parses last-name token and optional first-initial token, returns all `GuestRecord[]` entries where `last_name_normalised` matches exactly and (if initial provided) `first_initial` matches
-- [ ] T005 [US1] Implement POST request handler in `api/rsvp.ts`: read JSON body, validate `name` field (return 400 if missing/empty after trim), normalise input, call matching function, return `LookupResponse` JSON; return 405 for non-POST methods
-- [ ] T006 [P] [US1] Create `src/services/rsvpApi.ts`: async `lookup(firstName: string, lastName: string): Promise<LookupResponse>` function that POSTs `{name: "${firstName} ${lastName}".trim()}` to `/api/rsvp`, parses JSON response, and throws a typed error on HTTP 4xx/5xx or network failure
-- [ ] T007 [US1] Update `src/components/RsvpLookup.tsx`: replace stub `onSubmit` with call to `rsvpApi.lookup()`, add `loading` state (show spinner/disabled button while awaiting response), store result in component state
-- [ ] T008 [US1] Add single-match result view to `src/components/RsvpLookup.tsx`: when `status === "found"` and `matches.length === 1`, display guest's `full_name` and `max_guests`, with a "That's me" / proceed button
-- [ ] T009 [US1] Add multiple-match selectable list to `src/components/RsvpLookup.tsx`: when `status === "found"` and `matches.length > 1`, render a tappable list of guest names; selecting one shows the same single-match view (T008) for that record
+- [x] T004 [US1] Implement matching function in `api/rsvp.ts`: accepts normalised input string, parses last-name token and optional first-initial token, returns all `GuestRecord[]` entries where `last_name_normalised` matches exactly and (if initial provided) `first_initial` matches
+- [x] T005 [US1] Implement POST request handler in `api/rsvp.ts`: read JSON body, validate `name` field (return 400 if missing/empty after trim), normalise input, call matching function, return `LookupResponse` JSON; return 405 for non-POST methods
+- [x] T006 [P] [US1] Create `src/services/rsvpApi.ts`: async `lookup(firstName: string, lastName: string): Promise<LookupResponse>` function that POSTs `{name: "${firstName} ${lastName}".trim()}` to `/api/rsvp`, parses JSON response, and throws a typed error on HTTP 4xx/5xx or network failure
+- [x] T007 [US1] Update `src/components/RsvpLookup.tsx`: replace stub `onSubmit` with call to `rsvpApi.lookup()`, add `loading` state (show spinner/disabled button while awaiting response), store result in component state
+- [x] T008 [US1] Add single-match result view to `src/components/RsvpLookup.tsx`: when `status === "found"` and `matches.length === 1`, display guest's `full_name` and `max_guests`, with a "That's me" / proceed button
+- [x] T009 [US1] Add multiple-match selectable list to `src/components/RsvpLookup.tsx`: when `status === "found"` and `matches.length > 1`, render a tappable list of guest names; selecting one shows the same single-match view (T008) for that record
 
 **Checkpoint**: User Story 1 fully functional. `vercel dev` + manual curl tests pass. Frontend renders single-match and multi-match states without crashing.
 
@@ -71,9 +71,9 @@ This project uses Vercel conventions: `api/` for serverless functions at repo ro
 
 ### Implementation for User Story 2
 
-- [ ] T010 [US2] Add not-found state view to `src/components/RsvpLookup.tsx`: when `status === "not_found"`, display friendly "We couldn't find your invite — double check your name or contact us" message with a "Try again" button that resets to the form
-- [ ] T011 [US2] Add backend error state view to `src/components/RsvpLookup.tsx`: when `rsvpApi.lookup()` throws (network failure or HTTP error), display "Something went wrong — please try again" message with retry button; this state MUST be visually distinct from not-found
-- [ ] T012 [US2] Verify client-side validation in `src/components/RsvpLookup.tsx`: confirm that submitting an empty or whitespace-only name triggers the existing react-hook-form validation error and does NOT call `rsvpApi.lookup()`; update validation rules if needed
+- [x] T010 [US2] Add not-found state view to `src/components/RsvpLookup.tsx`: when `status === "not_found"`, display friendly "We couldn't find your invite — double check your name or contact us" message with a "Try again" button that resets to the form
+- [x] T011 [US2] Add backend error state view to `src/components/RsvpLookup.tsx`: when `rsvpApi.lookup()` throws (network failure or HTTP error), display "Something went wrong — please try again" message with retry button; this state MUST be visually distinct from not-found
+- [x] T012 [US2] Verify client-side validation in `src/components/RsvpLookup.tsx`: confirm that submitting an empty or whitespace-only name triggers the existing react-hook-form validation error and does NOT call `rsvpApi.lookup()`; update validation rules if needed
 
 **Checkpoint**: All four UI states (single match, multiple matches, not found, error) work independently. User Story 2 complete.
 
@@ -84,7 +84,7 @@ This project uses Vercel conventions: `api/` for serverless functions at repo ro
 **Purpose**: Final verification and code quality pass.
 
 - [ ] T013 Manual end-to-end verification using all scenarios in `specs/003-rsvp-backend-stub/quickstart.md` with `vercel dev`
-- [ ] T014 [P] Run `npm run lint` and resolve any lint errors introduced by this feature
+- [x] T014 [P] Run `npm run lint` and resolve any lint errors introduced by this feature
 
 ---
 
