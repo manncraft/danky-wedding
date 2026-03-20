@@ -13,6 +13,7 @@ export class RsvpApiError extends Error {
 export async function lookup(
   firstName: string,
   lastName: string,
+  secret: string,
 ): Promise<LookupResponse> {
   const name = `${firstName} ${lastName}`.trim()
 
@@ -20,7 +21,10 @@ export async function lookup(
   try {
     response = await fetch('/api/rsvp', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Invite-Secret': secret,
+      },
       body: JSON.stringify({ name }),
     })
   } catch {

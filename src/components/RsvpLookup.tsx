@@ -20,7 +20,17 @@ type ViewState =
   | { kind: 'not_found' }
   | { kind: 'error' }
 
+const SESSION_KEY = 'invite_secret'
+
 export default function RsvpLookup({ onBack }: RsvpLookupProps) {
+  const [secret, setSecret] = useState<string | null>(() => {
+    const fromUrl = new URLSearchParams(window.location.search).get('s')
+    if (fromUrl) {
+      sessionStorage.setItem(SESSION_KEY, fromUrl)
+      return fromUrl
+    }
+    return sessionStorage.getItem(SESSION_KEY)
+  })
   const [view, setView] = useState<ViewState>({ kind: 'form' })
 
   const {
@@ -32,7 +42,7 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
   const onSubmit = async (data: LookupFormData) => {
     setView({ kind: 'loading' })
     try {
-      const result = await lookup(data.firstName, data.lastName)
+      const result = await lookup(data.firstName, data.lastName, secret!)
       if (result.status === 'not_found' || result.matches.length === 0) {
         setView({ kind: 'not_found' })
       } else if (result.matches.length === 1) {
@@ -41,8 +51,9 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
         setView({ kind: 'select', matches: result.matches })
       }
     } catch (err) {
-      if (err instanceof RsvpApiError) {
-        setView({ kind: 'error' })
+      if (err instanceof RsvpApiError && err.status === 401) {
+        sessionStorage.removeItem(SESSION_KEY)
+        setSecret(null)
       } else {
         setView({ kind: 'error' })
       }
@@ -50,6 +61,25 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
   }
 
   const reset = () => setView({ kind: 'form' })
+
+  if (secret === null) {
+    return (
+      <div className="min-h-screen flex flex-col items-center px-6 py-10">
+        <div className="w-full max-w-md">
+          <button
+            onClick={onBack}
+            className="mb-6 text-sm text-gray-500 hover:text-gray-800"
+          >
+            ← Back
+          </button>
+          <h1 className="text-2xl font-semibold mb-2">Please use your invite link</h1>
+          <p className="text-sm text-gray-500">
+            Scan the QR code on your physical invitation to access the RSVP.
+          </p>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen flex flex-col items-center px-6 py-10">
