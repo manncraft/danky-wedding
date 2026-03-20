@@ -1,5 +1,12 @@
 # Quickstart: Landing Page with Wedding Information
 
+## Validation Approach
+
+**No automated tests for this feature.** The developer (Claude) runs `npm run build`
+to catch TypeScript/lint errors before pushing. All visual and UX checks are
+performed by the product owner (you) acting as QA via the Vercel preview URL
+generated on each push.
+
 ## Prerequisites
 
 - Node.js 18+ installed
@@ -11,17 +18,14 @@
 npm install tailwindcss @tailwindcss/vite
 ```
 
-## Step 2: Run Dev Server
+## Step 2: Push and Open Vercel Preview
 
-```bash
-npm run dev
-```
+After each push, Vercel generates a preview URL. Open it in your browser
+(and in mobile DevTools at 320 px width) to verify the page.
 
-Open the URL printed in the terminal (typically `http://localhost:5173`).
+## Step 3: QA Checklist
 
-## Step 3: Verify the Landing Page
-
-Check each success criterion manually in the browser:
+Check each success criterion in the Vercel preview:
 
 | Criterion | How to verify |
 |-----------|--------------|
