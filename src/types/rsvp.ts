@@ -33,3 +33,12 @@ export interface LookupResponse {
   status: 'found' | 'not_found'
   matches: MatchedGuest[]
 }
+
+export interface RsvpSubmitRequest {
+  guest_name: string
+  attending: boolean
+}
+
+export interface RsvpSubmitResponse {
+  status: 'ok'
+}

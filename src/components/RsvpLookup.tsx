@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { lookup, RsvpApiError } from '../services/rsvpApi'
+import { lookup, submitRsvp, RsvpApiError } from '../services/rsvpApi'
 import type { MatchedGuest } from '../types/rsvp'
 
 interface RsvpLookupProps {
@@ -12,6 +12,10 @@ interface LookupFormData {
   lastName: string
 }
 
+interface AttendanceFormData {
+  attending: 'true' | 'false'
+}
+
 type ViewState =
   | { kind: 'form' }
   | { kind: 'loading' }
@@ -19,6 +23,7 @@ type ViewState =
   | { kind: 'confirmed'; guest: MatchedGuest }
   | { kind: 'not_found' }
   | { kind: 'error' }
+  | { kind: 'rsvp-submitted'; guest: MatchedGuest; attending: boolean }
 
 const SESSION_KEY = 'invite_secret'
 
@@ -38,6 +43,15 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
     handleSubmit,
     formState: { errors },
   } = useForm<LookupFormData>()
+
+  const {
+    register: registerAttendance,
+    handleSubmit: handleAttendanceSubmit,
+    setError: setAttendanceError,
+    formState: { errors: attendanceErrors, isSubmitting: isAttendanceSubmitting },
+  } = useForm<AttendanceFormData>()
+
+  const [selectedAttending, setSelectedAttending] = useState<'true' | 'false' | null>(null)
 
   const onSubmit = async (data: LookupFormData) => {
     setView({ kind: 'loading' })
@@ -174,11 +188,97 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
             <h2 className="text-xl font-semibold mb-2">Found you!</h2>
             <div className="border border-gray-200 rounded px-4 py-4 mb-6">
               <p className="text-sm font-medium">{view.guest.full_name}</p>
-              <p className="text-xs text-gray-500 mt-1">
-                Party of up to {view.guest.max_guests}
-              </p>
             </div>
-            <p className="text-sm text-gray-500">RSVP flow coming soon.</p>
+            <p className="text-sm font-medium mb-4">Will you be attending?</p>
+            <form
+              noValidate
+              onSubmit={handleAttendanceSubmit(async (data) => {
+                const attending = data.attending === 'true'
+                try {
+                  await submitRsvp(view.guest.full_name, attending, secret!)
+                  setView({ kind: 'rsvp-submitted', guest: view.guest, attending })
+                } catch {
+                  setAttendanceError('root', {
+                    message: 'Something went wrong. Please try again.',
+                  })
+                }
+              })}
+            >
+              <div className="grid grid-cols-2 gap-3 mb-4">
+                <label
+                  onClick={() => setSelectedAttending('true')}
+                  className={`flex items-center justify-center rounded border px-4 py-4 text-sm text-center cursor-pointer transition-colors min-h-[3rem] ${
+                    selectedAttending === 'true'
+                      ? 'border-gray-900 bg-gray-900 text-white'
+                      : 'border-gray-200 hover:border-gray-400'
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    value="true"
+                    className="sr-only"
+                    {...registerAttendance('attending', { required: 'Please select an option' })}
+                  />
+                  Attending
+                </label>
+                <label
+                  onClick={() => setSelectedAttending('false')}
+                  className={`flex items-center justify-center rounded border px-4 py-4 text-sm text-center cursor-pointer transition-colors min-h-[3rem] ${
+                    selectedAttending === 'false'
+                      ? 'border-gray-900 bg-gray-900 text-white'
+                      : 'border-gray-200 hover:border-gray-400'
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    value="false"
+                    className="sr-only"
+                    {...registerAttendance('attending', { required: 'Please select an option' })}
+                  />
+                  Not Attending
+                </label>
+              </div>
+              {attendanceErrors.attending && (
+                <p className="text-sm text-red-600 mb-3">
+                  {attendanceErrors.attending.message}
+                </p>
+              )}
+              {attendanceErrors.root && (
+                <p className="text-sm text-red-600 mb-3">
+                  {attendanceErrors.root.message}
+                </p>
+              )}
+              <button
+                type="submit"
+                disabled={isAttendanceSubmitting}
+                className="w-full bg-gray-900 text-white text-sm py-2.5 rounded hover:bg-gray-700 disabled:opacity-50 flex items-center justify-center gap-2"
+              >
+                {isAttendanceSubmitting ? (
+                  <>
+                    <div className="w-4 h-4 border-2 border-white/40 border-t-white rounded-full animate-spin" />
+                    Submitting…
+                  </>
+                ) : (
+                  'Submit RSVP'
+                )}
+              </button>
+            </form>
+          </>
+        )}
+
+        {view.kind === 'rsvp-submitted' && (
+          <>
+            <h2 className="text-xl font-semibold mb-2">
+              {view.attending ? 'See you there!' : 'We\'ll miss you!'}
+            </h2>
+            <div className="border border-gray-200 rounded px-4 py-4 mb-4">
+              <p className="text-sm font-medium">{view.guest.full_name}</p>
+            </div>
+            <p className="text-sm text-gray-500">
+              {view.attending
+                ? 'Your RSVP has been received. We look forward to celebrating with you.'
+                : 'Thanks for letting us know. We hope to see you another time.'}
+            </p>
           </>
         )}
 
