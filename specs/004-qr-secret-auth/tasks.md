@@ -23,7 +23,7 @@ description: "Task list for QR Code Secret Validation implementation"
 
 **Purpose**: Create local dev secret config.
 
-- [ ] T001 Create `.env.local` at project root with content `INTERNAL_SECRET=dev-secret-local-only` (this file is already git-ignored via `.env*`)
+- [x] T001 Create `.env.local` at project root with content `INTERNAL_SECRET=dev-secret-local-only` (this file is already git-ignored via `.env*`)
 
 ---
 
@@ -41,9 +41,9 @@ No cross-story foundational work required — all changes are modifications to t
 
 ### Implementation for User Story 1
 
-- [ ] T002 [US1] Add secret validation to `api/rsvp.ts`: insert as the second check in the handler (after method check, before body validation) — read `req.headers['x-invite-secret']` as a string; if it does not strictly equal `process.env.INTERNAL_SECRET` (or if `INTERNAL_SECRET` is undefined), return `res.status(401).json({ error: 'unauthorised' })`
-- [ ] T003 [P] [US1] Update `lookup()` in `src/services/rsvpApi.ts`: add `secret: string` as a second parameter; include it as `'X-Invite-Secret': secret` in the fetch headers object
-- [ ] T004 [US1] Update `src/components/RsvpLookup.tsx`: add `secret` state (`useState<string | null>(null)`); add `useEffect` on mount that (1) reads `new URLSearchParams(window.location.search).get('s')`, (2) if found writes it to `sessionStorage.setItem('invite_secret', value)` and sets state, (3) if not in URL reads `sessionStorage.getItem('invite_secret')` and sets state if present; update the `onSubmit` handler to pass `secret!` as the second argument to `rsvpApi.lookup()`
+- [x] T002 [US1] Add secret validation to `api/rsvp.ts`: insert as the second check in the handler (after method check, before body validation) — read `req.headers['x-invite-secret']` as a string; if it does not strictly equal `process.env.INTERNAL_SECRET` (or if `INTERNAL_SECRET` is undefined), return `res.status(401).json({ error: 'unauthorised' })`
+- [x] T003 [P] [US1] Update `lookup()` in `src/services/rsvpApi.ts`: add `secret: string` as a second parameter; include it as `'X-Invite-Secret': secret` in the fetch headers object
+- [x] T004 [US1] Update `src/components/RsvpLookup.tsx`: add `secret` state (`useState<string | null>(null)`); add `useEffect` on mount that (1) reads `new URLSearchParams(window.location.search).get('s')`, (2) if found writes it to `sessionStorage.setItem('invite_secret', value)` and sets state, (3) if not in URL reads `sessionStorage.getItem('invite_secret')` and sets state if present; update the `onSubmit` handler to pass `secret!` as the second argument to `rsvpApi.lookup()`
 
 **Checkpoint**: `POST /api/rsvp` with correct `X-Invite-Secret` header returns 200. Without the header returns 401. Frontend passes the secret from `?s=` param through to the API call.
 
@@ -57,8 +57,8 @@ No cross-story foundational work required — all changes are modifications to t
 
 ### Implementation for User Story 2
 
-- [ ] T005 [US2] Add gate screen to `src/components/RsvpLookup.tsx`: after the mount `useEffect` resolves, if `secret === null` render a gate view instead of the form — heading "Please use your invite link", body "Scan the QR code on your physical invitation to access the RSVP.", no retry button and no back button interaction beyond the existing `onBack` prop
-- [ ] T006 [US2] Handle 401 response in `src/components/RsvpLookup.tsx` catch block: when `err instanceof RsvpApiError && err.status === 401`, call `sessionStorage.removeItem('invite_secret')` and set `secret(null)` — this will cause the component to re-render into the gate screen (handles the case where a secret was stored but has since been rotated)
+- [x] T005 [US2] Add gate screen to `src/components/RsvpLookup.tsx`: after the mount `useEffect` resolves, if `secret === null` render a gate view instead of the form — heading "Please use your invite link", body "Scan the QR code on your physical invitation to access the RSVP.", no retry button and no back button interaction beyond the existing `onBack` prop
+- [x] T006 [US2] Handle 401 response in `src/components/RsvpLookup.tsx` catch block: when `err instanceof RsvpApiError && err.status === 401`, call `sessionStorage.removeItem('invite_secret')` and set `secret(null)` — this will cause the component to re-render into the gate screen (handles the case where a secret was stored but has since been rotated)
 
 **Checkpoint**: All four scenarios from quickstart.md pass: valid secret → form shown; no secret → gate screen; wrong secret → 401 → gate screen; refresh with valid secret in URL → form still shown.
 
@@ -69,7 +69,7 @@ No cross-story foundational work required — all changes are modifications to t
 **Purpose**: Verification and code quality pass.
 
 - [ ] T007 Manual end-to-end verification using all scenarios in `specs/004-qr-secret-auth/quickstart.md` with `vercel dev`
-- [ ] T008 [P] Run `npm run lint` and resolve any lint errors introduced by this feature
+- [x] T008 [P] Run `npm run lint` and resolve any lint errors introduced by this feature
 
 ---
 

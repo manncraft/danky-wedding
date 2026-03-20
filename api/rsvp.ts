@@ -69,6 +69,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ error: 'method not allowed' })
   }
 
+  const secret = req.headers['x-invite-secret']
+  if (!process.env.INTERNAL_SECRET || secret !== process.env.INTERNAL_SECRET) {
+    return res.status(401).json({ error: 'unauthorised' })
+  }
+
   const { name } = req.body as { name?: unknown }
 
   if (typeof name !== 'string' || name.trim() === '') {
