@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
-import type { GasGuest, GasResponse, GuestRecord, LookupResponse } from '../src/types/rsvp'
+import type { GasGuest, GasResponse, GuestRecord, LookupResponse } from '../src/types/rsvp.js'
 
 // ---------------------------------------------------------------------------
 // Normalisation
