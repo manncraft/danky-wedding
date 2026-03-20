@@ -42,6 +42,7 @@ export async function submitRsvp(
   guestName: string,
   attending: boolean,
   secret: string,
+  dietary?: string,
 ): Promise<RsvpSubmitResponse> {
   let response: Response
   try {
@@ -51,7 +52,11 @@ export async function submitRsvp(
         'Content-Type': 'application/json',
         'X-Invite-Secret': secret,
       },
-      body: JSON.stringify({ guest_name: guestName, attending }),
+      body: JSON.stringify({
+        guest_name: guestName,
+        attending,
+        ...(attending && dietary ? { dietary } : {}),
+      }),
     })
   } catch {
     throw new RsvpApiError('Network error — please check your connection')

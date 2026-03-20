@@ -18,7 +18,7 @@
 
 **⚠️ CRITICAL**: All Phase 2 tasks depend on this.
 
-- [ ] T001 Add `dietary?: string` to `RsvpSubmitRequest` interface in `src/types/rsvp.ts`
+- [x] T001 Add `dietary?: string` to `RsvpSubmitRequest` interface in `src/types/rsvp.ts`
 
 **Checkpoint**: Type definition in place — backend and frontend tasks can now proceed in parallel.
 
@@ -32,10 +32,10 @@
 
 ### Implementation
 
-- [ ] T002 [P] [US1] Validate optional `dietary` field (type check + server-side trim) in `api/rsvp-submit.ts`
-- [ ] T003 [P] [US1] Add `dietary?: string` parameter to `submitRsvp()` and include it in the request body (attending-only) in `src/services/rsvpApi.ts`
-- [ ] T004 [US1] Register `dietary` field, add `ATTENDING_GATED_FIELDS` constant + `useEffect` to clear on toggle, and render `<input>` conditionally when `attendingValue === 'true'` in `src/components/RsvpLookup.tsx` (depends on T001, T003)
-- [ ] T005 [US1] Pass `dietary` value from form data to `submitRsvp()` call in `src/components/RsvpLookup.tsx` (depends on T004)
+- [x] T002 [P] [US1] Validate optional `dietary` field (type check + server-side trim) in `api/rsvp-submit.ts`
+- [x] T003 [P] [US1] Add `dietary?: string` parameter to `submitRsvp()` and include it in the request body (attending-only) in `src/services/rsvpApi.ts`
+- [x] T004 [US1] Register `dietary` field, add `ATTENDING_GATED_FIELDS` constant + `useEffect` to clear on toggle, and render `<input>` conditionally when `attendingValue === 'true'` in `src/components/RsvpLookup.tsx` (depends on T001, T003)
+- [x] T005 [US1] Pass `dietary` value from form data to `submitRsvp()` call in `src/components/RsvpLookup.tsx` (depends on T004)
 
 **Checkpoint**: Full end-to-end flow works — dietary field appears for attending guests, clears on toggle, and value reaches the API.
 
@@ -43,7 +43,7 @@
 
 ## Phase 3: Polish & Cross-Cutting Concerns
 
-- [ ] T006 Run `npm run lint` and fix any type errors introduced by the new field
+- [x] T006 Run `npm run lint` and fix any type errors introduced by the new field
 - [ ] T007 Manually verify all scenarios in `quickstart.md` (attend → type → toggle → submit)
 
 ---

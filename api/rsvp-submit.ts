@@ -21,6 +21,10 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(400).json({ error: 'attending must be a boolean' })
   }
 
+  if (body.dietary !== undefined && typeof body.dietary !== 'string') {
+    return res.status(400).json({ error: 'dietary must be a string' })
+  }
+
   const response: RsvpSubmitResponse = { status: 'ok' }
   return res.status(200).json(response)
 }

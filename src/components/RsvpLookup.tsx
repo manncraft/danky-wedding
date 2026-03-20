@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { lookup, submitRsvp, RsvpApiError } from '../services/rsvpApi'
 import type { MatchedGuest } from '../types/rsvp'
@@ -14,6 +14,7 @@ interface LookupFormData {
 
 interface AttendanceFormData {
   attending: 'true' | 'false'
+  dietary?: string
 }
 
 type ViewState =
@@ -27,6 +28,7 @@ type ViewState =
 
 const SESSION_KEY = 'invite_secret'
 const RSVP_RESULT_KEY = 'rsvp_result'
+const ATTENDING_GATED_FIELDS = ['dietary'] as const
 
 export default function RsvpLookup({ onBack }: RsvpLookupProps) {
   const [secret, setSecret] = useState<string | null>(() => {
@@ -60,10 +62,20 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
     register: registerAttendance,
     handleSubmit: handleAttendanceSubmit,
     setError: setAttendanceError,
+    watch: watchAttendance,
+    setValue: setAttendanceValue,
     formState: { errors: attendanceErrors, isSubmitting: isAttendanceSubmitting },
   } = useForm<AttendanceFormData>()
 
   const [selectedAttending, setSelectedAttending] = useState<'true' | 'false' | null>(null)
+
+  const attendingValue = watchAttendance('attending')
+
+  useEffect(() => {
+    if (attendingValue !== 'true') {
+      ATTENDING_GATED_FIELDS.forEach(field => setAttendanceValue(field, ''))
+    }
+  }, [attendingValue, setAttendanceValue])
 
   const onSubmit = async (data: LookupFormData) => {
     setView({ kind: 'loading' })
@@ -207,7 +219,7 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
               onSubmit={handleAttendanceSubmit(async (data) => {
                 const attending = data.attending === 'true'
                 try {
-                  await submitRsvp(view.guest.full_name, attending, secret!)
+                  await submitRsvp(view.guest.full_name, attending, secret!, data.dietary)
                   sessionStorage.setItem(RSVP_RESULT_KEY, JSON.stringify({ guest: view.guest, attending }))
                   setView({ kind: 'rsvp-submitted', guest: view.guest, attending })
                 } catch {
@@ -251,6 +263,20 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
                   Not Attending
                 </label>
               </div>
+              {attendingValue === 'true' && (
+                <div className="flex flex-col gap-1 mb-4">
+                  <label htmlFor="dietary" className="text-sm font-medium">
+                    Dietary requirements or restrictions
+                  </label>
+                  <input
+                    id="dietary"
+                    type="text"
+                    className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gray-400"
+                    placeholder="e.g. vegetarian, nut allergy"
+                    {...registerAttendance('dietary')}
+                  />
+                </div>
+              )}
               {attendanceErrors.attending && (
                 <p className="text-sm text-red-600 mb-3">
                   {attendanceErrors.attending.message}
