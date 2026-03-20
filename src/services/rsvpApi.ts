@@ -1,12 +1,12 @@
 import type { LookupResponse } from '../types/rsvp'
 
 export class RsvpApiError extends Error {
-  constructor(
-    message: string,
-    public readonly status?: number,
-  ) {
+  readonly status?: number
+
+  constructor(message: string, status?: number) {
     super(message)
     this.name = 'RsvpApiError'
+    this.status = status
   }
 }
 
