@@ -22,7 +22,7 @@ description: "Task list for RSVP lookup screen"
 
 **Purpose**: Install react-hook-form.
 
-- [ ] T001 Install react-hook-form: run `npm install react-hook-form`
+- [x] T001 Install react-hook-form: run `npm install react-hook-form`
 
 ---
 
@@ -33,8 +33,8 @@ button. Both user stories depend on this.
 
 **⚠️ CRITICAL**: Phases 3 and 4 depend on this phase being complete.
 
-- [ ] T002 Update `src/App.tsx` to add `view` state typed as `'landing' | 'rsvp-lookup'` (default `'landing'`); pass `onRsvpClick={() => setView('rsvp-lookup')}` to `<Nav>`; conditionally render `<main>` sections when `view === 'landing'` and a placeholder `<div>RSVP</div>` when `view === 'rsvp-lookup'`
-- [ ] T003 Update `src/components/Nav.tsx` to accept `onRsvpClick: () => void` prop and render an "RSVP" button in the nav bar that calls it on click; apply Tailwind classes consistent with the existing nav style
+- [x] T002 Update `src/App.tsx` to add `view` state typed as `'landing' | 'rsvp-lookup'` (default `'landing'`); pass `onRsvpClick={() => setView('rsvp-lookup')}` to `<Nav>`; conditionally render `<main>` sections when `view === 'landing'` and a placeholder `<div>RSVP</div>` when `view === 'rsvp-lookup'`
+- [x] T003 Update `src/components/Nav.tsx` to accept `onRsvpClick: () => void` prop and render an "RSVP" button in the nav bar that calls it on click; apply Tailwind classes consistent with the existing nav style
 
 **Checkpoint**: Nav shows RSVP button; clicking it swaps the view. Back to landing
 by refreshing (stub only — back control comes in Phase 3).
@@ -51,8 +51,8 @@ with all sections returns.
 
 ### Implementation for User Story 1
 
-- [ ] T004 [US1] Create `src/components/RsvpLookup.tsx` — accepts `onBack: () => void` prop; renders a screen-level container with a back/close button that calls `onBack`, a heading ("Find Your Invite"), and placeholder `<p>Form goes here</p>`; apply basic Tailwind layout classes
-- [ ] T005 [US1] Update `src/App.tsx` to replace the placeholder `<div>RSVP</div>` with `<RsvpLookup onBack={() => setView('landing')} />`
+- [x] T004 [US1] Create `src/components/RsvpLookup.tsx` — accepts `onBack: () => void` prop; renders a screen-level container with a back/close button that calls `onBack`, a heading ("Find Your Invite"), and placeholder `<p>Form goes here</p>`; apply basic Tailwind layout classes
+- [x] T005 [US1] Update `src/App.tsx` to replace the placeholder `<div>RSVP</div>` with `<RsvpLookup onBack={() => setView('landing')} />`
 
 **Checkpoint**: US1 fully functional — RSVP button opens lookup screen, back
 button returns to landing. Form content comes in US2.
@@ -71,9 +71,9 @@ visible on the empty field.
 
 ### Implementation for User Story 2
 
-- [ ] T006 [US2] Update `src/components/RsvpLookup.tsx` to replace the placeholder paragraph with a `useForm` form containing: a labelled first name input (`firstName`, required), a labelled last name input (`lastName`, required), and a "Find Invite" submit button; register both fields with `react-hook-form` `register` and mark both as `required`
-- [ ] T007 [US2] Add inline validation error messages to `src/components/RsvpLookup.tsx` — display `errors.firstName.message` beneath the first name field and `errors.lastName.message` beneath the last name field when present; use `formState: { errors }` from `useForm`
-- [ ] T008 [US2] Add submit handler to `src/components/RsvpLookup.tsx` — `onSubmit` receives valid form data and sets local `submitted` state to `true`; when `submitted` is true, replace the form with the stub message: "Thanks — we'll look you up shortly!" No fetch or network call of any kind.
+- [x] T006 [US2] Update `src/components/RsvpLookup.tsx` to replace the placeholder paragraph with a `useForm` form containing: a labelled first name input (`firstName`, required), a labelled last name input (`lastName`, required), and a "Find Invite" submit button; register both fields with `react-hook-form` `register` and mark both as `required`
+- [x] T007 [US2] Add inline validation error messages to `src/components/RsvpLookup.tsx` — display `errors.firstName.message` beneath the first name field and `errors.lastName.message` beneath the last name field when present; use `formState: { errors }` from `useForm`
+- [x] T008 [US2] Add submit handler to `src/components/RsvpLookup.tsx` — `onSubmit` receives valid form data and sets local `submitted` state to `true`; when `submitted` is true, replace the form with the stub message: "Thanks — we'll look you up shortly!" No fetch or network call of any kind.
 
 **Checkpoint**: US1 and US2 both independently functional.
 
@@ -81,8 +81,8 @@ visible on the empty field.
 
 ## Phase 5: Polish & Cross-Cutting Concerns
 
-- [ ] T009 Apply Tailwind responsive layout classes to `src/components/RsvpLookup.tsx` — form fields and buttons MUST be full-width on mobile (320 px), inputs should have adequate padding, errors should be clearly readable
-- [ ] T010 Run `npm run build` and confirm zero TypeScript errors and zero lint errors
+- [x] T009 Apply Tailwind responsive layout classes to `src/components/RsvpLookup.tsx` — form fields and buttons MUST be full-width on mobile (320 px), inputs should have adequate padding, errors should be clearly readable
+- [x] T010 Run `npm run build` and confirm zero TypeScript errors and zero lint errors
 - [ ] T011 QA: push branch, open Vercel preview, verify all 6 items in the quickstart.md QA checklist
 
 ---
