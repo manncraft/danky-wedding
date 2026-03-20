@@ -12,6 +12,8 @@ Auto-generated from all feature plans. Last updated: 2026-03-20
 - Google Sheets (external, zero-cost) — no new persistent storage added to the project (005-gas-sheet-integration)
 - TypeScript 5.9 (frontend + Vercel function) + React 19, Vite 8, Tailwind CSS v4, react-hook-form 7, Zod, `@vercel/node` (006-rsvp-attendance-form)
 - N/A — backend stubs success; no persistence in this iteration (006-rsvp-attendance-form)
+- TypeScript 5.9 (frontend + Vercel function) + React 19, react-hook-form 7, Zod, `@vercel/node` (007-dietary-requirements)
+- N/A — backend stub; no persistence in this iteration (007-dietary-requirements)
 
 - TypeScript 5.9 / React 19 + React 19, Vite 8, Tailwind CSS v4 (to be installed) (001-landing-page)
 
@@ -32,9 +34,9 @@ npm test && npm run lint
 TypeScript 5.9 / React 19: Follow standard conventions
 
 ## Recent Changes
+- 007-dietary-requirements: Added TypeScript 5.9 (frontend + Vercel function) + React 19, react-hook-form 7, Zod, `@vercel/node`
 - 006-rsvp-attendance-form: Added TypeScript 5.9 (frontend + Vercel function) + React 19, Vite 8, Tailwind CSS v4, react-hook-form 7, Zod, `@vercel/node`
 - 005-gas-sheet-integration: Added TypeScript 5.9 (Vercel function) / JavaScript ES2019 (GAS script) + `@vercel/node` (already installed), Google Apps Script runtime (V8, managed by Google)
-- 004-qr-secret-auth: Added TypeScript 5.9 + React 19, Vite 8, Tailwind CSS v4, react-hook-form 7, `@vercel/node`
 
 
 <!-- MANUAL ADDITIONS START -->
