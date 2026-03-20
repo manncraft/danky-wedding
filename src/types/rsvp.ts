@@ -34,10 +34,15 @@ export interface LookupResponse {
   matches: MatchedGuest[]
 }
 
-export interface RsvpSubmitRequest {
-  guest_name: string
-  attending: boolean
+export interface Guest {
+  name: string
   dietary?: string
+  type: 'primary' | 'plus-one'
+}
+
+export interface RsvpSubmitRequest {
+  attending: boolean
+  guests: Guest[]
 }
 
 export interface RsvpSubmitResponse {

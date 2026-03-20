@@ -1,4 +1,4 @@
-import type { LookupResponse, RsvpSubmitResponse } from '../types/rsvp'
+import type { LookupResponse, RsvpSubmitRequest, RsvpSubmitResponse } from '../types/rsvp'
 
 export class RsvpApiError extends Error {
   readonly status?: number
@@ -39,10 +39,8 @@ export async function lookup(
 }
 
 export async function submitRsvp(
-  guestName: string,
-  attending: boolean,
+  request: RsvpSubmitRequest,
   secret: string,
-  dietary?: string,
 ): Promise<RsvpSubmitResponse> {
   let response: Response
   try {
@@ -52,11 +50,7 @@ export async function submitRsvp(
         'Content-Type': 'application/json',
         'X-Invite-Secret': secret,
       },
-      body: JSON.stringify({
-        guest_name: guestName,
-        attending,
-        ...(attending && dietary ? { dietary } : {}),
-      }),
+      body: JSON.stringify(request),
     })
   } catch {
     throw new RsvpApiError('Network error — please check your connection')
