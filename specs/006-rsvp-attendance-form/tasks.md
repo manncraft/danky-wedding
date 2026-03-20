@@ -30,10 +30,10 @@ No new project structure required. All work extends existing files. Proceed dire
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete.
 
-- [ ] T001 [P] Add `RsvpSubmitRequest` and `RsvpSubmitResponse` interfaces to `src/types/rsvp.ts` — `RsvpSubmitRequest: { guest_name: string; attending: boolean }`, `RsvpSubmitResponse: { status: 'ok' }`
-- [ ] T002 [P] Create `api/rsvp-submit.ts` — Vercel serverless function that: (1) rejects non-POST methods with 405, (2) validates `X-Invite-Secret` header against `process.env.INTERNAL_SECRET` (return 401 on mismatch), (3) parses and validates body with Zod (`guest_name` non-empty string, `attending` boolean; return 400 on failure), (4) returns `{ status: 'ok' }` with 200
-- [ ] T003 Add `submitRsvp(guestName: string, attending: boolean, secret: string): Promise<RsvpSubmitResponse>` to `src/services/rsvpApi.ts` — POST to `/api/rsvp-submit` with `X-Invite-Secret` header; throw `RsvpApiError` on non-200 response (depends on T001)
-- [ ] T004 Add `rsvp-submitted` variant to `ViewState` in `src/components/RsvpLookup.tsx`: `{ kind: 'rsvp-submitted'; guest: MatchedGuest; attending: boolean }` (depends on T001)
+- [x] T001 [P] Add `RsvpSubmitRequest` and `RsvpSubmitResponse` interfaces to `src/types/rsvp.ts` — `RsvpSubmitRequest: { guest_name: string; attending: boolean }`, `RsvpSubmitResponse: { status: 'ok' }`
+- [x] T002 [P] Create `api/rsvp-submit.ts` — Vercel serverless function that: (1) rejects non-POST methods with 405, (2) validates `X-Invite-Secret` header against `process.env.INTERNAL_SECRET` (return 401 on mismatch), (3) parses and validates body with Zod (`guest_name` non-empty string, `attending` boolean; return 400 on failure), (4) returns `{ status: 'ok' }` with 200
+- [x] T003 Add `submitRsvp(guestName: string, attending: boolean, secret: string): Promise<RsvpSubmitResponse>` to `src/services/rsvpApi.ts` — POST to `/api/rsvp-submit` with `X-Invite-Secret` header; throw `RsvpApiError` on non-200 response (depends on T001)
+- [x] T004 Add `rsvp-submitted` variant to `ViewState` in `src/components/RsvpLookup.tsx`: `{ kind: 'rsvp-submitted'; guest: MatchedGuest; attending: boolean }` (depends on T001)
 
 **Checkpoint**: Foundation ready — types, endpoint, service, and new state variant all in place.
 
@@ -47,10 +47,10 @@ No new project structure required. All work extends existing files. Proceed dire
 
 ### Implementation for User Story 1
 
-- [ ] T005 [US1] Replace the "RSVP flow coming soon." placeholder in the `confirmed` branch of `RsvpLookup.tsx` with an attendance form — render two mutually exclusive buttons or radio options labelled "Attending" and "Not Attending", controlled by local form state (depends on T004)
-- [ ] T006 [US1] Add react-hook-form validation to the attendance form in `src/components/RsvpLookup.tsx` — the submit button MUST be disabled (or trigger an inline validation error) when no option is selected (depends on T005)
-- [ ] T007 [US1] Add submit handler in `src/components/RsvpLookup.tsx` — on form submit: (1) show a loading spinner, (2) call `submitRsvp(guest.full_name, attending, secret)`, (3) on success transition to `{ kind: 'rsvp-submitted', guest, attending }` view state (depends on T006, T003)
-- [ ] T008 [US1] Add inline submission error handling in `src/components/RsvpLookup.tsx` — on `submitRsvp` failure display an error message inline (below the form), keep the guest's selection intact, and allow retry without resetting the form (depends on T007)
+- [x] T005 [US1] Replace the "RSVP flow coming soon." placeholder in the `confirmed` branch of `RsvpLookup.tsx` with an attendance form — render two mutually exclusive buttons or radio options labelled "Attending" and "Not Attending", controlled by local form state (depends on T004)
+- [x] T006 [US1] Add react-hook-form validation to the attendance form in `src/components/RsvpLookup.tsx` — the submit button MUST be disabled (or trigger an inline validation error) when no option is selected (depends on T005)
+- [x] T007 [US1] Add submit handler in `src/components/RsvpLookup.tsx` — on form submit: (1) show a loading spinner, (2) call `submitRsvp(guest.full_name, attending, secret)`, (3) on success transition to `{ kind: 'rsvp-submitted', guest, attending }` view state (depends on T006, T003)
+- [x] T008 [US1] Add inline submission error handling in `src/components/RsvpLookup.tsx` — on `submitRsvp` failure display an error message inline (below the form), keep the guest's selection intact, and allow retry without resetting the form (depends on T007)
 
 **Checkpoint**: User Story 1 fully functional. Guest can reach confirmed state, select attendance, submit, and land on the submitted state.
 
@@ -64,7 +64,7 @@ No new project structure required. All work extends existing files. Proceed dire
 
 ### Implementation for User Story 2
 
-- [ ] T009 [US2] Add `rsvp-submitted` branch to the view state renderer in `src/components/RsvpLookup.tsx` — display the guest's `full_name` and a confirmation message reflecting their decision: distinct messaging for attending vs. not attending (depends on T004, T007)
+- [x] T009 [US2] Add `rsvp-submitted` branch to the view state renderer in `src/components/RsvpLookup.tsx` — display the guest's `full_name` and a confirmation message reflecting their decision: distinct messaging for attending vs. not attending (depends on T004, T007)
 
 **Checkpoint**: User Stories 1 and 2 both complete. Full inline flow works: lookup → confirmed → attendance form → submit → confirmation.
 
@@ -72,7 +72,7 @@ No new project structure required. All work extends existing files. Proceed dire
 
 ## Phase 5: Polish & Cross-Cutting Concerns
 
-- [ ] T010 [P] Mobile-first styling review in `src/components/RsvpLookup.tsx` — verify attendance options and submit button are sufficiently large for touch interaction on mobile screens (constitution Principle I); adjust Tailwind classes as needed
+- [x] T010 [P] Mobile-first styling review in `src/components/RsvpLookup.tsx` — verify attendance options and submit button are sufficiently large for touch interaction on mobile screens (constitution Principle I); adjust Tailwind classes as needed
 - [ ] T011 [P] Validate the `api/rsvp-submit.ts` endpoint against all three curl scenarios in `specs/006-rsvp-attendance-form/quickstart.md` (happy path, missing secret, invalid body) against the local dev server
 
 ---
