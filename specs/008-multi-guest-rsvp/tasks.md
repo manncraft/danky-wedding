@@ -32,8 +32,8 @@ No project initialization required — this feature extends an existing TypeScri
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete.
 
-- [ ] T001 [P] Add `Guest` type (`{ name: string; dietary?: string; type: 'primary' | 'plus-one' }`) and replace existing `RsvpSubmitRequest` fields (`guest_name`, `attending`, `dietary`) with `{ attending: boolean; guests: Guest[] }` in `src/types/rsvp.ts`
-- [ ] T002 [P] Extend `AttendanceFormData` interface with `additionalGuests: { name: string; dietary?: string }[]` and update `submitRsvp` in `src/services/rsvpApi.ts` to build the flat `guests[]` payload per the contract in `specs/008-multi-guest-rsvp/contracts/rsvp-submit.md`
+- [x] T001 [P] Add `Guest` type (`{ name: string; dietary?: string; type: 'primary' | 'plus-one' }`) and replace existing `RsvpSubmitRequest` fields (`guest_name`, `attending`, `dietary`) with `{ attending: boolean; guests: Guest[] }` in `src/types/rsvp.ts`
+- [x] T002 [P] Extend `AttendanceFormData` interface with `additionalGuests: { name: string; dietary?: string }[]` and update `submitRsvp` in `src/services/rsvpApi.ts` to build the flat `guests[]` payload per the contract in `specs/008-multi-guest-rsvp/contracts/rsvp-submit.md`
 
 **Checkpoint**: Type contracts in place — user story implementation can now begin.
 
@@ -45,11 +45,11 @@ No project initialization required — this feature extends an existing TypeScri
 
 **Independent Test**: Load the RSVP form for an invitation with `max_guests: 3`, select Attending, add 2 guests with names and dietary info, submit, and confirm the network request contains `guests: [{ name, dietary, type: 'primary' }, { name, dietary, type: 'plus-one' }, { name, dietary, type: 'plus-one' }]`.
 
-- [ ] T003 [US1] Wire `useFieldArray` for `additionalGuests` into the existing attendance `useForm` instance and add a `useEffect` that calls `replace([])` when `attending` changes to `'false'` in `src/components/RsvpLookup.tsx`
-- [ ] T004 [US1] Render the "Are you RSVPing for anyone else?" static label and "Add Guest" button below the primary dietary field, visible only when `attending === 'true'` and `guest.max_guests > 1`; hide the button when `fields.length >= guest.max_guests - 1` in `src/components/RsvpLookup.tsx`
-- [ ] T005 [US1] Render each `fields` entry as a visually-delineated card (Tailwind border + rounded + padding) containing: a required name text input (`register(\`additionalGuests.\${index}.name\`, { required: true })`), an optional dietary text input, and a trash-can SVG button that calls `remove(index)` in `src/components/RsvpLookup.tsx`
-- [ ] T006 [US1] Update `onSubmit` to build the flat `guests[]` payload — primary guest at index 0 (`type: 'primary'`, `name: guest.full_name`, `dietary`) followed by `additionalGuests` mapped to `type: 'plus-one'` entries — and call `submitRsvp` with the new `RsvpSubmitRequest` shape in `src/components/RsvpLookup.tsx`
-- [ ] T007 [US1] Update `api/rsvp-submit.ts` stub to accept and validate the `{ attending: boolean; guests: Guest[] }` payload: check `guests` is a non-empty array, `guests[0].type === 'primary'`, `guests[0].name` is non-empty, and each element with `type: 'plus-one'` has a non-empty `name`; return 400 on failure, `{ status: 'ok' }` on success
+- [x] T003 [US1] Wire `useFieldArray` for `additionalGuests` into the existing attendance `useForm` instance and add a `useEffect` that calls `replace([])` when `attending` changes to `'false'` in `src/components/RsvpLookup.tsx`
+- [x] T004 [US1] Render the "Are you RSVPing for anyone else?" static label and "Add Guest" button below the primary dietary field, visible only when `attending === 'true'` and `guest.max_guests > 1`; hide the button when `fields.length >= guest.max_guests - 1` in `src/components/RsvpLookup.tsx`
+- [x] T005 [US1] Render each `fields` entry as a visually-delineated card (Tailwind border + rounded + padding) containing: a required name text input (`register(\`additionalGuests.\${index}.name\`, { required: true })`), an optional dietary text input, and a trash-can SVG button that calls `remove(index)` in `src/components/RsvpLookup.tsx`
+- [x] T006 [US1] Update `onSubmit` to build the flat `guests[]` payload — primary guest at index 0 (`type: 'primary'`, `name: guest.full_name`, `dietary`) followed by `additionalGuests` mapped to `type: 'plus-one'` entries — and call `submitRsvp` with the new `RsvpSubmitRequest` shape in `src/components/RsvpLookup.tsx`
+- [x] T007 [US1] Update `api/rsvp-submit.ts` stub to accept and validate the `{ attending: boolean; guests: Guest[] }` payload: check `guests` is a non-empty array, `guests[0].type === 'primary'`, `guests[0].name` is non-empty, and each element with `type: 'plus-one'` has a non-empty `name`; return 400 on failure, `{ status: 'ok' }` on success
 
 **Checkpoint**: US1 fully functional — can add guests, submit, and see correct payload in network tab.
 
@@ -61,7 +61,7 @@ No project initialization required — this feature extends an existing TypeScri
 
 **Independent Test**: Load the RSVP form for an invitation with `max_guests: 1`, select Attending, and confirm the "Are you RSVPing for anyone else?" label and "Add Guest" button are absent from the DOM entirely (not just hidden with CSS).
 
-- [ ] T008 [US2] Confirm the condition added in T004 (`guest.max_guests > 1`) results in the entire multi-guest section being absent from the DOM when `max_guests === 1`; add an explicit early return or null render to ensure no residual elements leak through in `src/components/RsvpLookup.tsx`
+- [x] T008 [US2] Confirm the condition added in T004 (`guest.max_guests > 1`) results in the entire multi-guest section being absent from the DOM when `max_guests === 1`; add an explicit early return or null render to ensure no residual elements leak through in `src/components/RsvpLookup.tsx`
 
 **Checkpoint**: US2 verified — single-invite guests see an unmodified form.
 
@@ -73,8 +73,8 @@ No project initialization required — this feature extends an existing TypeScri
 
 **Independent Test**: Load the form for an invitation with `max_guests: 4`, add 3 guests (button disappears), remove the second one (button reappears), add another (button disappears again), and submit — confirm the payload contains exactly 4 guests in total.
 
-- [ ] T009 [US3] Verify the `fields.length >= guest.max_guests - 1` condition from T004 is reactive to removals — after calling `remove(index)`, `fields.length` decreases and the "Add Guest" button reappears without a page reload; confirm with a manual walkthrough at `max_guests: 4` using the quickstart scenario in `specs/008-multi-guest-rsvp/quickstart.md`
-- [ ] T010 [US3] Ensure form validation (name required on each added guest) blocks submission when any `additionalGuests[*].name` is empty: display an inline validation error below the offending name input using `formState.errors.additionalGuests` in `src/components/RsvpLookup.tsx`
+- [x] T009 [US3] Verify the `fields.length >= guest.max_guests - 1` condition from T004 is reactive to removals — after calling `remove(index)`, `fields.length` decreases and the "Add Guest" button reappears without a page reload; confirm with a manual walkthrough at `max_guests: 4` using the quickstart scenario in `specs/008-multi-guest-rsvp/quickstart.md`
+- [x] T010 [US3] Ensure form validation (name required on each added guest) blocks submission when any `additionalGuests[*].name` is empty: display an inline validation error below the offending name input using `formState.errors.additionalGuests` in `src/components/RsvpLookup.tsx`
 
 **Checkpoint**: US3 verified — add/remove sequences work correctly at all party sizes and validation prevents nameless guest submissions.
 
@@ -82,9 +82,9 @@ No project initialization required — this feature extends an existing TypeScri
 
 ## Phase 6: Polish & Cross-Cutting Concerns
 
-- [ ] T011 [P] Verify the trash-can SVG button meets minimum touch-target size (44×44 px) and has an `aria-label="Remove guest"` attribute for screen-reader accessibility in `src/components/RsvpLookup.tsx`
-- [ ] T012 [P] Verify the additional guest card layout is correct at 375px viewport width (iPhone SE) — name and dietary inputs stack vertically, trash-can button in top-right corner does not overlap inputs in `src/components/RsvpLookup.tsx`
-- [ ] T013 Run `npm test && npm run lint` from repo root and fix any type errors or lint failures introduced by the new `Guest` type and updated `RsvpSubmitRequest`
+- [x] T011 [P] Verify the trash-can SVG button meets minimum touch-target size (44×44 px) and has an `aria-label="Remove guest"` attribute for screen-reader accessibility in `src/components/RsvpLookup.tsx`
+- [x] T012 [P] Verify the additional guest card layout is correct at 375px viewport width (iPhone SE) — name and dietary inputs stack vertically, trash-can button in top-right corner does not overlap inputs in `src/components/RsvpLookup.tsx`
+- [x] T013 Run `npm test && npm run lint` from repo root and fix any type errors or lint failures introduced by the new `Guest` type and updated `RsvpSubmitRequest`
 
 ---
 

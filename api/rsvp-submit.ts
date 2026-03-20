@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
-import type { RsvpSubmitRequest, RsvpSubmitResponse } from '../src/types/rsvp.js'
+import type { Guest, RsvpSubmitRequest, RsvpSubmitResponse } from '../src/types/rsvp.js'
 
 export default function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
@@ -13,16 +13,28 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
 
   const body = req.body as Partial<RsvpSubmitRequest>
 
-  if (typeof body.guest_name !== 'string' || body.guest_name.trim() === '') {
-    return res.status(400).json({ error: 'guest_name is required' })
-  }
-
   if (typeof body.attending !== 'boolean') {
     return res.status(400).json({ error: 'attending must be a boolean' })
   }
 
-  if (body.dietary !== undefined && typeof body.dietary !== 'string') {
-    return res.status(400).json({ error: 'dietary must be a string' })
+  if (!Array.isArray(body.guests) || body.guests.length === 0) {
+    return res.status(400).json({ error: 'guests must be a non-empty array' })
+  }
+
+  const guests = body.guests as Guest[]
+
+  if (guests[0].type !== 'primary') {
+    return res.status(400).json({ error: 'guests[0].type must be "primary"' })
+  }
+
+  if (typeof guests[0].name !== 'string' || guests[0].name.trim() === '') {
+    return res.status(400).json({ error: 'guests[0].name is required' })
+  }
+
+  for (let i = 1; i < guests.length; i++) {
+    if (typeof guests[i].name !== 'string' || guests[i].name.trim() === '') {
+      return res.status(400).json({ error: `guests[${i}].name is required` })
+    }
   }
 
   const response: RsvpSubmitResponse = { status: 'ok' }

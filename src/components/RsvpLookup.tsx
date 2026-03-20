@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { useForm } from 'react-hook-form'
+import { useForm, useFieldArray } from 'react-hook-form'
 import { lookup, submitRsvp, RsvpApiError } from '../services/rsvpApi'
 import type { MatchedGuest } from '../types/rsvp'
 
@@ -15,6 +15,7 @@ interface LookupFormData {
 interface AttendanceFormData {
   attending: 'true' | 'false'
   dietary?: string
+  additionalGuests: { name: string; dietary?: string }[]
 }
 
 type ViewState =
@@ -64,8 +65,16 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
     setError: setAttendanceError,
     watch: watchAttendance,
     setValue: setAttendanceValue,
+    control,
     formState: { errors: attendanceErrors, isSubmitting: isAttendanceSubmitting },
-  } = useForm<AttendanceFormData>()
+  } = useForm<AttendanceFormData>({
+    defaultValues: { additionalGuests: [] },
+  })
+
+  const { fields, append, remove, replace } = useFieldArray({
+    control,
+    name: 'additionalGuests',
+  })
 
   const [selectedAttending, setSelectedAttending] = useState<'true' | 'false' | null>(null)
 
@@ -74,8 +83,9 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
   useEffect(() => {
     if (attendingValue !== 'true') {
       ATTENDING_GATED_FIELDS.forEach(field => setAttendanceValue(field, ''))
+      replace([])
     }
-  }, [attendingValue, setAttendanceValue])
+  }, [attendingValue, setAttendanceValue, replace])
 
   const onSubmit = async (data: LookupFormData) => {
     setView({ kind: 'loading' })
@@ -219,7 +229,19 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
               onSubmit={handleAttendanceSubmit(async (data) => {
                 const attending = data.attending === 'true'
                 try {
-                  await submitRsvp(view.guest.full_name, attending, secret!, data.dietary)
+                  const primaryGuest = {
+                    name: view.guest.full_name,
+                    type: 'primary' as const,
+                    ...(data.dietary?.trim() ? { dietary: data.dietary.trim() } : {}),
+                  }
+                  const plusOnes = attending
+                    ? (data.additionalGuests ?? []).map(g => ({
+                        name: g.name,
+                        type: 'plus-one' as const,
+                        ...(g.dietary?.trim() ? { dietary: g.dietary.trim() } : {}),
+                      }))
+                    : []
+                  await submitRsvp({ attending, guests: [primaryGuest, ...plusOnes] }, secret!)
                   sessionStorage.setItem(RSVP_RESULT_KEY, JSON.stringify({ guest: view.guest, attending }))
                   setView({ kind: 'rsvp-submitted', guest: view.guest, attending })
                 } catch {
@@ -263,6 +285,7 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
                   Not Attending
                 </label>
               </div>
+
               {attendingValue === 'true' && (
                 <div className="flex flex-col gap-1 mb-4">
                   <label htmlFor="dietary" className="text-sm font-medium">
@@ -277,6 +300,95 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
                   />
                 </div>
               )}
+
+              {attendingValue === 'true' && view.guest.max_guests > 1 && (
+                <div className="mt-2 mb-4">
+                  <p className="text-sm font-medium mb-3">Are you RSVPing for anyone else?</p>
+
+                  {fields.map((field, index) => (
+                    <div
+                      key={field.id}
+                      className="border border-gray-200 rounded p-4 mt-3 relative"
+                    >
+                      <button
+                        type="button"
+                        aria-label="Remove guest"
+                        onClick={() => remove(index)}
+                        className="absolute top-3 right-3 flex items-center justify-center w-11 h-11 text-gray-400 hover:text-gray-700"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="18"
+                          height="18"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          aria-hidden="true"
+                        >
+                          <polyline points="3 6 5 6 21 6" />
+                          <path d="M19 6l-1 14H6L5 6" />
+                          <path d="M10 11v6" />
+                          <path d="M14 11v6" />
+                          <path d="M9 6V4h6v2" />
+                        </svg>
+                      </button>
+
+                      <div className="flex flex-col gap-1 mb-3 pr-12">
+                        <label
+                          htmlFor={`additionalGuests.${index}.name`}
+                          className="text-sm font-medium"
+                        >
+                          Guest name
+                        </label>
+                        <input
+                          id={`additionalGuests.${index}.name`}
+                          type="text"
+                          className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gray-400"
+                          placeholder="Full name"
+                          {...registerAttendance(`additionalGuests.${index}.name`, {
+                            required: 'Guest name is required',
+                          })}
+                        />
+                        {attendanceErrors.additionalGuests?.[index]?.name && (
+                          <p className="text-sm text-red-600">
+                            {attendanceErrors.additionalGuests[index].name.message}
+                          </p>
+                        )}
+                      </div>
+
+                      <div className="flex flex-col gap-1">
+                        <label
+                          htmlFor={`additionalGuests.${index}.dietary`}
+                          className="text-sm font-medium"
+                        >
+                          Dietary requirements or restrictions
+                        </label>
+                        <input
+                          id={`additionalGuests.${index}.dietary`}
+                          type="text"
+                          className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gray-400"
+                          placeholder="e.g. vegetarian, nut allergy"
+                          {...registerAttendance(`additionalGuests.${index}.dietary`)}
+                        />
+                      </div>
+                    </div>
+                  ))}
+
+                  {fields.length < view.guest.max_guests - 1 && (
+                    <button
+                      type="button"
+                      onClick={() => append({ name: '', dietary: '' })}
+                      className="mt-3 w-full border border-dashed border-gray-300 rounded px-4 py-2.5 text-sm text-gray-600 hover:border-gray-500 hover:text-gray-800 transition-colors"
+                    >
+                      + Add Guest
+                    </button>
+                  )}
+                </div>
+              )}
+
               {attendanceErrors.attending && (
                 <p className="text-sm text-red-600 mb-3">
                   {attendanceErrors.attending.message}
