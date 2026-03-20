@@ -26,6 +26,7 @@ type ViewState =
   | { kind: 'rsvp-submitted'; guest: MatchedGuest; attending: boolean }
 
 const SESSION_KEY = 'invite_secret'
+const RSVP_RESULT_KEY = 'rsvp_result'
 
 export default function RsvpLookup({ onBack }: RsvpLookupProps) {
   const [secret, setSecret] = useState<string | null>(() => {
@@ -36,7 +37,18 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
     }
     return sessionStorage.getItem(SESSION_KEY)
   })
-  const [view, setView] = useState<ViewState>({ kind: 'form' })
+  const [view, setView] = useState<ViewState>(() => {
+    try {
+      const stored = sessionStorage.getItem(RSVP_RESULT_KEY)
+      if (stored) {
+        const { guest, attending } = JSON.parse(stored) as { guest: MatchedGuest; attending: boolean }
+        return { kind: 'rsvp-submitted', guest, attending }
+      }
+    } catch {
+      // ignore malformed stored value
+    }
+    return { kind: 'form' }
+  })
 
   const {
     register,
@@ -196,6 +208,7 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
                 const attending = data.attending === 'true'
                 try {
                   await submitRsvp(view.guest.full_name, attending, secret!)
+                  sessionStorage.setItem(RSVP_RESULT_KEY, JSON.stringify({ guest: view.guest, attending }))
                   setView({ kind: 'rsvp-submitted', guest: view.guest, attending })
                 } catch {
                   setAttendanceError('root', {
