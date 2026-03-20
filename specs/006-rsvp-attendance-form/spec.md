@@ -91,4 +91,4 @@ After submitting, the guest sees a confirmation that reflects their name and wha
 - The matched guest name from the lookup result (already implemented) is passed directly into the attendance form — no second lookup is needed.
 - The attendance decision is submitted to a new Vercel backend endpoint that returns a stub success response. No real persistence (Google Sheet write or otherwise) is in scope for this iteration.
 - Within the same session, the submitted RSVP state is held in memory — navigating back shows the confirmation again, not the form.
-- A page refresh or new QR scan starts a fresh session; no prior RSVP state is restored (consistent with the stub backend having no persistence).
+- The submission is stored in `sessionStorage` so it survives the component unmounting when the guest navigates back. This means it also persists through a page refresh (acceptable behaviour). If "refresh = fresh form" ever becomes a hard requirement, the sessionStorage approach should be replaced with the Redux store (already installed via Redux Toolkit), which is in-memory and resets on any real page load while still surviving in-app navigation.
