@@ -1,6 +1,6 @@
 # danky-wedding Development Guidelines
 
-Auto-generated from all feature plans. Last updated: 2026-03-20
+Auto-generated from all feature plans. Last updated: 2026-03-21
 
 ## Active Technologies
 - TypeScript 5.9 / React 19 + React 19, Vite 8, Tailwind CSS v4, react-hook-form (to be installed) (002-rsvp-dummy)
@@ -16,6 +16,8 @@ Auto-generated from all feature plans. Last updated: 2026-03-20
 - N/A — backend stub; no persistence in this iteration (007-dietary-requirements)
 - TypeScript 5.9 (frontend + Vercel function) + React 19, Vite 8, Tailwind CSS v4, react-hook-form 7 + useFieldArray, `@vercel/node` (008-multi-guest-rsvp)
 - N/A — backend stub only; no persistence in this iteration (008-multi-guest-rsvp)
+- TypeScript 5.9 (Vercel function) / Google Apps Script (V8 runtime, managed by Google) + `@vercel/node` (existing), Google Apps Script Spreadsheet Service (built-in) (009-rsvp-sheet-persistence)
+- Google Sheets — existing `Invites` sheet unchanged; new `RSVPs` sheet appended (009-rsvp-sheet-persistence)
 
 - TypeScript 5.9 / React 19 + React 19, Vite 8, Tailwind CSS v4 (to be installed) (001-landing-page)
 
@@ -36,9 +38,9 @@ npm test && npm run lint
 TypeScript 5.9 / React 19: Follow standard conventions
 
 ## Recent Changes
+- 009-rsvp-sheet-persistence: Added TypeScript 5.9 (Vercel function) / Google Apps Script (V8 runtime, managed by Google) + `@vercel/node` (existing), Google Apps Script Spreadsheet Service (built-in)
 - 008-multi-guest-rsvp: Added TypeScript 5.9 (frontend + Vercel function) + React 19, Vite 8, Tailwind CSS v4, react-hook-form 7 + useFieldArray, `@vercel/node`
 - 007-dietary-requirements: Added TypeScript 5.9 (frontend + Vercel function) + React 19, react-hook-form 7, Zod, `@vercel/node`
-- 006-rsvp-attendance-form: Added TypeScript 5.9 (frontend + Vercel function) + React 19, Vite 8, Tailwind CSS v4, react-hook-form 7, Zod, `@vercel/node`
 
 
 <!-- MANUAL ADDITIONS START -->
