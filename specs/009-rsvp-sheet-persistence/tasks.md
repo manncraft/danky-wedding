@@ -26,7 +26,7 @@ This is a web app project. Key paths:
 
 **Purpose**: Add the new TypeScript types that both the Vercel function and tests depend on. No new files — types extend the existing `src/types/rsvp.ts`.
 
-- [ ] T001 Add `RsvpRow`, `GasWriteRequest`, and `GasWriteResponse` TypeScript interfaces to `src/types/rsvp.ts` per the shapes defined in `specs/009-rsvp-sheet-persistence/data-model.md`
+- [x] T001 Add `RsvpRow`, `GasWriteRequest`, and `GasWriteResponse` TypeScript interfaces to `src/types/rsvp.ts` per the shapes defined in `specs/009-rsvp-sheet-persistence/data-model.md`
 
 ---
 
@@ -36,8 +36,8 @@ This is a web app project. Key paths:
 
 **⚠️ CRITICAL**: T005 (Vercel wiring) and T003 (unit tests) both depend on this phase being complete.
 
-- [ ] T002 Implement pure function `flattenToRows(request: RsvpSubmitRequest, timestamp: string): RsvpRow[]` in `api/rsvp-submit.ts` following rules in `specs/009-rsvp-sheet-persistence/data-model.md`: if `attending=false` produce one row (primary only, `attending="no"`); if `attending=true` produce one row per guest (`attending="yes"`); set `invite_source = guests[0].name` on every row; capitalise `type` (`"primary"` → `"Primary"`, `"plus-one"` → `"Plus-One"`); set deferred fields (`is_child`, `age_range`, `seating_needs`, `safety_ack`) to `""`
-- [ ] T003 [P] Write unit tests for `flattenToRows` in `tests/rsvp-submit.test.ts`: (a) decline with two named plus-ones produces exactly 1 row with `attending="no"` and no plus-one rows, (b) accept with two plus-ones produces 3 rows all with `attending="yes"`, (c) `invite_source` equals `guests[0].name` on every row in both scenarios, (d) `type` values are `"Primary"` and `"Plus-One"` (capitalised), (e) deferred fields are `""` not `null`/`undefined`
+- [x] T002 Implement pure function `flattenToRows(request: RsvpSubmitRequest, timestamp: string): RsvpRow[]` in `api/rsvp-submit.ts` following rules in `specs/009-rsvp-sheet-persistence/data-model.md`: if `attending=false` produce one row (primary only, `attending="no"`); if `attending=true` produce one row per guest (`attending="yes"`); set `invite_source = guests[0].name` on every row; capitalise `type` (`"primary"` → `"Primary"`, `"plus-one"` → `"Plus-One"`); set deferred fields (`is_child`, `age_range`, `seating_needs`, `safety_ack`) to `""`
+- [ ] T003 [P] Write unit tests for `flattenToRows` in `tests/rsvp-submit.test.ts` ⚠️ BLOCKED: no test runner in package.json — install Vitest before implementing: (a) decline with two named plus-ones produces exactly 1 row with `attending="no"` and no plus-one rows, (b) accept with two plus-ones produces 3 rows all with `attending="yes"`, (c) `invite_source` equals `guests[0].name` on every row in both scenarios, (d) `type` values are `"Primary"` and `"Plus-One"` (capitalised), (e) deferred fields are `""` not `null`/`undefined`
 
 **Checkpoint**: `npm test` passes for `flattenToRows` unit tests before starting Phase 3.
 
@@ -51,9 +51,9 @@ This is a web app project. Key paths:
 
 ### Implementation for User Story 1
 
-- [ ] T004 [US1] Add `doPost(e)` handler to `gas/guest-lookup.gs`: (1) parse `e.postData.contents` as JSON; (2) validate `body.secret === PropertiesService.getScriptProperties().getProperty('GUEST_SECRET')`, return `{error:'unauthorised'}` if mismatch; (3) validate `body.rows` is a non-empty array, return `{error:'invalid payload'}` if not; (4) get or create the `RSVPs` sheet via `SpreadsheetApp.getActiveSpreadsheet().getSheetByName('RSVPs')` (create with `insertSheet('RSVPs')` if null); (5) write header row `['timestamp','guest_name','attending','dietary','type','invite_source','is_child','age_range','seating_needs','safety_ack']` if `sheet.getLastRow() === 0`; (6) build `data` as 2D array from `body.rows` in the same column order; (7) write via `sheet.getRange(sheet.getLastRow() + 1, 1, data.length, 10).setValues(data)`; (8) wrap step 7 in try/catch, return `{error:'Sheet write failed: ' + e.message}` on exception; (9) return `{status:'ok', rowsWritten: data.length}`
-- [ ] T005 [US1] Wire persistence into `api/rsvp-submit.ts`: after the existing validation block, (1) generate `const timestamp = new Date().toISOString()`; (2) call `flattenToRows(body, timestamp)` to get `RsvpRow[]`; (3) build `GasWriteRequest` with `{secret: process.env.GAS_SECRET, rows}`; (4) `fetch(process.env.GAS_ENDPOINT_URL!, { method: 'POST', body: JSON.stringify(gasReq), signal: AbortSignal.timeout(Number(process.env.GAS_TIMEOUT_MS ?? 6000)) })`; (5) parse response JSON as `GasWriteResponse`; (6) if `response.error` is present or fetch throws/aborts, return HTTP 502 `{error:'failed to save RSVP'}`; (7) otherwise return HTTP 200 `{status:'ok'}`
-- [ ] T006 [US1] Add submission loading state to `src/components/RsvpLookup.tsx`: introduce `isSubmitting` boolean state; set to `true` before `submitRsvp` call and `false` in finally; disable the submit button and show a loading indicator (spinner or "Saving…" text) while `isSubmitting` is true; on 502/error from `submitRsvp`, display an inline error message without navigating away and without resetting any form field values (react-hook-form state is preserved automatically — just surface the error)
+- [x] T004 [US1] Add `doPost(e)` handler to `gas/guest-lookup.gs`: (1) parse `e.postData.contents` as JSON; (2) validate `body.secret === PropertiesService.getScriptProperties().getProperty('GUEST_SECRET')`, return `{error:'unauthorised'}` if mismatch; (3) validate `body.rows` is a non-empty array, return `{error:'invalid payload'}` if not; (4) get or create the `RSVPs` sheet via `SpreadsheetApp.getActiveSpreadsheet().getSheetByName('RSVPs')` (create with `insertSheet('RSVPs')` if null); (5) write header row `['timestamp','guest_name','attending','dietary','type','invite_source','is_child','age_range','seating_needs','safety_ack']` if `sheet.getLastRow() === 0`; (6) build `data` as 2D array from `body.rows` in the same column order; (7) write via `sheet.getRange(sheet.getLastRow() + 1, 1, data.length, 10).setValues(data)`; (8) wrap step 7 in try/catch, return `{error:'Sheet write failed: ' + e.message}` on exception; (9) return `{status:'ok', rowsWritten: data.length}`
+- [x] T005 [US1] Wire persistence into `api/rsvp-submit.ts`: after the existing validation block, (1) generate `const timestamp = new Date().toISOString()`; (2) call `flattenToRows(body, timestamp)` to get `RsvpRow[]`; (3) build `GasWriteRequest` with `{secret: process.env.GAS_SECRET, rows}`; (4) `fetch(process.env.GAS_ENDPOINT_URL!, { method: 'POST', body: JSON.stringify(gasReq), signal: AbortSignal.timeout(Number(process.env.GAS_TIMEOUT_MS ?? 6000)) })`; (5) parse response JSON as `GasWriteResponse`; (6) if `response.error` is present or fetch throws/aborts, return HTTP 502 `{error:'failed to save RSVP'}`; (7) otherwise return HTTP 200 `{status:'ok'}`
+- [x] T006 [US1] Add submission loading state to `src/components/RsvpLookup.tsx`: introduce `isSubmitting` boolean state; set to `true` before `submitRsvp` call and `false` in finally; disable the submit button and show a loading indicator (spinner or "Saving…" text) while `isSubmitting` is true; on 502/error from `submitRsvp`, display an inline error message without navigating away and without resetting any form field values (react-hook-form state is preserved automatically — just surface the error)
 
 **Checkpoint**: User Story 1 is fully functional. `npm test` passes. Manual E2E test (quickstart.md step 4) shows three rows in the sheet.
 
@@ -67,7 +67,7 @@ This is a web app project. Key paths:
 
 ### Implementation for User Story 2
 
-- [ ] T007 [US2] Validate `gas/guest-lookup.gs` `doPost` header guard: confirm the header values and column order in T004 exactly match the 10-column order in `specs/009-rsvp-sheet-persistence/data-model.md` (`timestamp`, `guest_name`, `attending`, `dietary`, `type`, `invite_source`, `is_child`, `age_range`, `seating_needs`, `safety_ack`); confirm the guard condition is `sheet.getLastRow() === 0` (not `<= 1`) so it does not re-write a header that already exists from a prior deployment
+- [x] T007 [US2] Validate `gas/guest-lookup.gs` `doPost` header guard: confirm the header values and column order in T004 exactly match the 10-column order in `specs/009-rsvp-sheet-persistence/data-model.md` (`timestamp`, `guest_name`, `attending`, `dietary`, `type`, `invite_source`, `is_child`, `age_range`, `seating_needs`, `safety_ack`); confirm the guard condition is `sheet.getLastRow() === 0` (not `<= 1`) so it does not re-write a header that already exists from a prior deployment
 
 **Checkpoint**: User Story 2 validated. Deleting and re-creating the RSVPs sheet always produces the correct header on first write.
 
@@ -81,7 +81,7 @@ This is a web app project. Key paths:
 
 ### Implementation for User Story 3
 
-- [ ] T008 [US3] Verify in `gas/guest-lookup.gs` `doPost` that `startRow` for `setValues()` is computed as `sheet.getLastRow() + 1` *after* any header write (not before), so each call reads the true current last row; submit two sequential RSVPs and confirm both sets of rows appear in the sheet with distinct timestamps and the first set is unmodified
+- [x] T008 [US3] Verify in `gas/guest-lookup.gs` `doPost` that `startRow` for `setValues()` is computed as `sheet.getLastRow() + 1` *after* any header write (not before), so each call reads the true current last row; submit two sequential RSVPs and confirm both sets of rows appear in the sheet with distinct timestamps and the first set is unmodified
 
 **Checkpoint**: User Story 3 validated. All three user stories now independently functional.
 
@@ -91,7 +91,7 @@ This is a web app project. Key paths:
 
 **Purpose**: Deployment, final verification, and cleanup.
 
-- [ ] T009 Redeploy GAS script: open Extensions → Apps Script → Deploy → Manage deployments → pencil icon on the existing web app → set Version to "New version" → Deploy; confirm the web app URL has not changed (the URL shown must match `GAS_ENDPOINT_URL` in Vercel env vars)
+- [ ] T009 Redeploy GAS script: ⚠️ MANUAL — requires Google Apps Script editor access open Extensions → Apps Script → Deploy → Manage deployments → pencil icon on the existing web app → set Version to "New version" → Deploy; confirm the web app URL has not changed (the URL shown must match `GAS_ENDPOINT_URL` in Vercel env vars)
 - [ ] T010 [P] Run `npm test` — confirm all unit tests pass including the `flattenToRows` suite in `tests/rsvp-submit.test.ts`
 - [ ] T011 [P] Run full E2E verification per `specs/009-rsvp-sheet-persistence/quickstart.md`: multi-person accept (step 4), decline path (step 5), error-handling/retry path (step 6); confirm zero rows with blank `invite_source` in the RSVPs sheet
 

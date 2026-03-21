@@ -48,3 +48,27 @@ export interface RsvpSubmitRequest {
 export interface RsvpSubmitResponse {
   status: 'ok'
 }
+
+export interface RsvpRow {
+  timestamp: string
+  guest_name: string
+  attending: 'yes' | 'no'
+  dietary: string
+  type: 'Primary' | 'Plus-One'
+  invite_source: string
+  is_child: string
+  age_range: string
+  seating_needs: string
+  safety_ack: string
+}
+
+export interface GasWriteRequest {
+  secret: string
+  rows: RsvpRow[]
+}
+
+export interface GasWriteResponse {
+  status?: 'ok'
+  rowsWritten?: number
+  error?: string
+}

@@ -46,8 +46,84 @@
  */
 
 // ---------------------------------------------------------------------------
-// Entry point
+// Entry points
 // ---------------------------------------------------------------------------
+
+/**
+ * RSVP Write Handler
+ * ------------------
+ * Receives a JSON payload from the Vercel rsvp-submit function and appends
+ * one row per person to the RSVPs sheet.
+ *
+ * Expected body shape:
+ * {
+ *   secret: string,          // must match GUEST_SECRET script property
+ *   rows: Array<{
+ *     timestamp, guest_name, attending, dietary, type, invite_source,
+ *     is_child, age_range, seating_needs, safety_ack
+ *   }>
+ * }
+ *
+ * Returns HTTP 200 always (GAS limitation). Errors are in the response body.
+ */
+function doPost(e) {
+  var body;
+  try {
+    body = JSON.parse(e.postData.contents);
+  } catch (err) {
+    return jsonResponse({ error: 'invalid payload' });
+  }
+
+  var expected = PropertiesService.getScriptProperties().getProperty('GUEST_SECRET');
+  if (!expected || body.secret !== expected) {
+    return jsonResponse({ error: 'unauthorised' });
+  }
+
+  if (!Array.isArray(body.rows) || body.rows.length === 0) {
+    return jsonResponse({ error: 'invalid payload' });
+  }
+
+  try {
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var sheet = ss.getSheetByName('RSVPs');
+    if (!sheet) {
+      sheet = ss.insertSheet('RSVPs');
+    }
+
+    // Write header row only when sheet is empty (first-ever write)
+    if (sheet.getLastRow() === 0) {
+      sheet.appendRow([
+        'timestamp', 'guest_name', 'attending', 'dietary', 'type',
+        'invite_source', 'is_child', 'age_range', 'seating_needs', 'safety_ack',
+      ]);
+    }
+
+    // Build 2D array — column order must match header above
+    var data = body.rows.map(function(row) {
+      return [
+        row.timestamp,
+        row.guest_name,
+        row.attending,
+        row.dietary,
+        row.type,
+        row.invite_source,
+        row.is_child,
+        row.age_range,
+        row.seating_needs,
+        row.safety_ack,
+      ];
+    });
+
+    // Atomic batch write: compute startRow immediately before setValues so
+    // re-submissions always append after the true current last row (T008)
+    var startRow = sheet.getLastRow() + 1;
+    sheet.getRange(startRow, 1, data.length, 10).setValues(data);
+
+    return jsonResponse({ status: 'ok', rowsWritten: data.length });
+  } catch (err) {
+    return jsonResponse({ error: 'Sheet write failed: ' + err.message });
+  }
+}
 
 function doGet(e) {
   var secret = e && e.parameter && e.parameter.secret;
