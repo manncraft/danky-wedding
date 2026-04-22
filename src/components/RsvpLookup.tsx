@@ -15,8 +15,9 @@ interface LookupFormData {
 interface AttendanceFormData {
   attending: 'true' | 'false'
   dietary?: string
-  additionalGuests: { name: string; dietary?: string }[]
   bringingChildren?: boolean
+  song?: string
+  additionalGuests: { name: string; dietary?: string; song?: string }[]
 }
 
 type ViewState =
@@ -30,7 +31,7 @@ type ViewState =
 
 const SESSION_KEY = 'invite_secret'
 const RSVP_RESULT_KEY = 'rsvp_result'
-const ATTENDING_GATED_FIELDS = ['dietary'] as const
+const ATTENDING_GATED_FIELDS = ['dietary', 'song'] as const
 
 export default function RsvpLookup({ onBack }: RsvpLookupProps) {
   const [secret, setSecret] = useState<string | null>(() => {
@@ -241,12 +242,14 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
                     name: view.guest.full_name,
                     type: 'primary' as const,
                     ...(data.dietary?.trim() ? { dietary: data.dietary.trim() } : {}),
+                    ...(data.song?.trim() ? { song: data.song.trim() } : {}),
                   }
                   const plusOnes = attending
                     ? (data.additionalGuests ?? []).map(g => ({
                         name: g.name,
                         type: 'plus-one' as const,
                         ...(g.dietary?.trim() ? { dietary: g.dietary.trim() } : {}),
+                        ...(g.song?.trim() ? { song: g.song.trim() } : {}),
                       }))
                     : []
                   await submitRsvp({
@@ -299,17 +302,34 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
               </div>
 
               {attendingValue === 'true' && (
-                <div className="flex flex-col gap-1 mb-4">
-                  <label htmlFor="dietary" className="text-sm font-medium">
-                    Dietary requirements or restrictions
-                  </label>
-                  <input
-                    id="dietary"
-                    type="text"
-                    className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gray-400"
-                    placeholder="e.g. vegetarian, nut allergy"
-                    {...registerAttendance('dietary')}
-                  />
+                <div className="flex flex-col gap-4 mb-4">
+                  <div className="flex flex-col gap-1">
+                    <label htmlFor="dietary" className="text-sm font-medium">
+                      Dietary requirements or restrictions
+                    </label>
+                    <input
+                      id="dietary"
+                      type="text"
+                      className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gray-400"
+                      placeholder="e.g. vegetarian, nut allergy"
+                      {...registerAttendance('dietary')}
+                    />
+                  </div>
+                  <div className="flex flex-col gap-1">
+                    <label htmlFor="song" className="text-sm font-medium">
+                      Song suggestion <span className="font-normal text-gray-500">(optional)</span>
+                    </label>
+                    <input
+                      id="song"
+                      type="text"
+                      className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gray-400"
+                      placeholder="e.g. Mr Brightside – The Killers"
+                      {...registerAttendance('song', { maxLength: { value: 200, message: 'Song suggestion must be 200 characters or fewer' } })}
+                    />
+                    {attendanceErrors.song && (
+                      <p className="text-sm text-red-600">{attendanceErrors.song.message}</p>
+                    )}
+                  </div>
                 </div>
               )}
 
@@ -386,6 +406,27 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
                           {...registerAttendance(`additionalGuests.${index}.dietary`)}
                         />
                       </div>
+
+                      <div className="flex flex-col gap-1 mt-3">
+                        <label
+                          htmlFor={`additionalGuests.${index}.song`}
+                          className="text-sm font-medium"
+                        >
+                          Song suggestion <span className="font-normal text-gray-500">(optional)</span>
+                        </label>
+                        <input
+                          id={`additionalGuests.${index}.song`}
+                          type="text"
+                          className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gray-400"
+                          placeholder="e.g. Mr Brightside – The Killers"
+                          {...registerAttendance(`additionalGuests.${index}.song`, { maxLength: { value: 200, message: 'Song suggestion must be 200 characters or fewer' } })}
+                        />
+                        {attendanceErrors.additionalGuests?.[index]?.song && (
+                          <p className="text-sm text-red-600">
+                            {attendanceErrors.additionalGuests[index].song.message}
+                          </p>
+                        )}
+                      </div>
                     </div>
                   ))}
 
@@ -411,7 +452,7 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
                   {fields.length < view.guest.max_guests - 1 && (
                     <button
                       type="button"
-                      onClick={() => append({ name: '', dietary: '' })}
+                      onClick={() => append({ name: '', dietary: '', song: '' })}
                       className="mt-3 w-full border border-dashed border-gray-300 rounded px-4 py-2.5 text-sm text-gray-600 hover:border-gray-500 hover:text-gray-800 transition-colors"
                     >
                       + Add Guest
