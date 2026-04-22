@@ -60,7 +60,7 @@
  *   secret: string,          // must match GUEST_SECRET script property
  *   rows: Array<{
  *     timestamp, guest_name, attending, dietary, type, invite_source,
- *     is_child, age_range, seating_needs, safety_ack, bringing_children, song
+ *     bringing_children, song
  *   }>
  * }
  *
@@ -94,9 +94,7 @@ function doPost(e) {
     if (sheet.getLastRow() === 0) {
       sheet.appendRow([
         'timestamp', 'guest_name', 'attending', 'dietary', 'type',
-        'invite_source', 'is_child', 'age_range', 'seating_needs', 'safety_ack',
-        'bringing_children',
-        'song_suggestion',
+        'invite_source', 'bringing_children', 'song_suggestion',
       ]);
     }
 
@@ -109,10 +107,6 @@ function doPost(e) {
         row.dietary,
         row.type,
         row.invite_source,
-        row.is_child,
-        row.age_range,
-        row.seating_needs,
-        row.safety_ack,
         row.bringing_children ?? '',
         row.song || '',
       ];
@@ -121,7 +115,7 @@ function doPost(e) {
     // Atomic batch write: compute startRow immediately before setValues so
     // re-submissions always append after the true current last row (T008)
     var startRow = sheet.getLastRow() + 1;
-    sheet.getRange(startRow, 1, data.length, 12).setValues(data);
+    sheet.getRange(startRow, 1, data.length, 8).setValues(data);
 
     return jsonResponse({ status: 'ok', rowsWritten: data.length });
   } catch (err) {
