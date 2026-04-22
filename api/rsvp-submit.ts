@@ -10,6 +10,7 @@ import type {
 
 export function flattenToRows(request: RsvpSubmitRequest, timestamp: string): RsvpRow[] {
   const inviteSource = request.guests[0].name
+  const bringingChildren = request.bringing_children === true
 
   if (!request.attending) {
     const primary = request.guests[0]
@@ -25,6 +26,7 @@ export function flattenToRows(request: RsvpSubmitRequest, timestamp: string): Rs
         age_range: '',
         seating_needs: '',
         safety_ack: '',
+        bringing_children: bringingChildren ? 'yes' : 'no',
       },
     ]
   }
@@ -40,6 +42,7 @@ export function flattenToRows(request: RsvpSubmitRequest, timestamp: string): Rs
     age_range: '',
     seating_needs: '',
     safety_ack: '',
+    bringing_children: guest.type === 'primary' ? (bringingChildren ? 'yes' : 'no') : '',
   }))
 }
 
@@ -79,8 +82,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
   }
 
+  const bringing_children = body.bringing_children === true
+
   const timestamp = new Date().toISOString()
-  const rows = flattenToRows({ attending: body.attending, guests }, timestamp)
+  const rows = flattenToRows({ attending: body.attending, guests, bringing_children }, timestamp)
 
   const gasRequest: GasWriteRequest = {
     secret: process.env.GAS_SECRET ?? '',
