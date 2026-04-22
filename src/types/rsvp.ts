@@ -58,10 +58,6 @@ export interface RsvpRow {
   dietary: string
   type: 'Primary' | 'Plus-One'
   invite_source: string
-  is_child: string
-  age_range: string
-  seating_needs: string
-  safety_ack: string
   bringing_children: string
   song: string
 }
