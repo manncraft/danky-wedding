@@ -1,6 +1,6 @@
 # danky-wedding Development Guidelines
 
-Auto-generated from all feature plans. Last updated: 2026-03-21
+Auto-generated from all feature plans. Last updated: 2026-04-22
 
 ## Active Technologies
 - TypeScript 5.9 / React 19 + React 19, Vite 8, Tailwind CSS v4, react-hook-form (to be installed) (002-rsvp-dummy)
@@ -21,6 +21,8 @@ Auto-generated from all feature plans. Last updated: 2026-03-21
 - TypeScript 5.9 (frontend + Vercel function) / Google Apps Script V8 (GAS) + React 19, react-hook-form 7 + useFieldArray, Zod, `@vercel/node` (011-rsvp-children-checkbox)
 - Google Sheets — `RSVPs` sheet gains one new column (column 11: `bringing_children`) (011-rsvp-children-checkbox)
 - TypeScript 5.9 / React 19 + React 19, Tailwind CSS v4 (existing — no new deps) 
+- TypeScript 5.9 (frontend + Vercel function) / Google Apps Script V8 (GAS) + React 19, Vite 8, Tailwind CSS v4, react-hook-form 7, Zod, `@vercel/node` (013-song-suggestions)
+- Google Sheets — `RSVPs` sheet, new column K: "Song Suggestion" appended to existing schema (013-song-suggestions)
 - TypeScript 5.9 / React 19 + React 19, Vite 8, Tailwind CSS v4 (to be installed) (001-landing-page)
 
 ## Project Structure
@@ -40,10 +42,9 @@ npm test && npm run lint
 TypeScript 5.9 / React 19: Follow standard conventions
 
 ## Recent Changes
-
+- 013-song-suggestions: Added TypeScript 5.9 (frontend + Vercel function) / Google Apps Script V8 (GAS) + React 19, Vite 8, Tailwind CSS v4, react-hook-form 7, Zod, `@vercel/node`
 - 011-rsvp-children-checkbox: Added TypeScript 5.9 (frontend + Vercel function) / Google Apps Script V8 (GAS) + React 19, react-hook-form 7 + useFieldArray, Zod, `@vercel/node`
 - 009-rsvp-sheet-persistence: Added TypeScript 5.9 (Vercel function) / Google Apps Script (V8 runtime, managed by Google) + `@vercel/node` (existing), Google Apps Script Spreadsheet Service (built-in)
-- 008-multi-guest-rsvp: Added TypeScript 5.9 (frontend + Vercel function) + React 19, Vite 8, Tailwind CSS v4, react-hook-form 7 + useFieldArray, `@vercel/node`
 
 
 <!-- MANUAL ADDITIONS START -->
