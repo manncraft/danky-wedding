@@ -16,6 +16,7 @@ interface AttendanceFormData {
   attending: 'true' | 'false'
   dietary?: string
   additionalGuests: { name: string; dietary?: string }[]
+  bringingChildren?: boolean
 }
 
 type ViewState =
@@ -79,6 +80,7 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
   const [selectedAttending, setSelectedAttending] = useState<'true' | 'false' | null>(null)
 
   const attendingValue = watchAttendance('attending')
+  const bringingChildrenValue = watchAttendance('bringingChildren')
 
   useEffect(() => {
     if (attendingValue !== 'true') {
@@ -86,6 +88,12 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
       replace([])
     }
   }, [attendingValue, setAttendanceValue, replace])
+
+  useEffect(() => {
+    if (fields.length === 0) {
+      setAttendanceValue('bringingChildren', false)
+    }
+  }, [fields.length, setAttendanceValue])
 
   const onSubmit = async (data: LookupFormData) => {
     setView({ kind: 'loading' })
@@ -241,7 +249,11 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
                         ...(g.dietary?.trim() ? { dietary: g.dietary.trim() } : {}),
                       }))
                     : []
-                  await submitRsvp({ attending, guests: [primaryGuest, ...plusOnes] }, secret!)
+                  await submitRsvp({
+                    attending,
+                    guests: [primaryGuest, ...plusOnes],
+                    bringing_children: data.bringingChildren === true,
+                  }, secret!)
                   sessionStorage.setItem(RSVP_RESULT_KEY, JSON.stringify({ guest: view.guest, attending }))
                   setView({ kind: 'rsvp-submitted', guest: view.guest, attending })
                 } catch {
@@ -376,6 +388,25 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
                       </div>
                     </div>
                   ))}
+
+                  {fields.length > 0 && (
+                    <div className="mt-4">
+                      <label className="flex items-start gap-3 cursor-pointer">
+                        <input
+                          type="checkbox"
+                          className="mt-0.5 h-4 w-4 rounded border-gray-300 text-gray-900 focus:ring-gray-400"
+                          {...registerAttendance('bringingChildren')}
+                        />
+                        <span className="text-sm">One or more of my additional guests are children</span>
+                      </label>
+                      {bringingChildrenValue && (
+                        <div className="mt-3 rounded border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+                          <p className="font-medium mb-1">Please note — site hazards</p>
+                          <p>The venue has an ornamental pond and vendor tables with fragile equipment and extension cords. Children must be supervised at all times.</p>
+                        </div>
+                      )}
+                    </div>
+                  )}
 
                   {fields.length < view.guest.max_guests - 1 && (
                     <button

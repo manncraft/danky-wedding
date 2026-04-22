@@ -43,6 +43,7 @@ export interface Guest {
 export interface RsvpSubmitRequest {
   attending: boolean
   guests: Guest[]
+  bringing_children?: boolean
 }
 
 export interface RsvpSubmitResponse {
@@ -60,6 +61,7 @@ export interface RsvpRow {
   age_range: string
   seating_needs: string
   safety_ack: string
+  bringing_children: string
 }
 
 export interface GasWriteRequest {
