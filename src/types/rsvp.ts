@@ -37,6 +37,7 @@ export interface LookupResponse {
 export interface Guest {
   name: string
   dietary?: string
+  song?: string
   type: 'primary' | 'plus-one'
 }
 
@@ -62,6 +63,7 @@ export interface RsvpRow {
   seating_needs: string
   safety_ack: string
   bringing_children: string
+  song: string
 }
 
 export interface GasWriteRequest {

@@ -27,6 +27,7 @@ export function flattenToRows(request: RsvpSubmitRequest, timestamp: string): Rs
         seating_needs: '',
         safety_ack: '',
         bringing_children: bringingChildren ? 'yes' : 'no',
+        song: '',
       },
     ]
   }
@@ -43,6 +44,7 @@ export function flattenToRows(request: RsvpSubmitRequest, timestamp: string): Rs
     seating_needs: '',
     safety_ack: '',
     bringing_children: guest.type === 'primary' ? (bringingChildren ? 'yes' : 'no') : '',
+    song: guest.song ?? '',
   }))
 }
 
