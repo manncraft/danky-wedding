@@ -27,7 +27,7 @@ type ViewState =
   | { kind: 'confirmed'; guest: MatchedGuest }
   | { kind: 'not_found' }
   | { kind: 'error' }
-  | { kind: 'rsvp-submitted'; guest: MatchedGuest; attending: boolean }
+  | { kind: 'rsvp-submitted'; guest: MatchedGuest; attending: boolean; guests: string[] }
 
 const SESSION_KEY = 'invite_secret'
 const RSVP_RESULT_KEY = 'rsvp_result'
@@ -46,8 +46,8 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
     try {
       const stored = sessionStorage.getItem(RSVP_RESULT_KEY)
       if (stored) {
-        const { guest, attending } = JSON.parse(stored) as { guest: MatchedGuest; attending: boolean }
-        return { kind: 'rsvp-submitted', guest, attending }
+        const { guest, attending, guests } = JSON.parse(stored) as { guest: MatchedGuest; attending: boolean; guests?: string[] }
+        return { kind: 'rsvp-submitted', guest, attending, guests: guests ?? [guest.full_name] }
       }
     } catch {
       // ignore malformed stored value
@@ -257,8 +257,9 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
                     guests: [primaryGuest, ...plusOnes],
                     bringing_children: data.bringingChildren === true,
                   }, secret!)
-                  sessionStorage.setItem(RSVP_RESULT_KEY, JSON.stringify({ guest: view.guest, attending }))
-                  setView({ kind: 'rsvp-submitted', guest: view.guest, attending })
+                  const submittedNames = [primaryGuest.name, ...plusOnes.map(g => g.name)]
+                  sessionStorage.setItem(RSVP_RESULT_KEY, JSON.stringify({ guest: view.guest, attending, guests: submittedNames }))
+                  setView({ kind: 'rsvp-submitted', guest: view.guest, attending, guests: submittedNames })
                 } catch {
                   setAttendanceError('root', {
                     message: 'Something went wrong. Please try again.',
@@ -495,7 +496,9 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
               {view.attending ? 'See you there!' : 'We\'ll miss you!'}
             </h2>
             <div className="border border-gray-200 rounded px-4 py-4 mb-4">
-              <p className="text-sm font-medium">{view.guest.full_name}</p>
+              {view.guests.map((name, i) => (
+                <p key={i} className="text-sm font-medium">{name}</p>
+              ))}
             </div>
             <p className="text-sm text-gray-500">
               {view.attending
