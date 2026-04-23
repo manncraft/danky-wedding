@@ -15,7 +15,7 @@ function App() {
 
   return (
     <>
-      <Nav onRsvpClick={() => { history.replaceState(null, '', window.location.pathname); setView('rsvp-lookup') }} view={view} onNavigateToLanding={() => setView('landing')} />
+      <Nav onRsvpClick={() => { history.replaceState(null, '', window.location.pathname + window.location.search); setView('rsvp-lookup') }} view={view} onNavigateToLanding={() => setView('landing')} />
       {view === 'landing' && (
         <main className="max-w-2xl mx-auto w-full">
           <Hero />
