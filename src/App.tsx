@@ -15,7 +15,7 @@ function App() {
 
   return (
     <>
-      <Nav onRsvpClick={() => setView('rsvp-lookup')} />
+      <Nav onRsvpClick={() => setView('rsvp-lookup')} view={view} onNavigateToLanding={() => setView('landing')} />
       {view === 'landing' && (
         <main className="max-w-2xl mx-auto w-full">
           <Hero />
