@@ -1,6 +1,6 @@
 # danky-wedding Development Guidelines
 
-Auto-generated from all feature plans. Last updated: 2026-04-22
+Auto-generated from all feature plans. Last updated: 2026-04-23
 
 ## Active Technologies
 - TypeScript 5.9 / React 19 + React 19, Vite 8, Tailwind CSS v4, react-hook-form (to be installed) (002-rsvp-dummy)
@@ -24,6 +24,8 @@ Auto-generated from all feature plans. Last updated: 2026-04-22
 - TypeScript 5.9 (frontend + Vercel function) / Google Apps Script V8 (GAS) + React 19, Vite 8, Tailwind CSS v4, react-hook-form 7, Zod, `@vercel/node` (013-song-suggestions)
 - Google Sheets — `RSVPs` sheet, new column K: "Song Suggestion" appended to existing schema (013-song-suggestions)
 - TypeScript 5.9 / React 19 + React 19, Vite 8, Tailwind CSS v4 (to be installed) (001-landing-page)
+- TypeScript 5.9 / React 19 + Vite 8, Tailwind CSS v4 (no new dependencies) (014-real-page-content)
+- N/A — static content hardcoded in React components (014-real-page-content)
 
 ## Project Structure
 
@@ -42,9 +44,9 @@ npm test && npm run lint
 TypeScript 5.9 / React 19: Follow standard conventions
 
 ## Recent Changes
+- 014-real-page-content: Added TypeScript 5.9 / React 19 + Vite 8, Tailwind CSS v4 (no new dependencies)
 - 013-song-suggestions: Added TypeScript 5.9 (frontend + Vercel function) / Google Apps Script V8 (GAS) + React 19, Vite 8, Tailwind CSS v4, react-hook-form 7, Zod, `@vercel/node`
 - 011-rsvp-children-checkbox: Added TypeScript 5.9 (frontend + Vercel function) / Google Apps Script V8 (GAS) + React 19, react-hook-form 7 + useFieldArray, Zod, `@vercel/node`
-- 009-rsvp-sheet-persistence: Added TypeScript 5.9 (Vercel function) / Google Apps Script (V8 runtime, managed by Google) + `@vercel/node` (existing), Google Apps Script Spreadsheet Service (built-in)
 
 
 <!-- MANUAL ADDITIONS START -->
