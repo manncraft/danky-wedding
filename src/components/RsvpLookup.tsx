@@ -105,7 +105,17 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
       } else if (result.matches.length === 1) {
         setView({ kind: 'confirmed', guest: result.matches[0] })
       } else {
-        setView({ kind: 'select', matches: result.matches })
+        const normalise = (s: string) =>
+          s.trim().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+        const enteredFirst = normalise(data.firstName)
+        const exactMatch = result.matches.find(
+          m => normalise(m.full_name.split(' ')[0]) === enteredFirst
+        )
+        if (exactMatch) {
+          setView({ kind: 'confirmed', guest: exactMatch })
+        } else {
+          setView({ kind: 'select', matches: result.matches })
+        }
       }
     } catch (err) {
       if (err instanceof RsvpApiError && err.status === 401) {
