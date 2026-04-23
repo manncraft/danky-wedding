@@ -43,8 +43,6 @@ export default function Nav({ onRsvpClick, view, onNavigateToLanding }: NavProps
         <li><a href="#schedule" onClick={handleAnchorClick} className="hover:underline">Schedule</a></li>
         <li><a href="#travel" onClick={handleAnchorClick} className="hover:underline">Travel</a></li>
         <li><a href="#dress-code" onClick={handleAnchorClick} className="hover:underline">Dress Code</a></li>
-        <li><a href="#registry" onClick={handleAnchorClick} className="hover:underline">Registry</a></li>
-        <li><a href="#housekeeping" onClick={handleAnchorClick} className="hover:underline">Housekeeping</a></li>
       </ul>
       <button
         onClick={onRsvpClick}

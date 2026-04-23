@@ -18,8 +18,8 @@
 
 **⚠️ CRITICAL**: Must complete before any user story work begins.
 
-- [ ] T001 Remove `<Housekeeping />` and `<Registry />` renders (and unused imports) from `src/App.tsx`
-- [ ] T002 Remove `Housekeeping` and `Registry` `<li>` nav links from `src/components/Nav.tsx`
+- [x] T001 Remove `<Housekeeping />` and `<Registry />` renders (and unused imports) from `src/App.tsx`
+- [x] T002 Remove `Housekeeping` and `Registry` `<li>` nav links from `src/components/Nav.tsx`
 
 **Checkpoint**: Nav only shows links for sections with confirmed content (Schedule, Travel, Dress Code). Hidden sections show no placeholder text.
 
@@ -31,7 +31,7 @@
 
 **Independent Test**: Open the landing page — confirm "Becky & Daniel", "Tuesday 12th January 2027", and "Markovina Vineyard Estate" are displayed with no square brackets.
 
-- [ ] T003 [US1] Replace all placeholder content in `src/components/sections/Hero.tsx` with: names "Becky & Daniel", date "Tuesday 12th January 2027", venue "Markovina Vineyard Estate"
+- [x] T003 [US1] Replace all placeholder content in `src/components/sections/Hero.tsx` with: names "Becky & Daniel", date "Tuesday 12th January 2027", venue "Markovina Vineyard Estate"
 
 **Checkpoint**: Hero section fully displays real content. No other section needs to be updated for this story to be independently valid.
 
@@ -43,7 +43,7 @@
 
 **Independent Test**: Navigate to `#schedule` — confirm arrival (no earlier than 2:30pm), ceremony start (3:00pm), and reception end (10:00pm) are shown.
 
-- [ ] T004 [P] [US2] Replace placeholder content in `src/components/sections/Schedule.tsx` with: arrival no earlier than 2:30pm, ceremony at 3:00pm, reception ends at 10:00pm
+- [x] T004 [P] [US2] Replace placeholder content in `src/components/sections/Schedule.tsx` with: arrival no earlier than 2:30pm, ceremony at 3:00pm, reception ends at 10:00pm
 
 **Checkpoint**: Schedule section fully displays real times. No additional milestones needed.
 
@@ -55,7 +55,7 @@
 
 **Independent Test**: Navigate to `#travel` — confirm address, a working Google Maps link, parking note, and taxi note are all present.
 
-- [ ] T005 [P] [US3] Replace placeholder content in `src/components/sections/Travel.tsx` with:
+- [x] T005 [P] [US3] Replace placeholder content in `src/components/sections/Travel.tsx` with:
   - Address: "84 Old Railway Road, Kumeū 0892"
   - Map link: `https://maps.app.goo.gl/ftf9UaBvExe9XRNJ9` labelled "Open in Google Maps"
   - Parking: "Available onsite. Cars may be left overnight and collected by 11am the following day."
@@ -71,7 +71,7 @@
 
 **Independent Test**: Navigate to `#dress-code` — confirm "Semi-formal" is displayed. Confirm Housekeeping and Registry sections are not visible anywhere on the page.
 
-- [ ] T006 [P] [US4] Replace placeholder content in `src/components/sections/DressCode.tsx` with dress code: "Semi-formal"
+- [x] T006 [P] [US4] Replace placeholder content in `src/components/sections/DressCode.tsx` with dress code: "Semi-formal"
 
 **Checkpoint**: Dress Code shows real content. No bracket placeholders remain on any visible section of the page.
 
@@ -81,7 +81,7 @@
 
 **Purpose**: Remaining FR not tied to a landing page section.
 
-- [ ] T007 Remove the `placeholder` attribute value from the song suggestion input in `src/components/RsvpLookup.tsx` line 337 (FR-007 — leave as empty string or remove attribute entirely)
+- [x] T007 Remove the `placeholder` attribute value from the song suggestion input in `src/components/RsvpLookup.tsx` line 337 (FR-007 — leave as empty string or remove attribute entirely)
 
 ---
 

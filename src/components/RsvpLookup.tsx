@@ -334,7 +334,6 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
                       id="song"
                       type="text"
                       className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gray-400"
-                      placeholder="e.g. Mr Brightside – The Killers"
                       {...registerAttendance('song', { maxLength: { value: 200, message: 'Song suggestion must be 200 characters or fewer' } })}
                     />
                     {attendanceErrors.song && (
@@ -429,7 +428,6 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
                           id={`additionalGuests.${index}.song`}
                           type="text"
                           className="w-full border border-gray-300 rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gray-400"
-                          placeholder="e.g. Mr Brightside – The Killers"
                           {...registerAttendance(`additionalGuests.${index}.song`, { maxLength: { value: 200, message: 'Song suggestion must be 200 characters or fewer' } })}
                         />
                         {attendanceErrors.additionalGuests?.[index]?.song && (
