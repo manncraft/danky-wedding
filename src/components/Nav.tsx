@@ -38,7 +38,7 @@ export default function Nav({ onRsvpClick, view, onNavigateToLanding }: NavProps
   }
 
   return (
-    <nav className="sticky top-0 z-50 bg-white border-b border-gray-200 px-6 py-3 flex items-center justify-between">
+    <nav className="sticky top-0 z-50 bg-[#f5f4f0] border-b border-gray-200 px-6 py-3 flex items-center justify-between">
       <ul className="flex flex-wrap gap-4 justify-center text-sm">
         <li><a href="#schedule" onClick={handleAnchorClick} className="hover:underline">Schedule</a></li>
         <li><a href="#travel" onClick={handleAnchorClick} className="hover:underline">Travel</a></li>

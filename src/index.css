@@ -4,3 +4,7 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 5rem; /* leave room for sticky nav (up to ~80px on mobile when links wrap) */
 }
+
+body {
+  background-color: #f5f4f0;
+}

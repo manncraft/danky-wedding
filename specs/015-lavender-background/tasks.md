@@ -17,7 +17,7 @@
 
 **Purpose**: Place the image asset that all subsequent tasks depend on.
 
-- [ ] T001 Add the provided lavender botanical illustration to `public/lavender.png`
+- [ ] T001 Add the provided lavender botanical illustration to `public/lavender.png` ⚠️ REQUIRES USER ACTION — place the image file manually
 
 **Checkpoint**: `public/lavender.png` exists and is accessible at `/lavender.png` in the dev server.
 
@@ -29,7 +29,7 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete.
 
-- [ ] T002 Add `background-color: #f5f4f0` to the `body` selector in `src/index.css` — eyedropper-sample the actual `public/lavender.png` to confirm the hex value matches the image's near-white background before committing (adjust if needed, likely in the `#f5f4f0`–`#faf9f7` range)
+- [x] T002 Add `background-color: #f5f4f0` to the `body` selector in `src/index.css` — eyedropper-sample the actual `public/lavender.png` to confirm the hex value matches the image's near-white background before committing (adjust if needed, likely in the `#f5f4f0`–`#faf9f7` range)
 
 **Checkpoint**: Opening the site shows a uniform warm off-white page background (not pure white).
 
@@ -41,7 +41,7 @@
 
 **Independent Test**: Open the site at desktop width. The illustration is visible along the left edge, does not scroll when you scroll the page, appears exactly once, and the background colour matches the illustration background with no visible edge.
 
-- [ ] T003 [US1] Add a fixed-position decorative image element as the first child of the fragment in `src/App.tsx`, before `<Nav>`:
+- [x] T003 [US1] Add a fixed-position decorative image element as the first child of the fragment in `src/App.tsx`, before `<Nav>`:
   ```tsx
   <div
     aria-hidden="true"
@@ -52,7 +52,7 @@
   ```
   The `z-[-1]` places it behind all content; `pointer-events-none` ensures it never blocks interactions; `h-full w-auto` sizes it to viewport height at its natural aspect ratio without stretching.
 
-- [ ] T004 [P] [US1] Update `src/components/Nav.tsx`: change `bg-white` to `bg-[#f5f4f0]` (same value confirmed in T002) so the sticky nav matches the page background with no contrasting white strip at the top.
+- [x] T004 [P] [US1] Update `src/components/Nav.tsx`: change `bg-white` to `bg-[#f5f4f0]` (same value confirmed in T002) so the sticky nav matches the page background with no contrasting white strip at the top.
 
 **Checkpoint**: US1 fully functional — illustration fixed to left, background seamless, nav colour consistent.
 
@@ -64,7 +64,7 @@
 
 **Independent Test**: In DevTools, set viewport to 375 px wide. The illustration must not be visible; all body text and form elements must be fully readable.
 
-- [ ] T005 [US2] Add responsive visibility to the decorative element in `src/App.tsx` (from T003): add `hidden sm:block` to the outer `<div>`'s className so the illustration is not rendered below 640 px. The final className should be: `"fixed left-0 top-0 h-screen pointer-events-none z-[-1] hidden sm:block"`.
+- [x] T005 [US2] Add responsive visibility to the decorative element in `src/App.tsx` (from T003): add `hidden sm:block` to the outer `<div>`'s className so the illustration is not rendered below 640 px. The final className should be: `"fixed left-0 top-0 h-screen pointer-events-none z-[-1] hidden sm:block"`.
 
 **Checkpoint**: At 375 px viewport width, no illustration is visible and all content remains unobscured. At ≥640 px the illustration is present.
 
@@ -72,7 +72,7 @@
 
 ## Phase 5: Polish & Cross-Cutting Concerns
 
-- [ ] T006 [P] Run the full visual verification checklist from `specs/015-lavender-background/quickstart.md`: confirm no colour seam at desktop, no tiling, illustration stays fixed on scroll, mobile hides illustration, image-load failure shows clean off-white background.
+- [ ] T006 [P] Run the full visual verification checklist ⚠️ PENDING T001 (image file required) from `specs/015-lavender-background/quickstart.md`: confirm no colour seam at desktop, no tiling, illustration stays fixed on scroll, mobile hides illustration, image-load failure shows clean off-white background.
 
 ---
 
