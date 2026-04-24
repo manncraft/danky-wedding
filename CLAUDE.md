@@ -1,6 +1,6 @@
 # danky-wedding Development Guidelines
 
-Auto-generated from all feature plans. Last updated: 2026-04-23
+Auto-generated from all feature plans. Last updated: 2026-04-24
 
 ## Active Technologies
 - TypeScript 5.9 / React 19 + React 19, Vite 8, Tailwind CSS v4, react-hook-form (to be installed) (002-rsvp-dummy)
@@ -26,6 +26,8 @@ Auto-generated from all feature plans. Last updated: 2026-04-23
 - TypeScript 5.9 / React 19 + React 19, Vite 8, Tailwind CSS v4 (to be installed) (001-landing-page)
 - TypeScript 5.9 / React 19 + Vite 8, Tailwind CSS v4 (no new dependencies) (014-real-page-content)
 - N/A — static content hardcoded in React components (014-real-page-content)
+- TypeScript 5.9 / React 19 + React 19, Vite 8, Tailwind CSS v4 (`@tailwindcss/vite`) (015-lavender-background)
+- N/A — static image asset only (015-lavender-background)
 
 ## Project Structure
 
@@ -44,9 +46,9 @@ npm test && npm run lint
 TypeScript 5.9 / React 19: Follow standard conventions
 
 ## Recent Changes
+- 015-lavender-background: Added TypeScript 5.9 / React 19 + React 19, Vite 8, Tailwind CSS v4 (`@tailwindcss/vite`)
 - 014-real-page-content: Added TypeScript 5.9 / React 19 + Vite 8, Tailwind CSS v4 (no new dependencies)
 - 013-song-suggestions: Added TypeScript 5.9 (frontend + Vercel function) / Google Apps Script V8 (GAS) + React 19, Vite 8, Tailwind CSS v4, react-hook-form 7, Zod, `@vercel/node`
-- 011-rsvp-children-checkbox: Added TypeScript 5.9 (frontend + Vercel function) / Google Apps Script V8 (GAS) + React 19, react-hook-form 7 + useFieldArray, Zod, `@vercel/node`
 
 
 <!-- MANUAL ADDITIONS START -->
