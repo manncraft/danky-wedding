@@ -47,7 +47,7 @@ export default function StackingLayout() {
                 >
                   <img src={image.src} alt={image.alt} className="w-full h-full object-cover" />
                 </div>
-                <div className="w-1/2 flex items-center">
+                <div className={`w-1/2 flex items-center ${image.side === 'left' ? 'pl-8' : ''}`}>
                   <Component />
                 </div>
               </div>
