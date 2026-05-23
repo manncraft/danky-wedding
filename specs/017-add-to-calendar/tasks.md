@@ -18,7 +18,7 @@
 
 **Purpose**: Confirm existing project is ready — no new packages or config required.
 
-- [ ] T001 Confirm `npm run dev` (from `frontend/`) serves the landing page with the Date & Time section visible
+- [x] T001 Confirm `npm run dev` (from `frontend/`) serves the landing page with the Date & Time section visible
 
 ---
 
@@ -28,9 +28,9 @@
 
 **⚠️ CRITICAL**: US1 and US2 cannot be implemented until this phase is complete.
 
-- [ ] T002 Create `src/components/AddToCalendar.tsx` with hardcoded event constants (`title`, `dtStartUtc`, `dtEndUtc`, `location`), a button labelled "Add to Calendar", and a `useState<boolean>` controlling dropdown visibility
-- [ ] T003 Add `useRef` + `useEffect` outside-click handler to `src/components/AddToCalendar.tsx` so the dropdown closes when the user clicks anywhere outside it
-- [ ] T004 Import and render `<AddToCalendar />` at the bottom of the `<section>` in `src/components/sections/DateAndTime.tsx`, below the existing `<p>` tags
+- [x] T002 Create `src/components/AddToCalendar.tsx` with hardcoded event constants (`title`, `dtStartUtc`, `dtEndUtc`, `location`), a button labelled "Add to Calendar", and a `useState<boolean>` controlling dropdown visibility
+- [x] T003 Add `useRef` + `useEffect` outside-click handler to `src/components/AddToCalendar.tsx` so the dropdown closes when the user clicks anywhere outside it
+- [x] T004 Import and render `<AddToCalendar />` at the bottom of the `<section>` in `src/components/sections/DateAndTime.tsx`, below the existing `<p>` tags
 
 **Checkpoint**: Foundation ready — the button appears in the Date & Time section and opens/closes an empty dropdown.
 
@@ -44,8 +44,8 @@
 
 ### Implementation for User Story 1
 
-- [ ] T005 [US1] Add `buildGoogleCalendarUrl()` pure function inside `src/components/AddToCalendar.tsx` that constructs the Google Calendar URL using `URLSearchParams` with `action=TEMPLATE`, `text`, `dates` (`20270112T020000Z/20270112T090000Z`), and `location` from event constants
-- [ ] T006 [US1] Add a "Google Calendar" list item to the dropdown in `src/components/AddToCalendar.tsx` that calls `window.open(buildGoogleCalendarUrl(), '_blank', 'noopener,noreferrer')` and sets open state to false on click
+- [x] T005 [US1] Add `buildGoogleCalendarUrl()` pure function inside `src/components/AddToCalendar.tsx` that constructs the Google Calendar URL using `URLSearchParams` with `action=TEMPLATE`, `text`, `dates` (`20270112T020000Z/20270112T090000Z`), and `location` from event constants
+- [x] T006 [US1] Add a "Google Calendar" list item to the dropdown in `src/components/AddToCalendar.tsx` that calls `window.open(buildGoogleCalendarUrl(), '_blank', 'noopener,noreferrer')` and sets open state to false on click
 
 **Checkpoint**: User Story 1 fully functional — Google Calendar integration independently verifiable.
 
@@ -59,9 +59,9 @@
 
 ### Implementation for User Story 2
 
-- [ ] T007 [US2] Add `buildIcsContent()` pure function inside `src/components/AddToCalendar.tsx` that returns a valid RFC 5545 VCALENDAR string using event constants; escape commas in `LOCATION` as `\,`; use `DTSTART:20270112T020000Z` and `DTEND:20270112T090000Z`
-- [ ] T008 [US2] Add `downloadIcs()` function inside `src/components/AddToCalendar.tsx` that creates a `Blob` with type `text/calendar;charset=utf-8`, triggers download via a temporary `<a download="becky-and-daniels-wedding.ics">` element, then calls `URL.revokeObjectURL()`
-- [ ] T009 [US2] Add "Apple Calendar" and "Outlook" list items to the dropdown in `src/components/AddToCalendar.tsx`, each calling `downloadIcs()` and setting open state to false on click
+- [x] T007 [US2] Add `buildIcsContent()` pure function inside `src/components/AddToCalendar.tsx` that returns a valid RFC 5545 VCALENDAR string using event constants; escape commas in `LOCATION` as `\,`; use `DTSTART:20270112T020000Z` and `DTEND:20270112T090000Z`
+- [x] T008 [US2] Add `downloadIcs()` function inside `src/components/AddToCalendar.tsx` that creates a `Blob` with type `text/calendar;charset=utf-8`, triggers download via a temporary `<a download="becky-and-daniels-wedding.ics">` element, then calls `URL.revokeObjectURL()`
+- [x] T009 [US2] Add "Apple Calendar" and "Outlook" list items to the dropdown in `src/components/AddToCalendar.tsx`, each calling `downloadIcs()` and setting open state to false on click
 
 **Checkpoint**: User Stories 1 AND 2 both independently functional — all three calendar services work.
 
@@ -72,7 +72,7 @@
 **Purpose**: Layout verification and code quality.
 
 - [ ] T010 Open the site in browser dev tools at 375px width; confirm the "Add to Calendar" button and dropdown are fully visible with no horizontal overflow and no content overlap (SC-004)
-- [ ] T011 Run `npm run lint` from the project root and resolve any TypeScript errors in `src/components/AddToCalendar.tsx` and `src/components/sections/DateAndTime.tsx`
+- [x] T011 Run `npm run lint` from the project root and resolve any TypeScript errors in `src/components/AddToCalendar.tsx` and `src/components/sections/DateAndTime.tsx`
 
 ---
 
