@@ -23,7 +23,9 @@ export default function StackingLayout() {
     })
   }, [])
 
-  const [hero, ...cards] = SECTIONS
+  const [hero, ...rest] = SECTIONS
+  const cards = rest.slice(0, -1)
+  const footer = rest[rest.length - 1]
 
   return (
     <>
@@ -54,6 +56,9 @@ export default function StackingLayout() {
             )}
           </div>
         ))}
+      </div>
+      <div className="stacking-footer">
+        <footer.Component />
       </div>
     </>
   )

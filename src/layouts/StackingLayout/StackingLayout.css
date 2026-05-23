@@ -6,12 +6,19 @@
   justify-content: center;
 }
 
+.stacking-footer {
+  background: #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 2rem;
+}
+
 .stacking-cards-wrapper {
   display: flex;
   flex-direction: column;
   background: #f3f4f6; /* gray-100: contrast so white cards read as cards */
   padding: 1.5rem;
-  padding-bottom: 100vh; /* room to scroll until last card is fully stacked */
   gap: 3rem;
 }
 
