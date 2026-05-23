@@ -1,6 +1,7 @@
 .stacking-cards-wrapper {
   display: flex;
   flex-direction: column;
+  background: #f3f4f6; /* gray-100: contrast so white cards read as cards */
   padding: 1.5rem;
   padding-bottom: 100vh; /* room to scroll until last card is fully stacked */
   gap: 1.5rem;
@@ -11,5 +12,8 @@
   top: 4.5rem; /* clears the nav */
   transform-origin: 50% 0;
   will-change: transform;
-  min-height: calc(100vh - 6rem); /* fill the viewport below the nav */
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

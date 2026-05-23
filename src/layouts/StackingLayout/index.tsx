@@ -28,19 +28,21 @@ export default function StackingLayout() {
       {SECTIONS.map(({ id, Component, image }, index) => (
         <div
           key={id}
-          className="stacking-card bg-white rounded-2xl shadow-lg overflow-hidden flex items-center"
+          className="stacking-card bg-white rounded-2xl shadow-lg overflow-hidden"
           style={{ zIndex: index + 1 }}
         >
-          <div className={`flex w-full h-full ${image?.side === 'left' ? 'flex-row' : 'flex-row-reverse'}`}>
-            {image && (
+          {image ? (
+            <div className={`flex h-full ${image.side === 'right' ? 'flex-row-reverse' : 'flex-row'}`}>
               <div className="w-1/2 shrink-0 self-stretch">
                 <img src={image.src} alt={image.alt} className="w-full h-full object-cover" />
               </div>
-            )}
-            <div className={`flex items-center justify-center ${image ? 'w-1/2' : 'w-full'}`}>
-              <Component />
+              <div className="w-1/2 flex items-center">
+                <Component />
+              </div>
             </div>
-          </div>
+          ) : (
+            <Component />
+          )}
         </div>
       ))}
     </div>
