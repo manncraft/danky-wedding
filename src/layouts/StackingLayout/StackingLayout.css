@@ -1,0 +1,11 @@
+.stacking-cards-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.stacking-card {
+  position: sticky;
+  top: 4rem; /* clears the nav */
+  transform-origin: 50% 0;
+  will-change: transform;
+}
