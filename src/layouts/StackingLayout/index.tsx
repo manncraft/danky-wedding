@@ -23,28 +23,35 @@ export default function StackingLayout() {
     })
   }, [])
 
+  const [hero, ...cards] = SECTIONS
+
   return (
-    <div ref={wrapperRef} className="stacking-cards-wrapper">
-      {SECTIONS.map(({ id, Component, image }, index) => (
-        <div
-          key={id}
-          className="stacking-card bg-white rounded-2xl shadow-lg overflow-hidden"
-          style={{ zIndex: index + 1 }}
-        >
-          {image ? (
-            <div className={`flex h-full ${image.side === 'right' ? 'flex-row-reverse' : 'flex-row'}`}>
-              <div className="w-1/2 shrink-0 self-stretch">
-                <img src={image.src} alt={image.alt} className="w-full h-full object-cover" />
+    <>
+      <div className="stacking-hero">
+        <hero.Component />
+      </div>
+      <div ref={wrapperRef} className="stacking-cards-wrapper">
+        {cards.map(({ id, Component, image }, index) => (
+          <div
+            key={id}
+            className="stacking-card bg-white rounded-2xl shadow-lg overflow-hidden"
+            style={{ zIndex: index + 1 }}
+          >
+            {image ? (
+              <div className={`flex h-full ${image.side === 'right' ? 'flex-row-reverse' : 'flex-row'}`}>
+                <div className="w-1/2 shrink-0 self-stretch">
+                  <img src={image.src} alt={image.alt} className="w-full h-full object-cover" />
+                </div>
+                <div className="w-1/2 flex items-center">
+                  <Component />
+                </div>
               </div>
-              <div className="w-1/2 flex items-center">
-                <Component />
-              </div>
-            </div>
-          ) : (
-            <Component />
-          )}
-        </div>
-      ))}
-    </div>
+            ) : (
+              <Component />
+            )}
+          </div>
+        ))}
+      </div>
+    </>
   )
 }
