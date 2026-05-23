@@ -20,7 +20,6 @@
   flex-direction: column;
   background: #f3f4f6; /* gray-100: contrast so white cards read as cards */
   padding: 1.5rem;
-  padding-bottom: 480px; /* space to view last card before footer appears */
   gap: 3rem;
 }
 
