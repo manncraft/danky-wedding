@@ -39,7 +39,10 @@ export default function StackingLayout() {
           >
             {image ? (
               <div className={`flex h-full ${image.side === 'right' ? 'flex-row-reverse' : 'flex-row'}`}>
-                <div className="w-1/2 shrink-0 self-stretch">
+                <div
+                  className="w-1/2 shrink-0 self-stretch"
+                  style={image.side === 'left' ? { marginLeft: '-2rem' } : { marginRight: '-2rem' }}
+                >
                   <img src={image.src} alt={image.alt} className="w-full h-full object-cover" />
                 </div>
                 <div className="w-1/2 flex items-center">
