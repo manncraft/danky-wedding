@@ -22,11 +22,11 @@ export interface SectionEntry {
 
 export const SECTIONS: SectionEntry[] = [
   { id: 'hero',                    Component: Hero },
-  { id: 'date-and-time',           Component: DateAndTime },
-  { id: 'venue',                   Component: Venue },
+  { id: 'date-and-time',           Component: DateAndTime,          image: { src: '/img/rose3.png',       alt: '',  side: 'right' } },
+  { id: 'venue',                   Component: Venue,                image: { src: '/img/lavender1-5.png', alt: '',  side: 'left'  } },
   { id: 'parking-transportation',  Component: ParkingTransportation },
-  { id: 'dress-code',              Component: DressCode },
+  { id: 'dress-code',              Component: DressCode,            image: { src: '/img/cosmos3.png',     alt: '',  side: 'right' } },
   { id: 'dietary-restrictions',    Component: DietaryRestrictions },
-  { id: 'gifts',                   Component: Gifts },
+  { id: 'gifts',                   Component: Gifts,                image: { src: '/img/cornflower.png',  alt: '',  side: 'left'  } },
   { id: 'timeline',                Component: Timeline },
 ]
