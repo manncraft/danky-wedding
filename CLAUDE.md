@@ -28,6 +28,8 @@ Auto-generated from all feature plans. Last updated: 2026-05-23
 - N/A — static content hardcoded in React components (014-real-page-content)
 - TypeScript 5.9 / React 19 + Vite 8, Tailwind CSS v4 (no new deps) (016-partner-content-update)
 - N/A — static content hardcoded in components (016-partner-content-update)
+- TypeScript 5.9 / React 19 + React 19, Tailwind CSS v4 — no new dependencies (017-add-to-calendar)
+- N/A — all data is compile-time constants (017-add-to-calendar)
 
 ## Project Structure
 
@@ -46,9 +48,9 @@ npm test && npm run lint
 TypeScript 5.9 / React 19: Follow standard conventions
 
 ## Recent Changes
+- 017-add-to-calendar: Added TypeScript 5.9 / React 19 + React 19, Tailwind CSS v4 — no new dependencies
 - 016-partner-content-update: Added TypeScript 5.9 / React 19 + Vite 8, Tailwind CSS v4 (no new deps)
 - 014-real-page-content: Added TypeScript 5.9 / React 19 + Vite 8, Tailwind CSS v4 (no new dependencies)
-- 013-song-suggestions: Added TypeScript 5.9 (frontend + Vercel function) / Google Apps Script V8 (GAS) + React 19, Vite 8, Tailwind CSS v4, react-hook-form 7, Zod, `@vercel/node`
 
 
 <!-- MANUAL ADDITIONS START -->
