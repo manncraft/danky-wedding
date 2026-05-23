@@ -2,9 +2,13 @@ import { useState } from 'react'
 import Nav from './components/Nav'
 import RsvpLookup from './components/RsvpLookup'
 import Hero from './components/sections/Hero'
-import Schedule from './components/sections/Schedule'
-import Travel from './components/sections/Travel'
+import DateAndTime from './components/sections/DateAndTime'
+import Venue from './components/sections/Venue'
+import ParkingTransportation from './components/sections/ParkingTransportation'
 import DressCode from './components/sections/DressCode'
+import DietaryRestrictions from './components/sections/DietaryRestrictions'
+import Gifts from './components/sections/Gifts'
+import Timeline from './components/sections/Timeline'
 
 type View = 'landing' | 'rsvp-lookup'
 
@@ -17,9 +21,13 @@ function App() {
       {view === 'landing' && (
         <main className="max-w-2xl mx-auto w-full">
           <Hero />
-          <Schedule />
-          <Travel />
+          <DateAndTime />
+          <Venue />
+          <ParkingTransportation />
           <DressCode />
+          <DietaryRestrictions />
+          <Gifts />
+          <Timeline />
         </main>
       )}
       {view === 'rsvp-lookup' && (
