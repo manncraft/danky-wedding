@@ -36,7 +36,7 @@ export default function StackingLayout() {
         {cards.map(({ id, Component, image }, index) => (
           <div
             key={id}
-            className="stacking-card bg-white rounded-2xl shadow-lg overflow-hidden"
+            className="stacking-card bg-white rounded-2xl overflow-hidden"
             style={{ zIndex: index + 1 }}
           >
             {image ? (
