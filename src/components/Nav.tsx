@@ -9,15 +9,28 @@ interface NavProps {
 export default function Nav({ onRsvpClick, view, onNavigateToLanding }: NavProps) {
   const pendingSectionRef = useRef<string | null>(null)
 
+  function scrollToSection(id: string, href?: string) {
+    const el = document.getElementById(id)
+    if (!el) return
+    history.replaceState(null, '', href ?? `#${id}`)
+    const card = el.closest<HTMLElement>('.stacking-card')
+    if (card) {
+      // scrollIntoView doesn't work reliably for sticky elements: forward scrolls
+      // overshoot (section is centered inside the card) and backward scrolls do
+      // nothing (sticky element is already "in view"). Use offsetTop instead,
+      // which always reflects the card's natural position in the flow.
+      const navHeight = document.querySelector('nav')?.offsetHeight ?? 72
+      window.scrollTo({ top: card.offsetTop - navHeight, behavior: 'smooth' })
+    } else {
+      el.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   useEffect(() => {
     if (view === 'landing' && pendingSectionRef.current) {
       const id = pendingSectionRef.current
       pendingSectionRef.current = null
-      const el = document.getElementById(id)
-      if (el) {
-        history.replaceState(null, '', `#${id}`)
-        el.scrollIntoView({ behavior: 'smooth' })
-      }
+      scrollToSection(id)
     }
   }, [view])
 
@@ -26,11 +39,7 @@ export default function Nav({ onRsvpClick, view, onNavigateToLanding }: NavProps
     const href = e.currentTarget.getAttribute('href')!
     const id = href.slice(1)
     if (view === 'landing') {
-      const el = document.getElementById(id)
-      if (el) {
-        history.replaceState(null, '', href)
-        el.scrollIntoView({ behavior: 'smooth' })
-      }
+      scrollToSection(id, href)
     } else {
       pendingSectionRef.current = id
       onNavigateToLanding()
