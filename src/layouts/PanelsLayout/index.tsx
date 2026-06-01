@@ -1,10 +1,41 @@
 import './PanelsLayout.css'
-import { SECTIONS } from '../../sections/registry'
+import Hero from '../../components/sections/Hero'
+import DateAndTime from '../../components/sections/DateAndTime'
+import Venue from '../../components/sections/Venue'
+import ParkingTransportation from '../../components/sections/ParkingTransportation'
+import DressCode from '../../components/sections/DressCode'
+import DietaryRestrictions from '../../components/sections/DietaryRestrictions'
+import Gifts from '../../components/sections/Gifts'
+import Timeline from '../../components/sections/Timeline'
+import type { ComponentType } from 'react'
+
+interface PanelImage {
+  src: string
+  alt: string
+  side: 'left' | 'right'
+}
+
+interface Panel {
+  id: string
+  Component: ComponentType
+  image?: PanelImage
+}
+
+const PANELS: Panel[] = [
+  { id: 'hero',                   Component: Hero },
+  { id: 'date-and-time',          Component: DateAndTime,          image: { src: '/img/rose3.png',       alt: '', side: 'right' } },
+  { id: 'venue',                  Component: Venue,                image: { src: '/img/lavender1-5.png', alt: '', side: 'left'  } },
+  { id: 'parking-transportation', Component: ParkingTransportation },
+  { id: 'dress-code',             Component: DressCode,            image: { src: '/img/cosmos3.png',     alt: '', side: 'right' } },
+  { id: 'dietary-restrictions',   Component: DietaryRestrictions },
+  { id: 'gifts',                  Component: Gifts,                image: { src: '/img/cornflower.png',  alt: '', side: 'left'  } },
+  { id: 'timeline',               Component: Timeline },
+]
 
 export default function PanelsLayout() {
   return (
     <div className="panels-wrapper">
-      {SECTIONS.map(({ id, Component, image }, index) => {
+      {PANELS.map(({ id, Component, image }, index) => {
         const tone = index % 2 === 0 ? 'dark' : 'light'
         return (
           <div key={id} className={`panels-card panels-card--${tone}`}>
