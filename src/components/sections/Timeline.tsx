@@ -22,7 +22,7 @@ export default function Timeline() {
       </div>
 
       {/* Flat layout — all screen sizes */}
-      <div className="relative z-10 w-full px-6 py-10 lg:max-w-5xl lg:mx-auto lg:px-0">
+      <div className="relative z-10 w-full px-6 py-10 lg:w-[36rem] lg:px-0">
         <p className="text-lg font-light tracking-wide">Program of</p>
         <p className="text-5xl leading-tight mb-1" style={{ fontFamily: "'Pinyon Script', cursive" }}>Events</p>
         <p className="text-xs uppercase tracking-widest mb-6 opacity-60">Tuesday, 12th January 2027</p>
