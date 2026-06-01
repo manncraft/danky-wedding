@@ -46,6 +46,22 @@
   height: 100vh;
 }
 
+/* scale up section content for full-height panels */
+.panels-card--full h2 {
+  font-size: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.panels-card--full p,
+.panels-card--full li {
+  font-size: 1.25rem;
+  line-height: 1.75;
+}
+
+.panels-card--full .text-sm {
+  font-size: 1.05rem;
+}
+
 .panels-card--light {
   background: var(--panel-light-bg);
   color: var(--panel-light-text);
