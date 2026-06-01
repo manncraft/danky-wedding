@@ -8,7 +8,7 @@ const FAQS = [
     answer: 'Please let us know when you RSVP and we\'ll make sure you\'re catered for.',
   },
   {
-    question: 'Is the wedding outdoors or indoors?',
+    question: 'Will the wedding be outdoors or indoors?',
     answer: 'The ceremony will be outdoors in a shaded area. The reception will be indoors.',
   },
   {
