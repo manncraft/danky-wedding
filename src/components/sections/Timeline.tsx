@@ -23,8 +23,8 @@ export default function Timeline() {
 
       {/* Arch card */}
       <div
-        className="relative z-10 w-72 bg-[#4a5740] text-[#f5f0e8] text-center px-10 pt-14 pb-8"
-        style={{ borderRadius: '150px 150px 0 0' }}
+        className="relative z-10 w-96 bg-[#4a5740] text-[#f5f0e8] text-center px-10 pt-14 pb-8"
+        style={{ borderRadius: '200px 200px 0 0' }}
       >
         <p className="text-lg font-light tracking-wide">Program of</p>
         <p className="text-5xl leading-tight" style={{ fontFamily: "'Pinyon Script', cursive" }}>Events</p>
