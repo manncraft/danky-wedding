@@ -11,7 +11,7 @@
 }
 
 .panels-card {
-  height: 480px;
+  height: 50vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
