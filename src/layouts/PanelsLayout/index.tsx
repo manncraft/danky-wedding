@@ -1,15 +1,13 @@
 import './PanelsLayout.css'
 import { SECTIONS } from '../../sections/registry'
 
-interface Props { full?: boolean }
-
-export default function PanelsLayout({ full = false }: Props) {
+export default function PanelsLayout() {
   return (
     <div className="panels-wrapper">
       {SECTIONS.map(({ id, Component, image }, index) => {
         const tone = index % 2 === 0 ? 'dark' : 'light'
         return (
-          <div key={id} className={`panels-card panels-card--${tone}${full ? ' panels-card--full' : ''}`}>
+          <div key={id} className={`panels-card panels-card--${tone}`}>
             {image ? (
               <div className={`flex h-full ${image.side === 'right' ? 'flex-row-reverse' : 'flex-row'}`}>
                 <div className="w-1/2 shrink-0 self-stretch">

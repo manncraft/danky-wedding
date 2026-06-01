@@ -13,17 +13,7 @@ export default function Nav({ onRsvpClick, view, onNavigateToLanding }: NavProps
     const el = document.getElementById(id)
     if (!el) return
     history.replaceState(null, '', href ?? `#${id}`)
-    const card = el.closest<HTMLElement>('.stacking-card')
-    if (card) {
-      // scrollIntoView doesn't work reliably for sticky elements: forward scrolls
-      // overshoot (section is centered inside the card) and backward scrolls do
-      // nothing (sticky element is already "in view"). Use offsetTop instead,
-      // which always reflects the card's natural position in the flow.
-      const navHeight = document.querySelector('nav')?.offsetHeight ?? 72
-      window.scrollTo({ top: card.offsetTop - navHeight, behavior: 'smooth' })
-    } else {
-      el.scrollIntoView({ behavior: 'smooth' })
-    }
+    el.scrollIntoView({ behavior: 'smooth' })
   }
 
   useEffect(() => {
