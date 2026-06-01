@@ -13,18 +13,6 @@ export default function PanelsLayout() {
       </div>
       <div className="panels-wrapper">
         {cards.map(({ id, Component, image }, index) => {
-          if (image?.layout === 'background') {
-            return (
-              <div key={id} className="panels-card panels-card--bg-image">
-                <img src={image.src} alt={image.alt} />
-                <div className="panels-card__overlay" />
-                <div className="panels-card__content">
-                  <Component />
-                </div>
-              </div>
-            )
-          }
-
           const tone = index % 2 === 0 ? 'light' : 'dark'
           return (
             <div key={id} className={`panels-card panels-card--${tone}`}>

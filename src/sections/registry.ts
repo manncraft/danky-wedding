@@ -12,7 +12,6 @@ export interface SectionImage {
   src: string
   alt: string
   side: 'left' | 'right'
-  layout?: 'side' | 'background'
 }
 
 export interface SectionEntry {
@@ -23,11 +22,11 @@ export interface SectionEntry {
 
 export const SECTIONS: SectionEntry[] = [
   { id: 'hero',                    Component: Hero },
-  { id: 'date-and-time',           Component: DateAndTime,          image: { src: '/img/rose3.png',       alt: '',  side: 'right', layout: 'background' } },
-  { id: 'venue',                   Component: Venue,                image: { src: '/img/lavender1-5.png', alt: '',  side: 'left',  layout: 'side'       } },
+  { id: 'date-and-time',           Component: DateAndTime,          image: { src: '/img/rose3.png',       alt: '',  side: 'right' } },
+  { id: 'venue',                   Component: Venue,                image: { src: '/img/lavender1-5.png', alt: '',  side: 'left'  } },
   { id: 'parking-transportation',  Component: ParkingTransportation },
-  { id: 'dress-code',              Component: DressCode,            image: { src: '/img/cosmos3.png',     alt: '',  side: 'right', layout: 'background' } },
+  { id: 'dress-code',              Component: DressCode,            image: { src: '/img/cosmos3.png',     alt: '',  side: 'right' } },
   { id: 'dietary-restrictions',    Component: DietaryRestrictions },
-  { id: 'gifts',                   Component: Gifts,                image: { src: '/img/cornflower.png',  alt: '',  side: 'left',  layout: 'side'       } },
+  { id: 'gifts',                   Component: Gifts,                image: { src: '/img/cornflower.png',  alt: '',  side: 'left'  } },
   { id: 'timeline',                Component: Timeline },
 ]
