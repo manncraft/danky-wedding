@@ -24,8 +24,8 @@ const PANELS: Panel[] = [
   { id: 'hero',                   Component: Hero },
   { id: 'date-and-time',          Component: DateAndTime },
   { id: 'dress-code',             Component: DressCodeParking, tone: 'dark' },
-  { id: 'faqs',                    Component: FAQs },
   { id: 'timeline',               Component: Timeline, fullWidth: true, tone: 'light' },
+  { id: 'faqs',                    Component: FAQs, tone: 'dark' },
 ]
 
 export default function PanelsLayout() {
