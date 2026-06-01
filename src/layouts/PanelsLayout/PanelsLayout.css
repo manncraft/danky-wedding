@@ -11,7 +11,7 @@
 }
 
 .panels-card {
-  height: 50vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -26,4 +26,10 @@
 .panels-card--dark {
   background: var(--panel-dark-bg);
   color: var(--panel-dark-text);
+}
+
+@media (min-width: 640px) {
+  .panels-card {
+    height: 50vh;
+  }
 }

@@ -8,7 +8,7 @@ export default function DateAndTime() {
           <p className="text-3xl font-light">About the</p>
           <p className="text-6xl" style={{ fontFamily: "'Pinyon Script', cursive" }}>Ceremony</p>
         </div>
-        <div className="flex-1 min-h-0 flex items-center justify-center mt-4">
+        <div className="flex-1 min-h-0 hidden sm:flex items-center justify-center mt-4">
           <img src="/img/rose3.png" alt="" className="max-h-[28vh] max-w-full object-contain" />
         </div>
       </div>
