@@ -3,7 +3,6 @@ import Hero from '../../components/sections/Hero'
 import DateAndTime from '../../components/sections/DateAndTime'
 import DressCodeParking from '../../components/sections/DressCodeParking'
 import DietaryRestrictions from '../../components/sections/DietaryRestrictions'
-import Gifts from '../../components/sections/Gifts'
 import Timeline from '../../components/sections/Timeline'
 import type { ComponentType } from 'react'
 
@@ -26,7 +25,6 @@ const PANELS: Panel[] = [
   { id: 'date-and-time',          Component: DateAndTime },
   { id: 'dress-code',             Component: DressCodeParking, tone: 'light' },
   { id: 'dietary-restrictions',   Component: DietaryRestrictions },
-  { id: 'gifts',                  Component: Gifts,                image: { src: '/img/cornflower.png',  alt: '', side: 'left'  } },
   { id: 'timeline',               Component: Timeline, fullWidth: true, tone: 'light' },
 ]
 
