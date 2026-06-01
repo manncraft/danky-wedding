@@ -4,12 +4,15 @@ import RsvpLookup from './components/RsvpLookup'
 import { useVariant } from './variants'
 import DefaultLayout from './layouts/DefaultLayout'
 import StackingLayout from './layouts/StackingLayout'
+import PanelsLayout from './layouts/PanelsLayout'
 
 type View = 'landing' | 'rsvp-lookup'
 
 const LAYOUTS = {
   default: DefaultLayout,
   stacking: StackingLayout,
+  panels: PanelsLayout,
+  'panels-snap': PanelsLayout,
 }
 
 function App() {

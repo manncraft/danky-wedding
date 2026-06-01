@@ -1,0 +1,51 @@
+.panels-hero {
+  height: 480px;
+  background: #f3f4f6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.panels-footer {
+  background: #f3f4f6;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 4rem 2rem;
+}
+
+.panels-wrapper {
+  display: flex;
+  flex-direction: column;
+  background: #f3f4f6;
+  padding: 1.5rem;
+  gap: 3rem;
+}
+
+.panels-card {
+  height: 480px;
+  border-radius: 1rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0 2rem;
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  background: #fff;
+}
+
+/* scroll-snap — applied via class on <html> by the snap variant */
+html.panels-snap-active {
+  scroll-snap-type: y mandatory;
+}
+
+html.panels-snap-active .panels-hero,
+html.panels-snap-active .panels-card,
+html.panels-snap-active .panels-footer {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}

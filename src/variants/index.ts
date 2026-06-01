@@ -1,4 +1,4 @@
-const VARIANTS = ['default', 'stacking'] as const
+const VARIANTS = ['default', 'stacking', 'panels', 'panels-snap'] as const
 export type VariantId = typeof VARIANTS[number]
 
 export function useVariant(): VariantId {
