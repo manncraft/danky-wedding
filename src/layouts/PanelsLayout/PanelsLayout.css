@@ -1,13 +1,22 @@
+:root {
+  --panel-dark-bg: #4a5740;
+  --panel-dark-text: #f5f0e8;
+  --panel-light-bg: #ffffff;
+  --panel-light-text: #1a1a1a;
+}
+
 .panels-hero {
   height: 480px;
-  background: #f3f4f6;
+  background: var(--panel-dark-bg);
+  color: var(--panel-dark-text);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .panels-footer {
-  background: #f3f4f6;
+  background: var(--panel-dark-bg);
+  color: var(--panel-dark-text);
   min-height: 100vh;
   display: flex;
   align-items: flex-start;
@@ -18,22 +27,53 @@
 .panels-wrapper {
   display: flex;
   flex-direction: column;
-  background: #f3f4f6;
-  padding: 1.5rem;
-  gap: 3rem;
 }
 
 .panels-card {
   height: 480px;
-  border-radius: 1rem;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 0 2rem;
-  box-shadow:
-    0 10px 15px -3px rgba(0, 0, 0, 0.1),
-    0 4px 6px -4px rgba(0, 0, 0, 0.1);
-  background: #fff;
+  overflow: hidden;
+  padding: 0 4rem;
+}
+
+.panels-card--light {
+  background: var(--panel-light-bg);
+  color: var(--panel-light-text);
+}
+
+.panels-card--dark {
+  background: var(--panel-dark-bg);
+  color: var(--panel-dark-text);
+}
+
+.panels-card--bg-image {
+  position: relative;
+  padding: 0;
+}
+
+.panels-card--bg-image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.panels-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.panels-card__content {
+  position: relative;
+  z-index: 1;
+  color: var(--panel-dark-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 0 4rem;
 }

@@ -12,25 +12,37 @@ export default function PanelsLayout() {
         <hero.Component />
       </div>
       <div className="panels-wrapper">
-        {cards.map(({ id, Component, image }) => (
-          <div key={id} className="panels-card">
-            {image ? (
-              <div className={`flex h-full ${image.side === 'right' ? 'flex-row-reverse' : 'flex-row'}`}>
-                <div
-                  className="w-1/2 shrink-0 self-stretch"
-                  style={image.side === 'left' ? { marginLeft: '-2rem' } : { marginRight: '-2rem' }}
-                >
-                  <img src={image.src} alt={image.alt} className="w-full h-full object-cover" />
-                </div>
-                <div className={`w-1/2 flex items-center ${image.side === 'left' ? 'pl-8' : ''}`}>
+        {cards.map(({ id, Component, image }, index) => {
+          if (image?.layout === 'background') {
+            return (
+              <div key={id} className="panels-card panels-card--bg-image">
+                <img src={image.src} alt={image.alt} />
+                <div className="panels-card__overlay" />
+                <div className="panels-card__content">
                   <Component />
                 </div>
               </div>
-            ) : (
-              <Component />
-            )}
-          </div>
-        ))}
+            )
+          }
+
+          const tone = index % 2 === 0 ? 'light' : 'dark'
+          return (
+            <div key={id} className={`panels-card panels-card--${tone}`}>
+              {image ? (
+                <div className={`flex h-full ${image.side === 'right' ? 'flex-row-reverse' : 'flex-row'}`}>
+                  <div className="w-1/2 shrink-0 self-stretch">
+                    <img src={image.src} alt={image.alt} className="w-full h-full object-cover" />
+                  </div>
+                  <div className="w-1/2 flex items-center" style={{ padding: '0 3rem' }}>
+                    <Component />
+                  </div>
+                </div>
+              ) : (
+                <Component />
+              )}
+            </div>
+          )
+        })}
       </div>
       <div className="panels-footer">
         <footer.Component />
