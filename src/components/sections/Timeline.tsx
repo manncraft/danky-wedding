@@ -13,8 +13,16 @@ export default function Timeline() {
   return (
     <section id="timeline" className="relative w-full h-full flex items-center justify-center">
 
-      {/* Mobile: flat light layout */}
-      <div className="lg:hidden w-full px-6 py-10">
+      {/* Flanking flowers — desktop only */}
+      <div className="absolute left-0 bottom-0 h-full pointer-events-none hidden lg:block">
+        <img src="/img/lavender1-5.png" alt="" className="h-full object-contain object-bottom" />
+      </div>
+      <div className="absolute right-0 bottom-0 h-full pointer-events-none hidden lg:block" style={{ transform: 'scaleX(-1)' }}>
+        <img src="/img/lavender1-5.png" alt="" className="h-full object-contain object-bottom" />
+      </div>
+
+      {/* Flat layout — all screen sizes */}
+      <div className="relative z-10 w-full px-6 py-10">
         <p className="text-lg font-light tracking-wide">Program of</p>
         <p className="text-5xl leading-tight mb-1" style={{ fontFamily: "'Pinyon Script', cursive" }}>Events</p>
         <p className="text-xs uppercase tracking-widest mb-6 opacity-60">Tuesday, 12th January 2027</p>
@@ -25,34 +33,6 @@ export default function Timeline() {
               <div className="border-t border-black/10 py-2">{label}</div>
             </React.Fragment>
           ))}
-        </div>
-      </div>
-
-      {/* Desktop: arch card with flanking flowers */}
-      <div className="hidden lg:contents">
-        <div className="absolute left-0 bottom-0 h-full pointer-events-none">
-          <img src="/img/lavender1-5.png" alt="" className="h-full object-contain object-bottom" />
-        </div>
-        <div className="absolute right-0 bottom-0 h-full pointer-events-none" style={{ transform: 'scaleX(-1)' }}>
-          <img src="/img/lavender1-5.png" alt="" className="h-full object-contain object-bottom" />
-        </div>
-        <div
-          className="relative z-10 w-96 bg-[#4a5740] text-[#f5f0e8] text-center px-10 pt-14 pb-8"
-          style={{ borderRadius: '200px 200px 0 0' }}
-        >
-          <p className="text-lg font-light tracking-wide">Program of</p>
-          <p className="text-5xl leading-tight" style={{ fontFamily: "'Pinyon Script', cursive" }}>Events</p>
-          <p className="text-xs uppercase tracking-widest mt-1 mb-5 opacity-60">
-            Tuesday, 12th January 2027
-          </p>
-          <div className="grid grid-cols-[auto_1fr] gap-x-4 text-sm text-left w-full">
-            {EVENTS.map(({ time, label }) => (
-              <React.Fragment key={time}>
-                <div className="border-t border-white/20 py-1.5 opacity-70 whitespace-nowrap">{time}</div>
-                <div className="border-t border-white/20 py-1.5">{label}</div>
-              </React.Fragment>
-            ))}
-          </div>
         </div>
       </div>
 
