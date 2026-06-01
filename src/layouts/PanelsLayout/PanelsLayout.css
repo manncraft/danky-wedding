@@ -1,0 +1,30 @@
+:root {
+  --panel-dark-bg: #4a5740;
+  --panel-dark-text: #f5f0e8;
+  --panel-light-bg: #ffffff;
+  --panel-light-text: #1a1a1a;
+}
+
+.panels-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.panels-card {
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0 4rem;
+}
+
+.panels-card--light {
+  background: var(--panel-light-bg);
+  color: var(--panel-light-text);
+}
+
+.panels-card--dark {
+  background: var(--panel-dark-bg);
+  color: var(--panel-dark-text);
+}
