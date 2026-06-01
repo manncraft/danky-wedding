@@ -23,7 +23,7 @@ interface Panel {
 const PANELS: Panel[] = [
   { id: 'hero',                   Component: Hero },
   { id: 'date-and-time',          Component: DateAndTime },
-  { id: 'dress-code',             Component: DressCodeParking, tone: 'light' },
+  { id: 'dress-code',             Component: DressCodeParking, tone: 'dark' },
   { id: 'dietary-restrictions',   Component: DietaryRestrictions },
   { id: 'timeline',               Component: Timeline, fullWidth: true, tone: 'light' },
 ]
