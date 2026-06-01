@@ -37,18 +37,20 @@ export default function PanelsLayout() {
         const tone = index % 2 === 0 ? 'dark' : 'light'
         return (
           <div key={id} className={`panels-card panels-card--${tone}`}>
-            {image ? (
-              <div className={`flex h-full ${image.side === 'right' ? 'flex-row-reverse' : 'flex-row'}`}>
-                <div className="w-1/2 shrink-0 self-stretch">
-                  <img src={image.src} alt={image.alt} className="w-full h-full object-cover" />
+            <div className="w-full h-full lg:max-w-5xl lg:mx-auto flex flex-col justify-center">
+              {image ? (
+                <div className={`flex flex-1 ${image.side === 'right' ? 'flex-row-reverse' : 'flex-row'}`}>
+                  <div className="w-1/2 shrink-0 self-stretch">
+                    <img src={image.src} alt={image.alt} className="w-full h-full object-cover" />
+                  </div>
+                  <div className="w-1/2 flex items-center" style={{ padding: '0 3rem' }}>
+                    <Component />
+                  </div>
                 </div>
-                <div className="w-1/2 flex items-center" style={{ padding: '0 3rem' }}>
-                  <Component />
-                </div>
-              </div>
-            ) : (
-              <Component />
-            )}
+              ) : (
+                <Component />
+              )}
+            </div>
           </div>
         )
       })}
