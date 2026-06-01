@@ -10,7 +10,7 @@ export default function DressCodeParking() {
       </div>
 
       {/* Left: stacked boxes */}
-      <div className="flex-1 self-center flex flex-col gap-10">
+      <div className="flex-1 self-center flex flex-col gap-12">
         <div id="dress-code" className="border border-white/25 p-4 text-center">
           <p className="text-base font-bold uppercase tracking-widest mb-2">Dress Code</p>
           <p className="text-lg mb-1">Semi-formal.</p>
