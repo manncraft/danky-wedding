@@ -2,7 +2,7 @@ import './PanelsLayout.css'
 import Hero from '../../components/sections/Hero'
 import DateAndTime from '../../components/sections/DateAndTime'
 import DressCodeParking from '../../components/sections/DressCodeParking'
-import DietaryRestrictions from '../../components/sections/DietaryRestrictions'
+import FAQs from '../../components/sections/FAQs'
 import Timeline from '../../components/sections/Timeline'
 import type { ComponentType } from 'react'
 
@@ -24,7 +24,7 @@ const PANELS: Panel[] = [
   { id: 'hero',                   Component: Hero },
   { id: 'date-and-time',          Component: DateAndTime },
   { id: 'dress-code',             Component: DressCodeParking, tone: 'dark' },
-  { id: 'dietary-restrictions',   Component: DietaryRestrictions },
+  { id: 'faqs',                    Component: FAQs },
   { id: 'timeline',               Component: Timeline, fullWidth: true, tone: 'light' },
 ]
 
