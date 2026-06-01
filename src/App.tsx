@@ -12,6 +12,7 @@ const LAYOUTS = {
   default: DefaultLayout,
   stacking: StackingLayout,
   panels: PanelsLayout,
+  'panels-full': () => <PanelsLayout full />,
 }
 
 function App() {

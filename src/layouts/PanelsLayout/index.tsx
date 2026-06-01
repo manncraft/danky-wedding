@@ -1,21 +1,23 @@
 import './PanelsLayout.css'
 import { SECTIONS } from '../../sections/registry'
 
-export default function PanelsLayout() {
+interface Props { full?: boolean }
+
+export default function PanelsLayout({ full = false }: Props) {
   const [hero, ...rest] = SECTIONS
   const cards = rest.slice(0, -1)
   const footer = rest[rest.length - 1]
 
   return (
     <>
-      <div className="panels-hero">
+      <div className={`panels-hero${full ? ' panels-hero--full' : ''}`}>
         <hero.Component />
       </div>
       <div className="panels-wrapper">
         {cards.map(({ id, Component, image }, index) => {
           const tone = index % 2 === 0 ? 'light' : 'dark'
           return (
-            <div key={id} className={`panels-card panels-card--${tone}`}>
+            <div key={id} className={`panels-card panels-card--${tone}${full ? ' panels-card--full' : ''}`}>
               {image ? (
                 <div className={`flex h-full ${image.side === 'right' ? 'flex-row-reverse' : 'flex-row'}`}>
                   <div className="w-1/2 shrink-0 self-stretch">
