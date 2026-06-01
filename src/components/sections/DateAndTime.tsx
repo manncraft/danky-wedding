@@ -14,13 +14,13 @@ export default function DateAndTime() {
       </div>
 
       <div className="flex-1 self-center flex flex-col gap-12">
-        <div className="border border-gray-300 px-4 py-2 text-center">
+        <div className="border border-gray-300 p-6 text-center">
           <p className="text-base font-bold uppercase tracking-widest mb-2">Date &amp; Time</p>
           <p className="text-lg mb-1">Tuesday 12th January 2027</p>
           <p className="text-lg">Ceremony begins at 3pm. Please arrive no earlier than 2:30pm.</p>
         </div>
 
-        <div className="border border-gray-300 px-4 py-2 text-center">
+        <div className="border border-gray-300 p-6 text-center">
           <p className="text-base font-bold uppercase tracking-widest mb-2">Venue</p>
           <p className="text-lg mb-1">Markovina Vineyard Estate</p>
           <p className="text-lg">84 Old Railway Road, Kumeū 0892</p>
