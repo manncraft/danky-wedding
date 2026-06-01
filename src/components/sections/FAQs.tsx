@@ -1,12 +1,24 @@
 const FAQS = [
   {
-    question: 'What should I wear?',
-    answer: 'Semi-formal. Think colourful midi or maxi dresses, dressy separates, or a button-up shirt and dress pants. For footwear, dress shoes, loafers, sandals, dressy flats, wedges, or block heels all work well — just avoid anything that might sink in the grass.',
+    question: 'When do I need to RSVP?',
+    answer: 'ASAP {TBC}',
   },
   {
-    question: 'I have dietary requirements — what should I do?',
+    question: 'I have dietary requirements - what should I do?',
     answer: 'Please let us know when you RSVP and we\'ll make sure you\'re catered for.',
   },
+  {
+    question: 'Is the wedding outdoors or indoors?',
+    answer: 'The ceremony will be outdoors in a shaded area. The reception will be indoors.',
+  },
+  {
+    question: 'What should I wear?',
+    answer: 'The dress code is semi-formal. We suggest a colourful midi or maxi dress, dressy separates, or a button-up shirt and nice pants. For footwear, avoid anything that might sink in the grass. Dress shoes, loafers, sandals, dressy flats, wedges, or block heels all work well.',
+  },
+  {
+    question: 'Can I take photos with my phone or camera during the wedding?',
+    answer: 'During the ceremony, we ask that you please refrain from taking any photos, or using your phone. Please feel free to take as many photos as you\'d like after the ceremony.',
+  }
 ]
 
 export default function FAQs() {
