@@ -1,8 +1,7 @@
 import './PanelsLayout.css'
 import Hero from '../../components/sections/Hero'
 import DateAndTime from '../../components/sections/DateAndTime'
-import ParkingTransportation from '../../components/sections/ParkingTransportation'
-import DressCode from '../../components/sections/DressCode'
+import DressCodeParking from '../../components/sections/DressCodeParking'
 import DietaryRestrictions from '../../components/sections/DietaryRestrictions'
 import Gifts from '../../components/sections/Gifts'
 import Timeline from '../../components/sections/Timeline'
@@ -25,8 +24,7 @@ interface Panel {
 const PANELS: Panel[] = [
   { id: 'hero',                   Component: Hero },
   { id: 'date-and-time',          Component: DateAndTime },
-  { id: 'parking-transportation', Component: ParkingTransportation },
-  { id: 'dress-code',             Component: DressCode,            image: { src: '/img/cosmos3.png',     alt: '', side: 'right' } },
+  { id: 'dress-code',             Component: DressCodeParking, tone: 'light' },
   { id: 'dietary-restrictions',   Component: DietaryRestrictions },
   { id: 'gifts',                  Component: Gifts,                image: { src: '/img/cornflower.png',  alt: '', side: 'left'  } },
   { id: 'timeline',               Component: Timeline, fullWidth: true, tone: 'light' },
