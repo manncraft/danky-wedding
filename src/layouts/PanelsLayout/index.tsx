@@ -1,17 +1,7 @@
-import { useEffect } from 'react'
 import './PanelsLayout.css'
 import { SECTIONS } from '../../sections/registry'
-import { useVariant } from '../../variants'
 
 export default function PanelsLayout() {
-  const snap = useVariant() === 'panels-snap'
-
-  useEffect(() => {
-    if (!snap) return
-    document.documentElement.classList.add('panels-snap-active')
-    return () => document.documentElement.classList.remove('panels-snap-active')
-  }, [snap])
-
   const [hero, ...rest] = SECTIONS
   const cards = rest.slice(0, -1)
   const footer = rest[rest.length - 1]

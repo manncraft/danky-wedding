@@ -37,15 +37,3 @@
     0 4px 6px -4px rgba(0, 0, 0, 0.1);
   background: #fff;
 }
-
-/* scroll-snap — applied via class on <html> by the snap variant */
-html.panels-snap-active {
-  scroll-snap-type: y mandatory;
-}
-
-html.panels-snap-active .panels-hero,
-html.panels-snap-active .panels-card,
-html.panels-snap-active .panels-footer {
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-}

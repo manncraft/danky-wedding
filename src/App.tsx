@@ -12,7 +12,6 @@ const LAYOUTS = {
   default: DefaultLayout,
   stacking: StackingLayout,
   panels: PanelsLayout,
-  'panels-snap': PanelsLayout,
 }
 
 function App() {
