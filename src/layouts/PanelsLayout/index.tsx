@@ -1,7 +1,6 @@
 import './PanelsLayout.css'
 import Hero from '../../components/sections/Hero'
 import DateAndTime from '../../components/sections/DateAndTime'
-import Venue from '../../components/sections/Venue'
 import ParkingTransportation from '../../components/sections/ParkingTransportation'
 import DressCode from '../../components/sections/DressCode'
 import DietaryRestrictions from '../../components/sections/DietaryRestrictions'
@@ -23,8 +22,7 @@ interface Panel {
 
 const PANELS: Panel[] = [
   { id: 'hero',                   Component: Hero },
-  { id: 'date-and-time',          Component: DateAndTime,          image: { src: '/img/rose3.png',       alt: '', side: 'right' } },
-  { id: 'venue',                  Component: Venue,                image: { src: '/img/lavender1-5.png', alt: '', side: 'left'  } },
+  { id: 'date-and-time',          Component: DateAndTime },
   { id: 'parking-transportation', Component: ParkingTransportation },
   { id: 'dress-code',             Component: DressCode,            image: { src: '/img/cosmos3.png',     alt: '', side: 'right' } },
   { id: 'dietary-restrictions',   Component: DietaryRestrictions },
@@ -39,18 +37,20 @@ export default function PanelsLayout() {
         const tone = index % 2 === 0 ? 'dark' : 'light'
         return (
           <div key={id} className={`panels-card panels-card--${tone}`}>
-            {image ? (
-              <div className={`flex h-full ${image.side === 'right' ? 'flex-row-reverse' : 'flex-row'}`}>
-                <div className="w-1/2 shrink-0 self-stretch">
-                  <img src={image.src} alt={image.alt} className="w-full h-full object-cover" />
+            <div className="w-full h-full lg:max-w-5xl lg:mx-auto flex flex-col justify-center">
+              {image ? (
+                <div className={`flex flex-1 ${image.side === 'right' ? 'flex-row-reverse' : 'flex-row'}`}>
+                  <div className="w-1/2 shrink-0 self-stretch">
+                    <img src={image.src} alt={image.alt} className="w-full h-full object-cover" />
+                  </div>
+                  <div className="w-1/2 flex items-center" style={{ padding: '0 3rem' }}>
+                    <Component />
+                  </div>
                 </div>
-                <div className="w-1/2 flex items-center" style={{ padding: '0 3rem' }}>
-                  <Component />
-                </div>
-              </div>
-            ) : (
-              <Component />
-            )}
+              ) : (
+                <Component />
+              )}
+            </div>
           </div>
         )
       })}

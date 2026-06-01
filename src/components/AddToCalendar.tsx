@@ -68,7 +68,7 @@ export default function AddToCalendar() {
   }, [open])
 
   return (
-    <div ref={ref} className="relative inline-block mt-6">
+    <div ref={ref} className="relative inline-block">
       <button
         onClick={() => setOpen(o => !o)}
         className="px-4 py-1.5 text-sm border border-gray-900 rounded hover:bg-gray-900 hover:text-white transition-colors"
