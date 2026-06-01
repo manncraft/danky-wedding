@@ -2,8 +2,8 @@ import AddToCalendar from '../AddToCalendar'
 
 export default function DateAndTime() {
   return (
-    <section id="date-and-time" className="flex-1 flex items-stretch gap-12 py-8">
-      <div className="w-[35%] flex flex-col overflow-hidden">
+    <section id="date-and-time" className="flex-1 flex flex-col sm:flex-row items-stretch gap-8 sm:gap-12 py-8 px-6 sm:px-0">
+      <div className="w-full sm:w-[35%] flex flex-col overflow-hidden">
         <div className="leading-tight shrink-0">
           <p className="text-3xl font-light">About the</p>
           <p className="text-6xl" style={{ fontFamily: "'Pinyon Script', cursive" }}>Ceremony</p>
