@@ -26,7 +26,7 @@ export default function DateAndTime() {
           <p className="text-base">84 Old Railway Road, Kumeū 0892</p>
         </div>
 
-        <div className="flex-1 flex items-center justify-center gap-4">
+        <div className="flex items-center justify-center gap-4">
           <AddToCalendar />
           <a
             href="https://maps.app.goo.gl/ftf9UaBvExe9XRNJ9"
