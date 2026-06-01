@@ -22,7 +22,7 @@ interface Panel {
 
 const PANELS: Panel[] = [
   { id: 'hero',                   Component: Hero },
-  { id: 'date-and-time',          Component: DateAndTime,          image: { src: '/img/rose3.png',       alt: '', side: 'right' } },
+  { id: 'date-and-time',          Component: DateAndTime },
   { id: 'parking-transportation', Component: ParkingTransportation },
   { id: 'dress-code',             Component: DressCode,            image: { src: '/img/cosmos3.png',     alt: '', side: 'right' } },
   { id: 'dietary-restrictions',   Component: DietaryRestrictions },
