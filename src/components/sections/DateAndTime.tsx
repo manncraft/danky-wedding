@@ -29,12 +29,14 @@ export default function DateAndTime() {
 
         <div className="flex items-center justify-center gap-4">
           <AddToCalendar />
-          <button
-            onClick={() => window.open('https://maps.app.goo.gl/ftf9UaBvExe9XRNJ9', '_blank', 'noopener,noreferrer')}
-            className="px-4 py-1.5 text-sm border border-gray-900 rounded hover:bg-gray-900 hover:text-white transition-colors"
+          <a
+            href="https://maps.app.goo.gl/ftf9UaBvExe9XRNJ9"
+            className="inline-flex items-center px-4 py-1.5 text-sm border border-gray-900 rounded hover:bg-gray-900 hover:text-white transition-colors"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             Open in Google Maps
-          </button>
+          </a>
         </div>
       </div>
     </section>
