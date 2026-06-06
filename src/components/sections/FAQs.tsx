@@ -13,7 +13,7 @@ const FAQS = [
   },
   {
     question: 'What should I wear?',
-    answer: 'The dress code is semi-formal. We suggest a colourful midi or maxi dress, dressy separates, or a button-up shirt and nice pants. For footwear, avoid anything that might sink in the grass. Dress shoes, loafers, sandals, dressy flats, wedges, or block heels all work well.',
+    answer: 'The dress code is semi-formal. We suggest a colourful midi or maxi dress, dressy separates, or a button-up shirt and dress pants. For footwear, avoid anything that might sink in the grass. Dress shoes, loafers, sandals, dressy flats, wedges, or block heels all work well.',
   },
   {
     question: 'Can I take photos with my phone or camera during the wedding?',
