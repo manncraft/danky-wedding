@@ -28,7 +28,7 @@
   color: var(--panel-dark-text);
 }
 
-@media (min-width: 640px) {
+@media (min-width: 640px) and (min-height: 500px) {
   .panels-card {
     min-height: 0;
     height: 65vh;
