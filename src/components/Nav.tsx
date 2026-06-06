@@ -46,7 +46,7 @@ export default function Nav({ onRsvpClick, view, onNavigateToLanding }: NavProps
       </ul>
       <button
         onClick={onRsvpClick}
-        className="ml-4 px-4 py-1.5 text-sm bg-gray-900 text-white rounded hover:bg-gray-700 whitespace-nowrap"
+        className="fixed top-3 right-4 z-50 sm:static sm:z-auto sm:ml-4 px-4 py-1.5 text-sm bg-gray-900 text-white rounded hover:bg-gray-700 whitespace-nowrap"
       >
         RSVP
       </button>
