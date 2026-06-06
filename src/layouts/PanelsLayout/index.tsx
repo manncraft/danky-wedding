@@ -21,16 +21,24 @@ interface Panel {
 }
 
 const PANELS: Panel[] = [
-  { id: 'hero',                   Component: Hero },
-  { id: 'date-and-time',          Component: DateAndTime },
+  { id: 'date-and-time',          Component: DateAndTime, tone: 'light' },
   { id: 'dress-code',             Component: DressCodeParking, tone: 'dark' },
   { id: 'timeline',               Component: Timeline, fullWidth: true, tone: 'light' },
   { id: 'faqs',                    Component: FAQs, tone: 'dark' },
 ]
 
-export default function PanelsLayout() {
+interface PanelsLayoutProps {
+  onRsvpClick: () => void
+}
+
+export default function PanelsLayout({ onRsvpClick }: PanelsLayoutProps) {
   return (
     <div className="panels-wrapper">
+      <div className="relative panels-card panels-card--dark">
+        <div className="w-full h-full lg:max-w-5xl lg:mx-auto flex flex-col justify-center">
+          <Hero onRsvpClick={onRsvpClick} />
+        </div>
+      </div>
       {PANELS.map((panel, index) => {
         const { id, Component, image, fullWidth } = panel
         const tone = panel.tone ?? (index % 2 === 0 ? 'dark' : 'light')
