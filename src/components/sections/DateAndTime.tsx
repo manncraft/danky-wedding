@@ -31,7 +31,7 @@ export default function DateAndTime() {
           <AddToCalendar />
           <a
             href="https://maps.app.goo.gl/ftf9UaBvExe9XRNJ9"
-            className="inline-flex items-center justify-center w-44 py-1.5 text-sm border border-gray-900 rounded hover:bg-gray-900 hover:text-white transition-colors"
+            className="inline-flex items-center text-center w-44 py-1.5 text-sm border border-gray-900 rounded hover:bg-gray-900 hover:text-white transition-colors"
             target="_blank"
             rel="noopener noreferrer"
           >
