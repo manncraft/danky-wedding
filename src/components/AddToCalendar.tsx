@@ -58,7 +58,7 @@ export default function AddToCalendar() {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="inline-flex items-center justify-center px-4 py-1.5 text-sm border border-gray-900 rounded hover:bg-gray-900 hover:text-white transition-colors"
+        className="inline-flex items-center justify-center w-44 py-1.5 text-sm border border-gray-900 rounded hover:bg-gray-900 hover:text-white transition-colors"
       >
         Add to Calendar
       </button>
