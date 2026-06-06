@@ -38,7 +38,7 @@ export default function Nav({ onRsvpClick, view, onNavigateToLanding }: NavProps
 
   return (
     <nav className="flex sm:sticky top-0 z-50 bg-white border-b border-gray-200 px-6 py-3 items-center justify-between">
-      <ul className="flex flex-wrap gap-4 justify-center text-sm">
+      <ul className="flex flex-wrap gap-4 justify-center text-sm pr-20 sm:pr-0">
         <li><a href="#date-and-time" onClick={handleAnchorClick} className="hover:underline">When &amp; Where</a></li>
         <li><a href="#dress-code" onClick={handleAnchorClick} className="hover:underline">Info</a></li>
         <li><a href="#timeline" onClick={handleAnchorClick} className="hover:underline">Timeline</a></li>
