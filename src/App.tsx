@@ -10,7 +10,7 @@ function App() {
 
   return (
     <>
-      <Nav onRsvpClick={() => { history.replaceState(null, '', window.location.pathname); setView('rsvp-lookup') }} view={view} onNavigateToLanding={() => setView('landing')} />
+      <Nav onRsvpClick={() => { history.replaceState(null, '', window.location.pathname + window.location.search); setView('rsvp-lookup') }} view={view} onNavigateToLanding={() => setView('landing')} />
       {view === 'landing' && <PanelsLayout />}
       {view === 'rsvp-lookup' && (
         <RsvpLookup onBack={() => setView('landing')} />
