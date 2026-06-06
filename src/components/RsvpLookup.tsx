@@ -330,6 +330,7 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
                     <label htmlFor="song" className="text-sm font-medium">
                       Song suggestion <span className="font-normal text-gray-500">(optional)</span>
                     </label>
+                    <p className="text-xs text-gray-500">Let us know what you want to hear on the dance floor</p>
                     <input
                       id="song"
                       type="text"
@@ -424,6 +425,7 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
                         >
                           Song suggestion <span className="font-normal text-gray-500">(optional)</span>
                         </label>
+                        <p className="text-xs text-gray-500">Let us know what you want to hear on the dance floor</p>
                         <input
                           id={`additionalGuests.${index}.song`}
                           type="text"
