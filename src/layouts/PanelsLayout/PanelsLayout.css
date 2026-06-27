@@ -30,7 +30,7 @@
 
 @media (min-width: 640px) and (min-height: 500px) {
   .panels-card {
-    min-height: 0;
-    height: 65vh;
+    min-height: 65vh;
+    height: auto;
   }
 }
