@@ -23,8 +23,7 @@ export default function Timeline() {
 
       {/* Flat layout — all screen sizes */}
       <div className="relative z-10 w-fit mx-auto px-6 py-10 text-center">
-        <p className="text-lg font-light tracking-wide">Program of</p>
-        <p className="text-5xl leading-tight mb-1" style={{ fontFamily: "'Pinyon Script', cursive" }}>Events</p>
+        <p className="text-5xl leading-tight mb-1" style={{ fontFamily: "'Pinyon Script', cursive" }}>Timeline</p>
         <p className="text-xs uppercase tracking-widest mb-6 opacity-60">Tuesday, 12th January 2027</p>
         <div className="grid grid-cols-[auto_auto] gap-x-6 text-base text-left">
           {EVENTS.map(({ time, label }) => (
