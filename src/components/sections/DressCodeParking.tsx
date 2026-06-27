@@ -1,6 +1,6 @@
 export default function DressCodeParking() {
   return (
-    <section className="flex-1 flex flex-col sm:flex-row-reverse items-stretch gap-8 sm:gap-12 py-8 px-6 sm:px-0 sm:py-4">
+    <section className="flex-1 flex flex-col sm:flex-row-reverse items-stretch gap-8 sm:gap-12 py-8 px-6 sm:px-0">
 
       {/* Right: image */}
       <div className="w-full sm:w-[35%] hidden sm:flex flex-col overflow-hidden">
@@ -10,7 +10,7 @@ export default function DressCodeParking() {
       </div>
 
       {/* Left: stacked boxes */}
-      <div className="flex-1 self-center flex flex-col gap-6 sm:gap-8 lg:gap-12">
+      <div className="flex-1 self-center flex flex-col gap-12">
         <div id="dress-code" className="border border-white/25 p-4 text-center">
           <p className="text-base font-bold uppercase tracking-widest mb-2">Dress Code</p>
           <p className="text-lg mb-1">Semi-formal.</p>
