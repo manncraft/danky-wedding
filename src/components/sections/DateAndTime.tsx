@@ -13,7 +13,7 @@ export default function DateAndTime() {
         </div>
       </div>
 
-      <div className="flex-1 self-center flex flex-col gap-12">
+      <div className="flex-1 self-center flex flex-col gap-6 sm:gap-8 lg:gap-12">
         <div id="date-and-time" className="border border-gray-300 p-6 text-center">
           <p className="text-base font-bold uppercase tracking-widest mb-2">Date &amp; Time</p>
           <p className="text-lg mb-1">Tuesday 12th January 2027</p>
