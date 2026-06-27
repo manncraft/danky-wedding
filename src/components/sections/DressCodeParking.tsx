@@ -1,6 +1,6 @@
 export default function DressCodeParking() {
   return (
-    <section className="flex-1 flex flex-col sm:flex-row-reverse items-stretch gap-8 sm:gap-12 py-8 px-6 sm:px-0">
+    <section className="flex-1 flex flex-col sm:flex-row-reverse items-stretch gap-8 sm:gap-12 py-8 px-6 sm:px-0 sm:py-4">
 
       {/* Right: image */}
       <div className="w-full sm:w-[35%] hidden sm:flex flex-col overflow-hidden">
