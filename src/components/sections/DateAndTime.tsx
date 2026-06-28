@@ -14,14 +14,14 @@ export default function DateAndTime() {
       </div>
 
       <div className="flex-1 self-center flex flex-col gap-12">
-        <div id="date-and-time" className="border border-gray-300 p-6 text-center">
+        <div id="date-and-time" className="border border-[var(--border-color)] p-6 text-center">
           <p className="text-base font-bold uppercase tracking-widest mb-2">Date &amp; Time</p>
           <p className="text-lg mb-1">Tuesday 12th January 2027</p>
           <p className="text-lg">Ceremony begins at 3pm.</p>
           <p className="text-lg">Please arrive no earlier than 2:30pm.</p>
         </div>
 
-        <div id="venue"  className="border border-gray-300 p-6 text-center">
+        <div id="venue"  className="border border-[var(--border-color)] p-6 text-center">
           <p className="text-base font-bold uppercase tracking-widest mb-2">Venue</p>
           <p className="text-lg mb-1">Markovina Vineyard Estate</p>
           <p className="text-lg">84 Old Railway Road, Kumeū 0892</p>
@@ -31,7 +31,7 @@ export default function DateAndTime() {
           <AddToCalendar />
           <a
             href="https://maps.app.goo.gl/ftf9UaBvExe9XRNJ9"
-            className="inline-flex items-center text-center px-4 py-1.5 text-sm border border-[var(--dark-button)] rounded hover:bg-[var(--dark-button)] hover:text-[var(--light-text)] transition-colors"
+            className="btn-light inline-flex items-center text-center px-4 py-1.5 text-sm rounded"
             target="_blank"
             rel="noopener noreferrer"
           >

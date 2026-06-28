@@ -4,12 +4,16 @@
   --dark-green: #445442;
   --charcoal: #1a1a1a;
   --off-white: #f5f0e8;
+  --stone: #e5e7eb;
+  --slate: #6b7280;
   --dark-bg: var(--dark-green);
   --light-bg: var(--off-white);
   --light-text: var(--off-white);
-  --dark-text:var(--charcoal);
-  --dark-button:var(--charcoal);
-  --light-button:var(--off-white);
+  --dark-text: var(--charcoal);
+  --dark-button: var(--charcoal);
+  --light-button: var(--off-white);
+  --muted-text: var(--slate);
+  --border-color: var(--stone);
 }
 
 html {
@@ -19,4 +23,26 @@ html {
 
 body {
   background-color: var(--light-bg);
+}
+
+.btn-dark {
+  background-color: var(--dark-button);
+  color: var(--light-text);
+  border: 1px solid var(--dark-button);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.btn-dark:hover {
+  background-color: var(--light-button);
+  color: var(--dark-text);
+}
+
+.btn-light {
+  background-color: var(--light-button);
+  color: var(--dark-text);
+  border: 1px solid var(--dark-button);
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.btn-light:hover {
+  background-color: var(--dark-button);
+  color: var(--light-text);
 }

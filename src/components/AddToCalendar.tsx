@@ -58,7 +58,7 @@ export default function AddToCalendar() {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="inline-flex items-center justify-center px-4 py-1.5 text-sm border border-[var(--dark-button)] rounded hover:bg-[var(--dark-button)] hover:text-[var(--light-text)] transition-colors"
+        className="btn-light inline-flex items-center justify-center px-4 py-1.5 text-sm rounded"
       >
         Add to Calendar
       </button>
@@ -73,11 +73,11 @@ export default function AddToCalendar() {
             onClick={e => e.stopPropagation()}
           >
             <h3 className="text-base font-semibold mb-1">Add to Calendar</h3>
-            <p className="text-sm text-gray-500 mb-5">Choose your calendar app</p>
+            <p className="text-sm text-[var(--muted-text)] mb-5">Choose your calendar app</p>
             <ul className="space-y-2">
               <li>
                 <button
-                  className="w-full text-left px-4 py-2.5 text-sm rounded border border-gray-200 hover:bg-gray-50 transition-colors"
+                  className="w-full text-left px-4 py-2.5 text-sm rounded border border-[var(--border-color)] hover:bg-gray-50 transition-colors"
                   onClick={() => {
                     window.open(buildGoogleCalendarUrl(), '_blank', 'noopener,noreferrer')
                     setOpen(false)
@@ -88,7 +88,7 @@ export default function AddToCalendar() {
               </li>
               <li>
                 <button
-                  className="w-full text-left px-4 py-2.5 text-sm rounded border border-gray-200 hover:bg-gray-50 transition-colors"
+                  className="w-full text-left px-4 py-2.5 text-sm rounded border border-[var(--border-color)] hover:bg-gray-50 transition-colors"
                   onClick={() => { downloadIcs(); setOpen(false) }}
                 >
                   Apple Calendar
@@ -96,7 +96,7 @@ export default function AddToCalendar() {
               </li>
               <li>
                 <button
-                  className="w-full text-left px-4 py-2.5 text-sm rounded border border-gray-200 hover:bg-gray-50 transition-colors"
+                  className="w-full text-left px-4 py-2.5 text-sm rounded border border-[var(--border-color)] hover:bg-gray-50 transition-colors"
                   onClick={() => { downloadIcs(); setOpen(false) }}
                 >
                   Outlook
