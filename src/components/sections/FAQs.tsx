@@ -28,7 +28,7 @@ export default function FAQs() {
       <div className="flex flex-col gap-6">
         {FAQS.map(({ question, answer }) => (
           <div key={question}>
-            <p className="text-base font-bold uppercase tracking-widest mb-1">{question}</p>
+            <p className="accent text-xl uppercase tracking-widest mb-1">{question}</p>
             <p className="text-lg">{answer}</p>
           </div>
         ))}
