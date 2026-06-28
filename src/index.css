@@ -4,16 +4,15 @@
   --dark-green: #445442;
   --charcoal: #1a1a1a;
   --off-white: #f5f0e8;
-  --stone: #e5e7eb;
-  --slate: #6b7280;
+  --grey: #54514C;
   --dark-bg: var(--dark-green);
   --light-bg: var(--off-white);
   --light-text: var(--off-white);
   --dark-text: var(--charcoal);
   --dark-button: var(--charcoal);
   --light-button: var(--off-white);
-  --muted-text: var(--slate);
-  --border-color: var(--stone);
+  --muted-text: var(--grey);
+  --border-color: var(--charcoal);
 }
 
 html {
