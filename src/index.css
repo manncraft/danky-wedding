@@ -26,6 +26,10 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 
+.fancy {
+  font-family: 'Playfair Display', serif;
+}
+
 ::placeholder {
   color: var(--accent-text);
   opacity: 1;

@@ -24,7 +24,7 @@ const FAQS = [
 export default function FAQs() {
   return (
     <section id="faqs" className="flex-1 flex flex-col justify-center py-10 px-6 sm:px-0">
-      <p className="text-6xl mb-8 leading-none" style={{ fontFamily: "'Pinyon Script', cursive" }}>FAQs</p>
+      <p className="fancy text-6xl mb-8 leading-none">FAQs</p>
       <div className="flex flex-col gap-6">
         {FAQS.map(({ question, answer }) => (
           <div key={question}>
