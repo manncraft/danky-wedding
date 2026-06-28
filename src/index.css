@@ -25,6 +25,11 @@ body {
   background-color: var(--light-bg);
 }
 
+::placeholder {
+  color: var(--accent-text);
+  opacity: 1;
+}
+
 .btn-dark {
   background-color: var(--dark-button);
   color: var(--light-text);
