@@ -29,6 +29,7 @@ type ViewState =
   | { kind: 'error' }
   | { kind: 'rsvp-submitted'; guest: MatchedGuest; attending: boolean; guests: string[] }
 
+const RSVP_DEADLINE = new Date('2026-11-21')
 const SESSION_KEY = 'invite_secret'
 const RSVP_RESULT_KEY = 'rsvp_result'
 const ATTENDING_GATED_FIELDS = ['dietary', 'song'] as const
@@ -128,6 +129,25 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
   }
 
   const reset = () => setView({ kind: 'form' })
+
+  if (new Date() >= RSVP_DEADLINE) {
+    return (
+      <div className="min-h-screen flex flex-col items-center px-6 py-10">
+        <div className="w-full max-w-md">
+          <button
+            onClick={onBack}
+            className="mb-6 text-sm text-[var(--accent-text)] hover:text-gray-800"
+          >
+            ← Back
+          </button>
+          <h1 className="text-2xl font-semibold mb-2">RSVPs are now closed</h1>
+          <p className="text-sm text-[var(--accent-text)]">
+            The RSVP deadline has passed. If you need to make changes or have questions, please get in touch with Becky or Daniel directly.
+          </p>
+        </div>
+      </div>
+    )
+  }
 
   if (secret === null) {
     return (
