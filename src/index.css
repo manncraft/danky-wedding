@@ -23,6 +23,7 @@ html {
 
 body {
   background-color: var(--light-bg);
+  font-family: 'Montserrat', sans-serif;
 }
 
 ::placeholder {
