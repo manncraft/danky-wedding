@@ -513,7 +513,7 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
             <p className="text-sm text-[var(--accent-text)]">
               {view.attending
                 ? 'Your RSVP has been received. We look forward to celebrating with you.'
-                : 'Thanks for letting us know. We hope to see you another time.'}
+                : 'Thanks for letting us know.'}
             </p>
           </>
         )}
