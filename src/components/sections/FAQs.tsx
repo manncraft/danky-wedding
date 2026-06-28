@@ -1,7 +1,7 @@
 const FAQS = [
   {
     question: 'When do I need to RSVP?',
-    answer: 'ASAP {TBC}',
+    answer: 'Please RSVP by the 20th of November 2026.',
   },
   {
     question: 'I have dietary requirements - what should I do?',
