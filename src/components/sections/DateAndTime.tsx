@@ -5,8 +5,8 @@ export default function DateAndTime() {
     <section className="flex-1 flex flex-col sm:flex-row items-stretch gap-8 sm:gap-12 py-8 px-6 sm:px-0">
       <div className="w-full sm:w-[35%] flex flex-col overflow-hidden">
         <div className="leading-tight shrink-0">
-          <p className="text-3xl font-light">About the</p>
-          <p className="fancy text-6xl">Ceremony</p>
+          <p className="accent text-3xl font-light">About the</p>
+          <p className="fancy text-6xl pb-2">Ceremony</p>
         </div>
         <div className="flex-1 min-h-0 hidden sm:flex items-center justify-center mt-4">
           <img src="/img/rose3.png" alt="" className="max-h-[28vh] max-w-full object-contain" />
