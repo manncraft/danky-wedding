@@ -73,7 +73,7 @@ export default function AddToCalendar() {
             onClick={e => e.stopPropagation()}
           >
             <h3 className="text-base font-semibold mb-1">Add to Calendar</h3>
-            <p className="text-sm text-[var(--muted-text)] mb-5">Choose your calendar app</p>
+            <p className="text-sm text-[var(--accent-text)] mb-5">Choose your calendar app</p>
             <ul className="space-y-2">
               <li>
                 <button

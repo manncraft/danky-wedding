@@ -11,8 +11,9 @@
   --dark-text: var(--charcoal);
   --dark-button: var(--charcoal);
   --light-button: var(--off-white);
-  --muted-text: var(--grey);
+  --accent-text: var(--grey);
   --border-color: var(--charcoal);
+  --input-focus: var(--grey);
 }
 
 html {

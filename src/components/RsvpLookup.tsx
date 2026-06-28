@@ -135,12 +135,12 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
         <div className="w-full max-w-md">
           <button
             onClick={onBack}
-            className="mb-6 text-sm text-[var(--muted-text)] hover:text-gray-800"
+            className="mb-6 text-sm text-[var(--accent-text)] hover:text-gray-800"
           >
             ← Back
           </button>
           <h1 className="text-2xl font-semibold mb-2">Please use your invite link</h1>
-          <p className="text-sm text-[var(--muted-text)]">
+          <p className="text-sm text-[var(--accent-text)]">
             Scan the QR code on your physical invitation to access the RSVP.
           </p>
         </div>
@@ -153,7 +153,7 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
       <div className="w-full max-w-md">
         <button
           onClick={onBack}
-          className="mb-6 text-sm text-[var(--muted-text)] hover:text-gray-800"
+          className="mb-6 text-sm text-[var(--accent-text)] hover:text-gray-800"
         >
           ← Back
         </button>
@@ -161,7 +161,7 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
         {view.kind === 'form' && (
           <>
             <h1 className="text-2xl font-semibold mb-2">Find Your Invite</h1>
-            <p className="text-sm text-[var(--muted-text)] mb-8">
+            <p className="text-sm text-[var(--accent-text)] mb-8">
               Enter your name to look up your invitation.
             </p>
             <form onSubmit={handleSubmit(onSubmit)} noValidate className="flex flex-col gap-5">
@@ -172,7 +172,7 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
                 <input
                   id="firstName"
                   type="text"
-                  className="w-full border border-[var(--border-color)] rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--muted-text)]"
+                  className="w-full border border-[var(--border-color)] rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--input-focus)]"
                   {...register('firstName', { required: 'First name is required' })}
                 />
                 {errors.firstName && (
@@ -187,7 +187,7 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
                 <input
                   id="lastName"
                   type="text"
-                  className="w-full border border-[var(--border-color)] rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--muted-text)]"
+                  className="w-full border border-[var(--border-color)] rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--input-focus)]"
                   {...register('lastName', { required: 'Last name is required' })}
                 />
                 {errors.lastName && (
@@ -208,14 +208,14 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
         {view.kind === 'loading' && (
           <div className="flex flex-col items-center gap-4 py-12">
             <div className="w-8 h-8 border-2 border-[var(--border-color)] border-t-gray-900 rounded-full animate-spin" />
-            <p className="text-sm text-[var(--muted-text)]">Looking you up…</p>
+            <p className="text-sm text-[var(--accent-text)]">Looking you up…</p>
           </div>
         )}
 
         {view.kind === 'select' && (
           <>
             <h2 className="text-xl font-semibold mb-2">Which one is you?</h2>
-            <p className="text-sm text-[var(--muted-text)] mb-6">
+            <p className="text-sm text-[var(--accent-text)] mb-6">
               We found a few guests with that name. Tap yours to continue.
             </p>
             <ul className="flex flex-col gap-3">
@@ -226,7 +226,7 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
                     className="w-full text-left border border-[var(--border-color)] rounded px-4 py-3 hover:border-gray-400 hover:bg-gray-50 transition-colors"
                   >
                     <span className="text-sm font-medium">{guest.full_name}</span>
-                    <span className="block text-xs text-[var(--muted-text)] mt-0.5">
+                    <span className="block text-xs text-[var(--accent-text)] mt-0.5">
                       Party of up to {guest.max_guests}
                     </span>
                   </button>
@@ -321,20 +321,20 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
                     <input
                       id="dietary"
                       type="text"
-                      className="w-full border border-[var(--border-color)] rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--muted-text)]"
+                      className="w-full border border-[var(--border-color)] rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--input-focus)]"
                       placeholder="e.g. vegetarian, nut allergy"
                       {...registerAttendance('dietary')}
                     />
                   </div>
                   <div className="flex flex-col gap-1">
                     <label htmlFor="song" className="text-sm font-medium">
-                      Song suggestion <span className="font-normal text-[var(--muted-text)]">(optional)</span>
+                      Song suggestion <span className="font-normal text-[var(--accent-text)]">(optional)</span>
                     </label>
-                    <p className="text-xs text-[var(--muted-text)]">Let us know what you want to hear on the dance floor</p>
+                    <p className="text-xs text-[var(--accent-text)]">Let us know what you want to hear on the dance floor</p>
                     <input
                       id="song"
                       type="text"
-                      className="w-full border border-[var(--border-color)] rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--muted-text)]"
+                      className="w-full border border-[var(--border-color)] rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--input-focus)]"
                       {...registerAttendance('song', { maxLength: { value: 200, message: 'Song suggestion must be 200 characters or fewer' } })}
                     />
                     {attendanceErrors.song && (
@@ -389,7 +389,7 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
                         <input
                           id={`additionalGuests.${index}.name`}
                           type="text"
-                          className="w-full border border-[var(--border-color)] rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--muted-text)]"
+                          className="w-full border border-[var(--border-color)] rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--input-focus)]"
                           placeholder="Full name"
                           {...registerAttendance(`additionalGuests.${index}.name`, {
                             required: 'Guest name is required',
@@ -412,7 +412,7 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
                         <input
                           id={`additionalGuests.${index}.dietary`}
                           type="text"
-                          className="w-full border border-[var(--border-color)] rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--muted-text)]"
+                          className="w-full border border-[var(--border-color)] rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--input-focus)]"
                           placeholder="e.g. vegetarian, nut allergy"
                           {...registerAttendance(`additionalGuests.${index}.dietary`)}
                         />
@@ -423,13 +423,13 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
                           htmlFor={`additionalGuests.${index}.song`}
                           className="text-sm font-medium"
                         >
-                          Song suggestion <span className="font-normal text-[var(--muted-text)]">(optional)</span>
+                          Song suggestion <span className="font-normal text-[var(--accent-text)]">(optional)</span>
                         </label>
-                        <p className="text-xs text-[var(--muted-text)]">Let us know what you want to hear on the dance floor</p>
+                        <p className="text-xs text-[var(--accent-text)]">Let us know what you want to hear on the dance floor</p>
                         <input
                           id={`additionalGuests.${index}.song`}
                           type="text"
-                          className="w-full border border-[var(--border-color)] rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--muted-text)]"
+                          className="w-full border border-[var(--border-color)] rounded px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--input-focus)]"
                           {...registerAttendance(`additionalGuests.${index}.song`, { maxLength: { value: 200, message: 'Song suggestion must be 200 characters or fewer' } })}
                         />
                         {attendanceErrors.additionalGuests?.[index]?.song && (
@@ -446,7 +446,7 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
                       <label className="flex items-start gap-3 cursor-pointer">
                         <input
                           type="checkbox"
-                          className="mt-0.5 h-4 w-4 rounded border-[var(--border-color)] text-gray-900 focus:ring-[var(--muted-text)]"
+                          className="mt-0.5 h-4 w-4 rounded border-[var(--border-color)] text-gray-900 focus:ring-[var(--input-focus)]"
                           {...registerAttendance('bringingChildren')}
                         />
                         <span className="text-sm">One or more of my additional guests are children</span>
@@ -510,7 +510,7 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
                 <p key={i} className="text-sm font-medium">{name}</p>
               ))}
             </div>
-            <p className="text-sm text-[var(--muted-text)]">
+            <p className="text-sm text-[var(--accent-text)]">
               {view.attending
                 ? 'Your RSVP has been received. We look forward to celebrating with you.'
                 : 'Thanks for letting us know. We hope to see you another time.'}
@@ -521,7 +521,7 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
         {view.kind === 'not_found' && (
           <>
             <h2 className="text-xl font-semibold mb-2">We couldn't find you</h2>
-            <p className="text-sm text-[var(--muted-text)] mb-6">
+            <p className="text-sm text-[var(--accent-text)] mb-6">
               Double-check the spelling of your name, or reach out to us directly.
             </p>
             <button
@@ -536,7 +536,7 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
         {view.kind === 'error' && (
           <>
             <h2 className="text-xl font-semibold mb-2">Something went wrong</h2>
-            <p className="text-sm text-[var(--muted-text)] mb-6">
+            <p className="text-sm text-[var(--accent-text)] mb-6">
               We couldn't reach our servers. Please try again in a moment.
             </p>
             <button
