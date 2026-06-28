@@ -1,10 +1,3 @@
-:root {
-  --panel-dark-bg: #4a5740;
-  --panel-dark-text: #f5f0e8;
-  --panel-light-bg: #ffffff;
-  --panel-light-text: #1a1a1a;
-}
-
 .panels-wrapper {
   display: flex;
   flex-direction: column;
@@ -19,13 +12,13 @@
 }
 
 .panels-card--light {
-  background: var(--panel-light-bg);
-  color: var(--panel-light-text);
+  background: var(--light-bg);
+  color: var(--dark-text);
 }
 
 .panels-card--dark {
-  background: var(--panel-dark-bg);
-  color: var(--panel-dark-text);
+  background: var(--dark-bg);
+  color: var(--light-text);
 }
 
 @media (min-width: 640px) and (min-height: 500px) {
