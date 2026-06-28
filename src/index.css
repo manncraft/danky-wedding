@@ -30,6 +30,11 @@ body {
   font-family: 'Playfair Display', serif;
 }
 
+.fancy-italic {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+}
+
 .accent {
   font-family: 'Belleza', sans-serif;
 }
