@@ -461,6 +461,16 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
                     </div>
                   ))}
 
+                  {fields.length < view.guest.max_guests - 1 && (
+                    <button
+                      type="button"
+                      onClick={() => append({ name: '', dietary: '', song: '' })}
+                      className="mt-3 w-full border border-dashed border-[var(--border-color)] rounded px-4 py-2.5 text-sm text-gray-600 hover:border-gray-500 hover:text-gray-800 transition-colors"
+                    >
+                      + Add Guest
+                    </button>
+                  )}
+
                   {fields.length > 0 && (
                     <div className="mt-4">
                       <label className="flex items-start gap-3 cursor-pointer">
@@ -478,16 +488,6 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
                         </div>
                       )}
                     </div>
-                  )}
-
-                  {fields.length < view.guest.max_guests - 1 && (
-                    <button
-                      type="button"
-                      onClick={() => append({ name: '', dietary: '', song: '' })}
-                      className="mt-3 w-full border border-dashed border-[var(--border-color)] rounded px-4 py-2.5 text-sm text-gray-600 hover:border-gray-500 hover:text-gray-800 transition-colors"
-                    >
-                      + Add Guest
-                    </button>
                   )}
                 </div>
               )}
