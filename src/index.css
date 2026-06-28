@@ -1,10 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --dark-bg: #445442;
-  --light-bg: #f5f0e8;
-  --light-text: #f5f0e8;
-  --dark-text: #1a1a1a;
+  --dark-green: #445442;
+  --charcoal: #1a1a1a;
+  --off-white: #f5f0e8;
+  --dark-bg: var(--dark-green);
+  --light-bg: var(--off-white);
+  --light-text: var(--off-white);
+  --dark-text:var(--charcoal);
+  --dark-button:var(--charcoal);
+  --light-button:var(--off-white);
 }
 
 html {

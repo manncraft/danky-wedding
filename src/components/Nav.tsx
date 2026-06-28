@@ -40,7 +40,7 @@ export default function Nav({ onRsvpClick, view, onNavigateToLanding }: NavProps
     <>
       <button
         onClick={onRsvpClick}
-        className="fixed top-3 right-4 z-50 sm:hidden px-4 py-1.5 text-sm bg-gray-900 text-white rounded hover:bg-gray-700 whitespace-nowrap"
+        className="fixed top-3 right-4 z-50 sm:hidden px-4 py-1.5 text-sm bg-[var(--dark-button)] text-[var(--light-text)] rounded hover:bg-[var(--light-button)] hover:text-[var(--dark-text)] whitespace-nowrap"
       >
         RSVP
       </button>
@@ -53,7 +53,7 @@ export default function Nav({ onRsvpClick, view, onNavigateToLanding }: NavProps
         </ul>
         <button
           onClick={onRsvpClick}
-          className="ml-4 px-4 py-1.5 text-sm bg-gray-900 text-white rounded hover:bg-gray-700 whitespace-nowrap"
+          className="ml-4 px-4 py-1.5 text-sm bg-[var(--dark-button)] text-[var(--light-text)] rounded hover:bg-[var(--light-button)] hover:text-[var(--dark-text)] whitespace-nowrap"
         >
           RSVP
         </button>

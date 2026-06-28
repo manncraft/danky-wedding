@@ -197,7 +197,7 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
 
               <button
                 type="submit"
-                className="w-full bg-gray-900 text-white text-sm py-2.5 rounded hover:bg-gray-700"
+                className="w-full bg-[var(--dark-button)] text-[var(--light-text)] text-sm py-2.5 rounded hover:bg-[var(--light-button)] hover:text-[var(--dark-text)]"
               >
                 Find Invite
               </button>
@@ -282,7 +282,7 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
                   onClick={() => setSelectedAttending('true')}
                   className={`flex items-center justify-center rounded border px-4 py-4 text-sm text-center cursor-pointer transition-colors min-h-[3rem] ${
                     selectedAttending === 'true'
-                      ? 'border-gray-900 bg-gray-900 text-white'
+                      ? 'border-[var(--dark-button)] bg-[var(--dark-button)] text-[var(--light-text)]'
                       : 'border-gray-200 hover:border-gray-400'
                   }`}
                 >
@@ -298,7 +298,7 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
                   onClick={() => setSelectedAttending('false')}
                   className={`flex items-center justify-center rounded border px-4 py-4 text-sm text-center cursor-pointer transition-colors min-h-[3rem] ${
                     selectedAttending === 'false'
-                      ? 'border-gray-900 bg-gray-900 text-white'
+                      ? 'border-[var(--dark-button)] bg-[var(--dark-button)] text-[var(--light-text)]'
                       : 'border-gray-200 hover:border-gray-400'
                   }`}
                 >
@@ -485,7 +485,7 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
               <button
                 type="submit"
                 disabled={isAttendanceSubmitting}
-                className="w-full bg-gray-900 text-white text-sm py-2.5 rounded hover:bg-gray-700 disabled:opacity-50 flex items-center justify-center gap-2"
+                className="w-full bg-[var(--dark-button)] text-[var(--light-text)] text-sm py-2.5 rounded hover:bg-[var(--light-button)] hover:text-[var(--dark-text)] disabled:opacity-50 flex items-center justify-center gap-2"
               >
                 {isAttendanceSubmitting ? (
                   <>
@@ -526,7 +526,7 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
             </p>
             <button
               onClick={reset}
-              className="w-full bg-gray-900 text-white text-sm py-2.5 rounded hover:bg-gray-700"
+              className="w-full bg-[var(--dark-button)] text-[var(--light-text)] text-sm py-2.5 rounded hover:bg-[var(--light-button)] hover:text-[var(--dark-text)]"
             >
               Try again
             </button>
