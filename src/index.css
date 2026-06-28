@@ -30,6 +30,10 @@ body {
   font-family: 'Playfair Display', serif;
 }
 
+.accent {
+  font-family: 'Belleza', sans-serif;
+}
+
 ::placeholder {
   color: var(--accent-text);
   opacity: 1;
