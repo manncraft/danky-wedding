@@ -26,10 +26,10 @@ export default function Timeline() {
         <p className="fancy-italic text-5xl leading-tight mb-1">Timeline</p>
         <p className="text-xs uppercase tracking-widest mb-6 opacity-60">Tuesday, 12th January 2027</p>
         <div className="grid grid-cols-[auto_auto] gap-x-6 text-base text-left">
-          {EVENTS.map(({ time, label }) => (
+          {EVENTS.map(({ time, label }, i) => (
             <React.Fragment key={time}>
-              <div className="border-t border-black/10 py-2 opacity-60 whitespace-nowrap">{time}</div>
-              <div className="border-t border-black/10 py-2">{label}</div>
+              <div className={`border-t border-black/10 py-2 opacity-60 whitespace-nowrap ${i === EVENTS.length - 1 ? 'border-b' : ''}`}>{time}</div>
+              <div className={`border-t border-black/10 py-2 ${i === EVENTS.length - 1 ? 'border-b' : ''}`}>{label}</div>
             </React.Fragment>
           ))}
         </div>
