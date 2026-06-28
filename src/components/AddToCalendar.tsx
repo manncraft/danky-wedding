@@ -69,7 +69,7 @@ export default function AddToCalendar() {
           onClick={() => setOpen(false)}
         >
           <div
-            className="bg-white rounded-lg shadow-xl w-80 p-6"
+            className="bg-[var(--light-bg)] rounded-lg shadow-xl w-80 p-6"
             onClick={e => e.stopPropagation()}
           >
             <h3 className="text-base font-semibold mb-1">Add to Calendar</h3>
