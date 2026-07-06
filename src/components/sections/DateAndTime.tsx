@@ -9,7 +9,7 @@ export default function DateAndTime() {
           <p className="fancy-italic text-6xl pb-2">Ceremony</p>
         </div>
         <div className="flex-1 min-h-0 hidden sm:flex items-center justify-center mt-4">
-          <img src="/img/rose3.png" alt="" className="max-h-[28vh] max-w-full object-contain" />
+          <img src="/img/flower_purple.png" alt="" className="max-h-[28vh] max-w-full object-contain" />
         </div>
       </div>
 
