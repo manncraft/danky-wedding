@@ -1,6 +1,8 @@
 import AddToCalendar from '../AddToCalendar'
+import { useFlowerOverride } from '../../hooks/useFlowerOverride'
 
 export default function DateAndTime() {
+  const flowerSrc = useFlowerOverride('flower_purple')
   return (
     <section className="flex-1 flex flex-col sm:flex-row items-stretch gap-8 sm:gap-12 py-8 px-6 sm:px-0">
       <div className="w-full sm:w-[35%] flex flex-col overflow-hidden">
@@ -9,7 +11,7 @@ export default function DateAndTime() {
           <p className="fancy-italic text-6xl pb-2">Ceremony</p>
         </div>
         <div className="flex-1 min-h-0 hidden sm:flex items-center justify-center mt-4">
-          <img src="/img/flower_purple.png" alt="" className="max-h-[28vh] max-w-full object-contain" />
+          <img src={flowerSrc} alt="" className="max-h-[28vh] max-w-full object-contain" />
         </div>
       </div>
 

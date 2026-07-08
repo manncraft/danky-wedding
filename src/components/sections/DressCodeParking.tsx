@@ -1,11 +1,14 @@
+import { useFlowerOverride } from '../../hooks/useFlowerOverride'
+
 export default function DressCodeParking() {
+  const flowerSrc = useFlowerOverride('cosmos3')
   return (
     <section className="flex-1 flex flex-col sm:flex-row-reverse items-stretch gap-8 sm:gap-12 py-8 px-6 sm:px-0">
 
       {/* Right: image */}
       <div className="w-full sm:w-[35%] hidden sm:flex flex-col overflow-hidden">
         <div className="flex-1 min-h-0 flex items-center justify-center">
-          <img src="/img/cosmos3.png" alt="" className="max-h-[28vh] max-w-full object-contain" />
+          <img src={flowerSrc} alt="" className="max-h-[28vh] max-w-full object-contain" />
         </div>
       </div>
 
