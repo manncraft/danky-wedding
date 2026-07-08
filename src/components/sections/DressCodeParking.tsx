@@ -8,7 +8,7 @@ export default function DressCodeParking() {
       {/* Right: image */}
       <div className="w-full sm:w-[35%] hidden sm:flex flex-col overflow-hidden">
         <div className="flex-1 min-h-0 flex items-center justify-center">
-          <img src={flowerSrc} alt="" className="max-h-[28vh] max-w-full object-contain" />
+          <img src={flowerSrc} alt="" className="max-w-full object-contain" />
         </div>
       </div>
 
