@@ -27,3 +27,13 @@
     height: auto;
   }
 }
+
+.timeline-flower {
+  height: 100vh;
+}
+
+@media (min-width: 640px) and (min-height: 500px) {
+  .timeline-flower {
+    height: 65vh;
+  }
+}
