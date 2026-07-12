@@ -2,7 +2,7 @@ import AddToCalendar from '../AddToCalendar'
 import { useFlowerOverride } from '../../hooks/useFlowerOverride'
 
 export default function DateAndTime() {
-  const flowerSrc = useFlowerOverride('flower_purple_light')
+  const flowerSrc = useFlowerOverride('flower_lavender_light')
   return (
     <section className="flex-1 flex flex-col sm:flex-row items-stretch gap-8 sm:gap-12 py-8 px-6 sm:px-0">
       <div className="w-full sm:w-[35%] flex flex-col overflow-hidden">
