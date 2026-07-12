@@ -33,6 +33,7 @@ const RSVP_DEADLINE = new Date('2026-11-21')
 const SESSION_KEY = 'invite_secret'
 const RSVP_RESULT_KEY = 'rsvp_result'
 const ATTENDING_GATED_FIELDS = ['dietary', 'song'] as const
+const REQUIRE_INVITE_SECRET = import.meta.env.VITE_REQUIRE_INVITE_SECRET !== 'false'
 
 export default function RsvpLookup({ onBack }: RsvpLookupProps) {
   const [secret, setSecret] = useState<string | null>(() => {
@@ -100,7 +101,7 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
   const onSubmit = async (data: LookupFormData) => {
     setView({ kind: 'loading' })
     try {
-      const result = await lookup(data.firstName, data.lastName, secret!)
+      const result = await lookup(data.firstName, data.lastName, secret ?? '')
       if (result.status === 'not_found' || result.matches.length === 0) {
         setView({ kind: 'not_found' })
       } else if (result.matches.length === 1) {
@@ -149,7 +150,7 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
     )
   }
 
-  if (secret === null) {
+  if (secret === null && REQUIRE_INVITE_SECRET) {
     return (
       <div className="min-h-screen flex flex-col items-center px-6 py-10">
         <div className="w-full max-w-md">
@@ -286,7 +287,7 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
                     attending,
                     guests: [primaryGuest, ...plusOnes],
                     bringing_children: data.bringingChildren === true,
-                  }, secret!)
+                  }, secret ?? '')
                   const submittedNames = [primaryGuest.name, ...plusOnes.map(g => g.name)]
                   sessionStorage.setItem(RSVP_RESULT_KEY, JSON.stringify({ guest: view.guest, attending, guests: submittedNames }))
                   setView({ kind: 'rsvp-submitted', guest: view.guest, attending, guests: submittedNames })

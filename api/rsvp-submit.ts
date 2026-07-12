@@ -45,9 +45,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ error: 'method not allowed' })
   }
 
-  const secret = req.headers['x-invite-secret']
-  if (!process.env.INTERNAL_SECRET || secret !== process.env.INTERNAL_SECRET) {
-    return res.status(401).json({ error: 'unauthorised' })
+  if (process.env.REQUIRE_INVITE_SECRET !== 'false') {
+    const secret = req.headers['x-invite-secret']
+    if (!process.env.INTERNAL_SECRET || secret !== process.env.INTERNAL_SECRET) {
+      return res.status(401).json({ error: 'unauthorised' })
+    }
   }
 
   const body = req.body as Partial<RsvpSubmitRequest>
