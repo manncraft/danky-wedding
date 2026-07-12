@@ -25,3 +25,6 @@ dist-ssr
 *.sln
 *.sw?
 demo-notes.md
+
+# Generated invite QR codes — encode the live INTERNAL_SECRET, never commit
+invite-qr*
