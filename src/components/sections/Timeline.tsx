@@ -15,16 +15,24 @@ export default function Timeline() {
   return (
     <section id="timeline" className="relative w-full h-full flex items-center justify-center">
 
-      {/* Flanking flowers — desktop only */}
-      <div className="absolute left-72 bottom-0 h-full pointer-events-none hidden md:block">
-        <img src={flowerSrc} alt="" className="h-full object-contain object-bottom" />
-      </div>
-      <div className="absolute right-72 bottom-0 h-full pointer-events-none hidden md:block" style={{ transform: 'scaleX(-1)' }}>
-        <img src={flowerSrc} alt="" className="h-full object-contain object-bottom" />
-      </div>
+      {/* Shrink-wrapped to the text content so the flowers below can be
+          positioned a fixed gap from the content's actual edges, not the
+          screen's. */}
+      <div className="relative w-fit px-6 py-10 text-center">
 
-      {/* Flat layout — all screen sizes */}
-      <div className="relative z-10 w-fit mx-auto px-6 py-10 text-center">
+        {/* Flanking flowers — desktop only */}
+        <img
+          src={flowerSrc}
+          alt=""
+          className="absolute right-full mr-12 lg:mr-20 bottom-0 h-full object-contain object-bottom pointer-events-none hidden md:block"
+        />
+        <img
+          src={flowerSrc}
+          alt=""
+          style={{ transform: 'scaleX(-1)' }}
+          className="absolute left-full ml-12 lg:ml-20 bottom-0 h-full object-contain object-bottom pointer-events-none hidden md:block"
+        />
+
         <p className="fancy-italic text-5xl leading-tight mb-1">Timeline</p>
         <p className="text-xs uppercase tracking-widest mb-6 opacity-60">Tuesday, 12th January 2027</p>
         <div className="grid grid-cols-[auto_auto] gap-x-6 text-base text-left">
