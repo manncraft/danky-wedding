@@ -1,7 +1,7 @@
 import { useFlowerOverride } from '../../hooks/useFlowerOverride'
 
 export default function DressCodeParking() {
-  const flowerSrc = useFlowerOverride('cosmos3')
+  const flowerSrc = useFlowerOverride('flower_blue_light')
   return (
     <section className="flex-1 flex flex-col sm:flex-row-reverse items-stretch gap-8 sm:gap-12 py-8 px-6 sm:px-0">
 

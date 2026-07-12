@@ -11,7 +11,7 @@ const EVENTS = [
 ]
 
 export default function Timeline() {
-  const flowerSrc = useFlowerOverride('lavender1-5')
+  const flowerSrc = useFlowerOverride('flower_lavender_light')
   return (
     <section id="timeline" className="relative w-full h-full flex items-center justify-center">
 
