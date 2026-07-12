@@ -16,10 +16,10 @@ export default function Timeline() {
     <section id="timeline" className="relative w-full h-full flex items-center justify-center">
 
       {/* Flanking flowers — desktop only */}
-      <div className="absolute left-24 bottom-0 h-full pointer-events-none hidden md:block">
+      <div className="absolute left-72 bottom-0 h-full pointer-events-none hidden md:block">
         <img src={flowerSrc} alt="" className="h-full object-contain object-bottom" />
       </div>
-      <div className="absolute right-24 bottom-0 h-full pointer-events-none hidden md:block" style={{ transform: 'scaleX(-1)' }}>
+      <div className="absolute right-72 bottom-0 h-full pointer-events-none hidden md:block" style={{ transform: 'scaleX(-1)' }}>
         <img src={flowerSrc} alt="" className="h-full object-contain object-bottom" />
       </div>
 
