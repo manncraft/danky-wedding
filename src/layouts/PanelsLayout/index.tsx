@@ -4,6 +4,7 @@ import DateAndTime from '../../components/sections/DateAndTime'
 import DressCodeParking from '../../components/sections/DressCodeParking'
 import FAQs from '../../components/sections/FAQs'
 import Timeline from '../../components/sections/Timeline'
+import ScrollDownArrow from '../../components/ScrollDownArrow'
 import type { ComponentType } from 'react'
 
 interface PanelImage {
@@ -26,6 +27,8 @@ const PANELS: Panel[] = [
   { id: 'timeline',               Component: Timeline, fullWidth: true, tone: 'light' },
   { id: 'faqs',                    Component: FAQs, tone: 'dark' },
 ]
+
+const SECTION_IDS = ['hero', ...PANELS.map((panel) => panel.id)]
 
 interface PanelsLayoutProps {
   onRsvpClick: () => void
@@ -65,6 +68,7 @@ export default function PanelsLayout({ onRsvpClick }: PanelsLayoutProps) {
           </div>
         )
       })}
+      <ScrollDownArrow sectionIds={SECTION_IDS} />
     </div>
   )
 }
