@@ -4,6 +4,7 @@ import DateAndTime from '../../components/sections/DateAndTime'
 import DressCodeParking from '../../components/sections/DressCodeParking'
 import FAQs from '../../components/sections/FAQs'
 import Timeline from '../../components/sections/Timeline'
+import ScrollDownArrow from '../../components/ScrollDownArrow'
 import type { ComponentType } from 'react'
 
 interface PanelImage {
@@ -27,6 +28,8 @@ const PANELS: Panel[] = [
   { id: 'faqs',                    Component: FAQs, tone: 'dark' },
 ]
 
+const SECTION_IDS = ['panel-hero', ...PANELS.map((panel) => `panel-${panel.id}`)]
+
 interface PanelsLayoutProps {
   onRsvpClick: () => void
 }
@@ -34,7 +37,7 @@ interface PanelsLayoutProps {
 export default function PanelsLayout({ onRsvpClick }: PanelsLayoutProps) {
   return (
     <div className="panels-wrapper">
-      <div className="relative panels-card panels-card--dark">
+      <div id="panel-hero" className="relative panels-card panels-card--dark">
         <div className="w-full h-full lg:max-w-5xl lg:mx-auto flex flex-col justify-center">
           <Hero onRsvpClick={onRsvpClick} />
         </div>
@@ -43,7 +46,7 @@ export default function PanelsLayout({ onRsvpClick }: PanelsLayoutProps) {
         const { id, Component, image, fullWidth } = panel
         const tone = panel.tone ?? (index % 2 === 0 ? 'dark' : 'light')
         return (
-          <div key={id} className={`relative panels-card panels-card--${tone}`}>
+          <div key={id} id={`panel-${id}`} className={`relative panels-card panels-card--${tone}`}>
             {fullWidth ? (
               <Component />
             ) : (
@@ -65,6 +68,7 @@ export default function PanelsLayout({ onRsvpClick }: PanelsLayoutProps) {
           </div>
         )
       })}
+      <ScrollDownArrow sectionIds={SECTION_IDS} />
     </div>
   )
 }
