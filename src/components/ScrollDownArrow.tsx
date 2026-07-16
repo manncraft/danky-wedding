@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 interface ScrollDownArrowProps {
   sectionIds: string[]
@@ -6,23 +6,37 @@ interface ScrollDownArrowProps {
 
 export default function ScrollDownArrow({ sectionIds }: ScrollDownArrowProps) {
   const [hidden, setHidden] = useState(false)
+  const currentIndexRef = useRef(0)
 
   useEffect(() => {
-    const lastEl = document.getElementById(sectionIds[sectionIds.length - 1])
-    if (!lastEl) return
+    const elements = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => !!el)
+
+    // Track whichever section overlaps the vertical center of the viewport, rather than
+    // comparing raw offsets — scroll-padding-top (for the desktop sticky nav) shifts where
+    // scrollIntoView lands, so a fixed pixel threshold near the top misdetects the current section.
     const observer = new IntersectionObserver(
-      ([entry]) => setHidden(entry.isIntersecting),
-      { threshold: 0.25 }
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return
+          const index = elements.indexOf(entry.target as HTMLElement)
+          if (index === -1) return
+          currentIndexRef.current = index
+          setHidden(index === elements.length - 1)
+        })
+      },
+      { rootMargin: '-45% 0px -45% 0px' }
     )
-    observer.observe(lastEl)
+
+    elements.forEach((el) => observer.observe(el))
     return () => observer.disconnect()
   }, [sectionIds])
 
   function scrollToNextSection() {
-    const next = sectionIds
-      .map((id) => document.getElementById(id))
-      .find((el): el is HTMLElement => !!el && el.getBoundingClientRect().top > 50)
-    next?.scrollIntoView({ behavior: 'smooth' })
+    const nextId = sectionIds[currentIndexRef.current + 1]
+    if (!nextId) return
+    document.getElementById(nextId)?.scrollIntoView({ behavior: 'smooth' })
   }
 
   if (hidden) return null
