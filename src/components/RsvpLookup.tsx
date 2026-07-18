@@ -5,6 +5,7 @@ import type { MatchedGuest } from '../types/rsvp'
 
 interface RsvpLookupProps {
   onBack: () => void
+  onViewFaqs: () => void
 }
 
 interface LookupFormData {
@@ -35,7 +36,7 @@ const RSVP_RESULT_KEY = 'rsvp_result'
 const ATTENDING_GATED_FIELDS = ['dietary', 'song'] as const
 const REQUIRE_INVITE_SECRET = import.meta.env.VITE_REQUIRE_INVITE_SECRET !== 'false'
 
-export default function RsvpLookup({ onBack }: RsvpLookupProps) {
+export default function RsvpLookup({ onBack, onViewFaqs }: RsvpLookupProps) {
   const [secret, setSecret] = useState<string | null>(() => {
     const fromUrl = new URLSearchParams(window.location.search).get('s')
     if (fromUrl) {
@@ -535,6 +536,17 @@ export default function RsvpLookup({ onBack }: RsvpLookupProps) {
               {view.attending
                 ? 'Your RSVP has been received. We look forward to celebrating with you.'
                 : 'Thanks for letting us know.'}
+            </p>
+            <p className="text-sm text-[var(--accent-text)] mt-4">
+              Have questions?{' '}
+              <button
+                type="button"
+                onClick={onViewFaqs}
+                className="underline font-medium hover:no-underline"
+              >
+                Check out our FAQs
+              </button>{' '}
+              for more info.
             </p>
           </>
         )}
